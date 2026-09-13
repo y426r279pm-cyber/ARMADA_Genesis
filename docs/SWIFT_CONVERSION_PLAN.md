@@ -4,8 +4,41 @@ audience: Internal, Armada. Engineering plan. Inherits the RC2 brief's disclosur
 prepared_by: Taylor, for M. David King
 date: 2026-09-13
 source: Bridge_RC2_1.html (RC2.1, 13 Sep 2026) · Bridge RC2 Decision Brief (12 Sep 2026)
-status: Decided 13 Sep 2026. Phase 0 ready to start.
+status: Phase 0 complete 13 Sep 2026. Phase 1 next.
 ---
+
+# 0a · Phase 0 · what came out
+
+Run `tools/extract_all.sh` to regenerate any of it.
+
+| Extracted | Result |
+|---|---|
+| Tokens | 14 colours -> `Colors.xcassets` + `Theme.swift` |
+| RBAC | 5 roles over 22 screens -> `Role.swift`, `Screen` enum |
+| Strings | 44 keys x 2 languages + 1,235 inline pairs -> 1,057 catalog entries |
+| Icons | 20 glyphs + 2 marks, 78 layers, as geometry -> `Icons.swift` |
+| Seed | 268 records across 21 stores, by running the prototype's own `seed()` |
+| Schema | 21 SwiftData models inferred from those records |
+
+Three things worth knowing before phase 1.
+
+**The chain risk was real and is now settled.** `tools/verify_chain.py` seals the
+real ledger two ways: insertion-order serialisation verifies, a sorted-key encoder
+breaks at seq 1. Had this been found in phase 6 it would have looked like tampering.
+
+**Four stores cannot be typed from the seed** — `incidents`, `chat`, `jobs`,
+`chats` hold nothing after seeding, so there is no shape to infer. Their schema has
+to come from the code that writes them, in the phase that ports those screens.
+
+**The scanner had three bugs, each silent.** The worst: `const esc = (s) =>
+s.replace(/[&<>"']/g, ...)` at line 1848 is a regex literal containing quote
+characters, which read as a string opener and desynchronised everything after it.
+A desynchronised scan produces plausible output that is wrong, which is why the
+extractors assert counts and why `tools/test_jsscan.py` exists.
+
+**Not compile-verified.** There is no Swift toolchain in the environment this was
+generated in. The Swift is generated from a tested extractor, not from a compiler.
+First task of phase 1 is to open it in Xcode and fix what the compiler finds.
 
 # 0 · Decisions taken
 
@@ -149,27 +182,32 @@ unit-testing on the way across — they are cheap tests and they will outlive th
 # 6 · Risks, largest first
 
 **1 · The hash chain will not verify across implementations unless we make it.**
-This is the one that can quietly poison everything. `seal()` hashes
+*Settled in phase 0 — the risk was real, and `tools/verify_chain.py` now proves both
+halves of it against the real seeded ledger: insertion-order serialisation verifies,
+a sorted-key encoder breaks at seq 1.* `seal()` hashes
 `JSON.stringify({es, en, actor, ...extra})`. JavaScript's `JSON.stringify` emits keys
 in *insertion order*. Swift's `JSONEncoder` emits them in declaration order or
 sorted, and formats numbers differently besides. The same logical entry will produce
 a different digest, and `verifyChain()` will report a break at the first Swift-sealed
 record — or worse, at an imported browser record, which will read as tampering.
 
-The fix is a canonical JSON encoder written once, tested against browser-exported
-fixtures, and used for nothing but sealing. It is not difficult; it is only fatal if
-discovered late. Hence phase 1 ending on the cross-verify proof. If we decide
-instead to break compatibility and re-seal, that is a legitimate choice — but it
-must be a decision with a version marker on the chain, not an accident.
+The fix is a canonical JSON encoder written once, used for nothing but sealing:
+`{ es, en, actor }` first, then extras in insertion order, no whitespace, JavaScript
+number formatting. Not `JSONEncoder`. Phase 0 extracted the seeded ledger as a
+fixture, so phase 1's cross-verification test has something real to run against.
 
 **2 · Porting a moving target.** RC2.1 landed today and RC3 is already scoped. Tag
 RC2.1, port the tag, then diff. The extraction scripts from phase 0 are what make
 the diff cheap.
 
-**3 · The ~800 inline `L(en, es)` pairs.** Mechanically extractable, but they are
-not keyed — they are literal pairs at call sites — so extraction must be exhaustive
-or Spanish silently degrades. Mitigation: the loud `⟦key⟧` fallback plus a test that
-fails on any missing locale.
+**3 · The 1,235 inline `L(en, es)` pairs.** *Extracted in phase 0.* 1,235 of 1,239
+call sites carried across mechanically; 4 use template literals and need hand
+porting. One finding: 12 English strings need more than one Spanish translation,
+because Spanish agrees with the noun. The prototype handles this correctly — `L` is
+a ternary carrying both strings at the call site — but a String Catalog needs a key,
+and keying on English collapses the variants. The generated keys carry their
+enclosing screen; each needs confirming against the noun it modifies. See
+`docs/STRING_CONFLICTS.md`.
 
 Note the upside here. The brief's section 9 requires a wording audit over every
 `L()` pair — a test that fails on "valid" near "sealed," and one that catches any
