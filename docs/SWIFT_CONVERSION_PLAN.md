@@ -1,0 +1,211 @@
+---
+title: Bridge™ RC2.1 · Web portal to Apple Swift · Conversion plan
+audience: Internal, Armada. Engineering plan. Inherits the RC2 brief's disclosure rules.
+prepared_by: Taylor, for M. David King
+date: 2026-09-13
+source: Bridge_RC2_1.html (RC2.1, 13 Sep 2026) · Bridge RC2 Decision Brief (12 Sep 2026)
+status: For decision. Three questions gate phase 1.
+---
+
+# 1 · The short answer
+
+The file ports well, and it ports well for one reason: **the prototype was written
+as if this day were coming.** Its own CSS header says the token block is "the single
+source of truth the SwiftUI, Compose, and React versions will share," and its
+section map promises "one pure render function per screen" and "every mutation in
+one place." Both promises hold in the code. Pure `render(state) -> markup` is
+exactly SwiftUI's model, and a single mutation choke point is exactly where the
+hash chain has to live. We are not reverse-engineering a web app. We are compiling
+a specification that happens to be executable in a browser.
+
+**Recommendation.** One SwiftUI codebase, macOS and iPadOS first, in six phases of
+roughly one build session each. Do not hand-retype the canon: generate the theme,
+the icons, the strings, the seed fixtures and the RBAC table from the HTML with
+scripts, so fidelity survives contact with RC2.2 and RC3. Freeze RC2.1 at a git tag
+and port that; diff forward afterwards.
+
+**What "1:1" should mean.** Identical on information architecture, tokens, copy,
+data model, RBAC and the chain. Native on controls, navigation, gestures and type
+metrics. Section 7 names the places where literal 1:1 would be actively wrong.
+
+# 2 · What the port buys us that the browser cannot
+
+This is not a lateral move. Four things get materially better, and three of them
+are arguments in the FEMSA conversation, not just engineering comfort.
+
+| Prototype does | Swift does | Why it matters |
+|---|---|---|
+| Approval gate simulates an authenticator | `LocalAuthentication`: Touch ID, Face ID, Apple Watch; key material in the Secure Enclave | The brief's approval gate stops being a drawing of a control and becomes one |
+| API keys in browser storage | Keychain, hardware-backed | Sovereignty claim survives a security review |
+| Demo mode hides figures with a CSS class | Separate build target: node counts, model names and prices are **absent from the client binary** | Daniel's section 7 rules become unbreakable rather than merely obeyed |
+| WebLLM over WebGPU, browser-gated | MLX Swift on Apple silicon | A faster local model, and the on-premise story stops depending on a browser feature flag |
+
+The demo-mode one deserves emphasis. RC1 broke four of Daniel's eight rules and RC2
+fixes them with a runtime toggle. A toggle can be flipped by accident in front of a
+client. A build target cannot: the strings are not in the binary. If the port
+delivered nothing else, it would still be worth doing for that.
+
+# 3 · Phase 0 · Extract the canon before writing any Swift
+
+One session. No UI work. Scripts that read `Bridge_RC2_1.html` and emit Swift.
+
+| Extract | From | To |
+|---|---|---|
+| Design tokens | the `:root` block | `Theme.swift` + Asset Catalog colour sets |
+| 21 route icons | `ICONS` | vector assets, brand family preserved |
+| Procedural graphics | `Gfx` | hand-ported to `Path`/`Canvas` (see §5) |
+| 90 keys + ~800 `L(en, es)` pairs | `I18N` and every `L()` call site | `Localizable.xcstrings`, EN + ES |
+| Seed data | `seed()` | JSON fixtures, loaded identically |
+| RBAC | `ROLES` | `Role.swift`, 5 roles with their screen lists and write rights |
+| Schema | `STORES` + `DB.export()` shape | 25 SwiftData `@Model` types |
+
+Why scripted rather than typed by hand: the prototype is at RC2.1 and still moving.
+Anything transcribed by a person drifts the first time a screen changes. Anything
+generated can be regenerated. The extraction scripts are the durable artefact here,
+not their first output.
+
+Preserve the loud fallback. `t()` renders a missing key as `⟦key⟧` so it cannot ship
+unnoticed. Swift should do the same rather than falling back to the key name
+silently — that trick has already earned its keep.
+
+# 4 · The six phases
+
+| Phase | Carries | Sessions |
+|---|---|---|
+| 0 · Extract the canon | tokens, icons, strings, seed, RBAC, schema, extraction scripts | 1 |
+| 1 · Shell and spine | NavigationSplitView, sidebar, breadcrumbs, front door, role switch, EN/ES, SwiftData stack, `AppStore` dispatch, CryptoKit chain | 1 |
+| 2 · The demo path | Home, Salud with the cluster map, Energía and its five sub-pages, Facturas and the invoice page with the compliance clocks, Cadena, Auditoría | 1–2 |
+| 3 · The Enterprise group | Conciliación (Match), Medidas, Tiendas, Topología, AgentStudio's scope step | 1–2 |
+| 4 · Taylor | MLX Swift on-device, keyed rails over URLSession, Keychain, the chat drawer | 1 |
+| 5 · The rest and hardening | Installer, Policies with the diff, Integraciones wizard and validators, Datos, Roles, Incidentes, Modelos, Configuración, wording-audit test, demo target, PDFKit, notarization | 2 |
+
+Roughly eight sessions to a complete port; **three to something showable**, which
+matches the brief's own budget for RC2 itself.
+
+Phase 1 ends on a specific, falsifiable proof: export the ledger from the browser
+as JSON, import it into the Swift build, run `verifyChain()`, and get `ok`. If that
+passes, the two implementations agree about the thing hardest to agree about, and
+everything after it is layout. If it fails, we find out in session one rather than
+session six. See §6.
+
+The Enterprise group is deliberately last among the screens. Those five are RC2's
+newest and least settled — the brief still has five open decisions against them.
+Porting them last lets the web prototype keep moving while Swift catches up on
+settled ground.
+
+# 5 · Screen-by-screen mechanics
+
+**Router.** `state.route` + `state.params` + `state.stack` map onto
+`NavigationSplitView` (sidebar and detail — this console was always a sidebar app)
+with a `NavigationPath` for depth. The breadcrumb bar stays as its own view reading
+the same path. The `go(route, params, replace)` signature survives nearly intact.
+
+**Screens.** 38 pure functions returning markup become 38 `View` structs. Because
+they are genuinely pure — they read `S` and `state` and return a string, with no
+DOM reads — this is the most mechanical part of the whole job, despite being the
+largest. One file per screen, grouped by the five Home groups.
+
+**Events.** The 80-branch delegated handler dissolves: each button carries its own
+closure. Do not let it dissolve completely. Keep "every mutation in one place" by
+routing all writes through one `@Observable AppStore` with
+`func dispatch(_ action: Action) async`, because that is where sealing happens. The
+143 `data-*` attributes become a typed `Action` enum, which the compiler then checks
+— the switch stops being a place where a missed branch fails silently at runtime.
+
+**Data.** 25 stores become SwiftData `@Model` types. The prototype's stores are
+schemaless documents; typing them forces the schema to become explicit, which is a
+benefit, not a cost. `DB.export()` already defines the wire shape, so
+import/export round-trips with the browser build stay possible — keep that, it is
+the regression harness for the whole port. If SwiftData strains at 25 entities with
+relationships, GRDB is the fallback; decide at the end of phase 1, not before.
+
+**Graphics.** Two populations, two treatments. The `Gfx` module is already
+parametric drawing code — `arc(cx, cy, r, a0, a1)`, `battery(pct)`, `thermo(tempC)`,
+`clusterMap(nodes)` — and translates to `Path` and `Canvas` almost line for line.
+The 21 route icons are hand-drawn monoline glyphs in a deliberate family; ship them
+as vector assets. Do not substitute SF Symbols. The brief treats the icon family as
+branding, and SF Symbols would quietly discard it.
+
+**PDF.** Delete `makePDF` entirely. It is a hand-rolled PDF writer with its own
+string escaping, and `PDFKit` with `ImageRenderer` produces better output in a
+fraction of the code. This is the one place where the port should not be faithful.
+
+**Validators.** `rfc`, `clabe`, `pem`, `url`, `host`, `port` port directly as
+`Validator` types. The CLABE check digit and RFC pattern are the kind of thing worth
+unit-testing on the way across — they are cheap tests and they will outlive the port.
+
+# 6 · Risks, largest first
+
+**1 · The hash chain will not verify across implementations unless we make it.**
+This is the one that can quietly poison everything. `seal()` hashes
+`JSON.stringify({es, en, actor, ...extra})`. JavaScript's `JSON.stringify` emits keys
+in *insertion order*. Swift's `JSONEncoder` emits them in declaration order or
+sorted, and formats numbers differently besides. The same logical entry will produce
+a different digest, and `verifyChain()` will report a break at the first Swift-sealed
+record — or worse, at an imported browser record, which will read as tampering.
+
+The fix is a canonical JSON encoder written once, tested against browser-exported
+fixtures, and used for nothing but sealing. It is not difficult; it is only fatal if
+discovered late. Hence phase 1 ending on the cross-verify proof. If we decide
+instead to break compatibility and re-seal, that is a legitimate choice — but it
+must be a decision with a version marker on the chain, not an accident.
+
+**2 · Porting a moving target.** RC2.1 landed today and RC3 is already scoped. Tag
+RC2.1, port the tag, then diff. The extraction scripts from phase 0 are what make
+the diff cheap.
+
+**3 · The ~800 inline `L(en, es)` pairs.** Mechanically extractable, but they are
+not keyed — they are literal pairs at call sites — so extraction must be exhaustive
+or Spanish silently degrades. Mitigation: the loud `⟦key⟧` fallback plus a test that
+fails on any missing locale.
+
+Note the upside here. The brief's section 9 requires a wording audit over every
+`L()` pair — a test that fails on "valid" near "sealed," and one that catches any
+claim that the layer remediates a control. In the browser that audit is a script
+someone remembers to run. In Swift it is a unit test over the String Catalog that
+fails the build. The compliance rule gets teeth.
+
+**4 · On-device model parity.** WebLLM's Qwen 2.5 and MLX's model zoo are not the
+same set, and memory footprint on the demo machine is a real constraint. Decide the
+model and the machine together, early, and measure before the CEO conversation
+rather than during it.
+
+**5 · SwiftData at 25 entities.** Mature enough, but not battle-hardened at this
+shape. GRDB fallback, decided at the end of phase 1.
+
+# 7 · Where 1:1 would be wrong
+
+Five places to diverge deliberately, so nobody files them as bugs later:
+
+- **Type metrics.** The prototype is 15px with a web stack. Use Dynamic Type. A
+  fixed 15px on an iPad is an accessibility regression, and an auditor squinting at
+  a ledger is exactly the user who will notice.
+- **Controls.** Native pickers, toggles and date fields, not CSS recreations. The
+  uncanny valley costs more credibility than the inconsistency saves.
+- **Scroll and gesture.** SwiftUI's physics, back-swipe, trackpad behaviour.
+- **`makePDF`.** PDFKit, per §5.
+- **The keyed rails.** Keychain, not a text field that remembers.
+
+Everything else — tokens, layout structure, copy, icon family, information
+architecture, RBAC, the chain — holds at 1:1.
+
+# 8 · The alternative we are not taking, and when we would
+
+A `WKWebView` wrapper around the existing file would be genuinely 1:1 and take
+about a day. It fails for the CEO conversation on three counts: it cannot reach
+`LocalAuthentication` or the Secure Enclave, so the approval gate stays a drawing;
+it cannot run MLX, so the on-device story stays browser-gated; and a web page in a
+window reads as a prototype, which is precisely the impression the Discovery cannot
+afford.
+
+It is still worth keeping in the back pocket. If a demo date lands inside two weeks,
+the wrapper ships the demo while the real port continues behind it. That is cheap
+insurance and costs nothing but a scheme.
+
+# 9 · Distribution
+
+A sovereign on-premise console probably does not go through the App Store. Plan for
+Developer ID with notarization, or MDM distribution to managed devices. This wants
+deciding before phase 5, not after, because it affects entitlements — and
+entitlements affect the Secure Enclave work in §2, which is one of the reasons we
+are porting at all.
