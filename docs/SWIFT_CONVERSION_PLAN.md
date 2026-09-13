@@ -49,7 +49,7 @@ three took the recommendation.
 |---|---|---|
 | Platforms | macOS and iPadOS, one codebase | `NavigationSplitView` throughout; size-class work on the dense screens only. iPhone deferred to the reception and chat subset |
 | Fidelity | Faithful spec, native shell | 1:1 on tokens, layout structure, copy, icon family, information architecture, RBAC and the chain; native on controls, Dynamic Type, scroll and gesture. §7 stands as written |
-| On-device model | MLX Swift | Model chosen by us, Apple silicon native. Settle the model and the demo machine's memory budget in phase 0, not phase 4 — see §6 risk 4 |
+| On-device model | MLX Swift | Model chosen by us, Apple silicon native. Demo machine settled at 16 GB, so Qwen 2.5 7B at 4-bit (~4.2 GB) with a 3B fallback; weights pre-cached, loaded at launch, never downloaded during a demo. See `docs/ON_DEVICE_MODEL.md` |
 
 
 # 1 · The short answer
@@ -215,10 +215,13 @@ claim that the layer remediates a control. In the browser that audit is a script
 someone remembers to run. In Swift it is a unit test over the String Catalog that
 fails the build. The compliance rule gets teeth.
 
-**4 · On-device model parity.** WebLLM's Qwen 2.5 and MLX's model zoo are not the
-same set, and memory footprint on the demo machine is a real constraint. Decide the
-model and the machine together, early, and measure before the CEO conversation
-rather than during it.
+**4 · On-device model parity.** *Settled: 16 GB demo machine, Qwen 2.5 7B at 4-bit,
+3B fallback — `docs/ON_DEVICE_MODEL.md`.* What remains is not the choice but the
+operational discipline around it: weights pre-cached rather than downloaded, loaded
+at launch rather than at first message, and a pre-flight check that falls back to
+the 3B before a demo rather than during one. On 16 GB the failure mode is memory
+pressure and swap, which presents as the console going unresponsive mid-sentence.
+Measure on the actual machine.
 
 **5 · SwiftData at 25 entities.** Mature enough, but not battle-hardened at this
 shape. GRDB fallback, decided at the end of phase 1.
