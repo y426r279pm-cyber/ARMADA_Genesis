@@ -4,8 +4,20 @@ audience: Internal, Armada. Engineering plan. Inherits the RC2 brief's disclosur
 prepared_by: Taylor, for M. David King
 date: 2026-09-13
 source: Bridge_RC2_1.html (RC2.1, 13 Sep 2026) · Bridge RC2 Decision Brief (12 Sep 2026)
-status: For decision. Three questions gate phase 1.
+status: Decided 13 Sep 2026. Phase 0 ready to start.
 ---
+
+# 0 · Decisions taken
+
+Settled 13 September 2026 by M. David King. These three gated phase 1; all
+three took the recommendation.
+
+| Decision | Taken | Consequence |
+|---|---|---|
+| Platforms | macOS and iPadOS, one codebase | `NavigationSplitView` throughout; size-class work on the dense screens only. iPhone deferred to the reception and chat subset |
+| Fidelity | Faithful spec, native shell | 1:1 on tokens, layout structure, copy, icon family, information architecture, RBAC and the chain; native on controls, Dynamic Type, scroll and gesture. §7 stands as written |
+| On-device model | MLX Swift | Model chosen by us, Apple silicon native. Settle the model and the demo machine's memory budget in phase 0, not phase 4 — see §6 risk 4 |
+
 
 # 1 · The short answer
 
