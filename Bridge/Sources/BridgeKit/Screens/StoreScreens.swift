@@ -21,7 +21,7 @@ struct StoresScreen: View {
                          subtitle: L("one distribution centre and its stores: connector, queue, agent, open cases"))
 
             HStack(spacing: 10) {
-                Chip(text: "\(distributionCentre) · \(stores.count) \(L("stores"))", dot: Theme.led)
+                Chip(text: "\(distributionCentre) · \(stores.count) \(Ll("Stores"))", dot: Theme.led)
                 Chip(text: "\(offline) \(L("with records queued offline"))",
                      dot: offline > 0 ? Theme.warn : Theme.led)
                 Chip(text: Key.nav_topologia.string) { store.navigator.go(.topologia) }
@@ -71,13 +71,13 @@ struct StoreRow: View {
                        text: site.connector)
 
             if site.queued > 0 {
-                Text("\(site.queued) \(L("queued"))").font(.caption).foregroundStyle(Theme.warn)
+                Text("\(site.queued) \(Ll("Queued"))").font(.caption).foregroundStyle(Theme.warn)
             }
 
             Spacer(minLength: 8)
 
             if site.openCases > 0 {
-                StatusPill(kind: .crit, text: "\(site.openCases) \(L("open"))")
+                StatusPill(kind: .crit, text: "\(site.openCases) \(L("open (label)"))")
             }
             // No number here: nobody has measured planogram compliance yet, and
             // a placeholder figure would be invented evidence.

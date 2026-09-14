@@ -59,7 +59,7 @@ struct LocalModelCard: View {
                          value: String(format: "%.1f GB", model.memory.availableGB),
                          tint: model.memory.recommended == nil ? Theme.warn : Theme.text)
                 KeyValue(label: L("Recommended"),
-                         value: model.memory.recommended?.displayName ?? L("none"))
+                         value: model.memory.recommended?.displayName ?? L("No model available"))
             }
 
             Text(model.memory.advice).font(.caption).foregroundStyle(Theme.muted)

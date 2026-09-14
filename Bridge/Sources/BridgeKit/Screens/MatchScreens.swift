@@ -19,7 +19,7 @@ struct MatchScreen: View {
             HStack(spacing: 10) {
                 Chip(text: "\(cleanMatches) \(L("of")) \(payables.count) \(L("payables matched cleanly"))",
                      dot: Theme.led)
-                Chip(text: "\(count(of: "open")) \(L("open"))", dot: Theme.crit)
+                Chip(text: "\(count(of: "open")) \(L("open (label)"))", dot: Theme.crit)
                 Chip(text: "\(count(of: "attending")) \(L("attending"))", dot: Theme.warn)
                 Chip(text: "\(count(of: "resolved")) \(L("resolved"))")
             }
@@ -129,7 +129,7 @@ struct CaseScreen: View {
                                  typedWord: $typedWord, refusal: $refusal, approved: $approved)
                 }
             } else {
-                ScreenHeader(screen: .caso, title: L("Case"), iconScreen: .conciliacion)
+                ScreenHeader(screen: .caso, title: L("Case (label)"), iconScreen: .conciliacion)
                 Card { Text(L("That record no longer exists.")).foregroundStyle(Theme.muted) }
             }
         }
@@ -244,7 +244,7 @@ struct AgentFinding: View {
                 TaylorMark(size: 26)
                 Text(L("Agent finding")).font(.headline).foregroundStyle(Theme.text)
                 Spacer()
-                Text("\(L("guardrails")) v\(finding.guardrailsVersion)")
+                Text("\(Ll("Guardrails")) v\(finding.guardrailsVersion)")
                     .font(.caption).foregroundStyle(Theme.muted)
             }
 

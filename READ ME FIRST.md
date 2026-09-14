@@ -70,8 +70,17 @@ is Xcode finishing its own setup.
 
 ## Step 4 · What you will probably see
 
-**Most likely: a list of errors.** That is expected, and it is not a problem
-with your Mac.
+**Possibly a list of errors.** That is expected, and it is not a problem with
+your Mac.
+
+The first run found 95 of them, all from one file — the translations catalog.
+Xcode makes a Swift name out of every translation key, and it does that by
+ignoring capital letters, so `Accounts` and `accounts` became the same name
+twice over. Forty-seven pairs like that, plus four keys that happened to spell
+Swift's own words. All fixed, and the build now refuses to produce that class
+of error again.
+
+None of them were errors in the console's actual logic.
 
 None of this code has ever been compiled. It was written without a Swift
 compiler available, so the first build will find mistakes — wrong names, wrong

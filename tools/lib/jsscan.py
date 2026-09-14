@@ -253,3 +253,37 @@ HEADER = """\
 
 def banner(tool, src=SOURCE):
     return HEADER.format(tool=tool, src=src)
+
+
+# ---- String Catalog keys ----------------------------------------------------
+#
+# Xcode generates one Swift symbol per catalog key, folding case and
+# punctuation. Two consequences shape every key we emit:
+#
+#   · "Accounts" and "accounts" are one symbol, so only one can be a key;
+#     extract_strings.py keeps the Title-case one and Ll() renders the other.
+#   · a key whose symbol lands on a Swift keyword is rejected outright, so it
+#     carries a "(label)" qualifier. The qualifier is part of the key, never
+#     part of what renders — the English value stays exactly as written.
+#
+# The rule lives here because more than one generator emits catalog keys, and
+# they have to agree.
+
+SWIFT_KEYWORDS = {
+    "associatedtype", "break", "case", "catch", "class", "continue", "default", "defer",
+    "deinit", "do", "else", "enum", "extension", "fallthrough", "false", "final", "for",
+    "func", "guard", "if", "import", "in", "init", "internal", "is", "lazy", "let", "nil",
+    "open", "operator", "private", "protocol", "public", "repeat", "return", "self", "static",
+    "struct", "subscript", "super", "switch", "throw", "throws", "true", "try", "typealias",
+    "var", "weak", "where", "while",
+}
+
+
+def catalog_symbol(key):
+    """Approximate the identifier Xcode derives from a catalog key."""
+    return re.sub(r"[^A-Za-z0-9]+", " ", key).strip().lower()
+
+
+def catalog_key(english):
+    """The key to use for a string, moved off a Swift keyword if it lands on one."""
+    return f"{english} (label)" if catalog_symbol(english).replace(" ", "") in SWIFT_KEYWORDS else english

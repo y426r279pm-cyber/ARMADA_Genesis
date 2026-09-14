@@ -72,7 +72,7 @@ public enum Screen: String, CaseIterable, Sendable, Codable {
         switch self {
         case .agente: L("Agent")
         case .baterias: L("Batteries")
-        case .caso: L("Case")
+        case .caso: L("Case (label)")
         case .conectar: L("Connect")
         case .cuenta: L("Account")
         case .evento: L("Event")

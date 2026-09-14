@@ -132,14 +132,14 @@ struct SiteTile: View {
             // Latency and replication lag are what placement is actually decided
             // on, so they sit on the tile rather than inside it.
             HStack(spacing: 14) {
-                figure(L("nodes"), "\(site.nodes)")
+                figure(Ll("Nodes"), "\(site.nodes)")
                 figure(L("latency"), "\(site.latency) ms",
                        tint: site.latency > 40 ? Theme.warn : Theme.text)
                 if site.kind == "recovery" {
                     figure(L("lag"), "\(site.lag) s", tint: site.lag > 0 ? Theme.warn : Theme.led)
                 }
                 if site.queued > 0 {
-                    figure(L("queued"), "\(site.queued)", tint: Theme.warn)
+                    figure(Ll("Queued"), "\(site.queued)", tint: Theme.warn)
                 }
             }
         }
@@ -170,20 +170,20 @@ struct SiteScreen: View {
         ScreenScaffold(maxWidth: 1280) {
             if let site {
                 ScreenHeader(screen: .sitio, title: site.name,
-                             subtitle: "\(site.city) · \(site.nodes) \(L("nodes")) · \(L("latency to core")) \(site.latency) ms",
+                             subtitle: "\(site.city) · \(site.nodes) \(Ll("Nodes")) · \(L("latency to core")) \(site.latency) ms",
                              iconScreen: .topologia)
 
                 CardGrid {
-                    StatCard(value: "\(site.nodes)", label: L("nodes"),
+                    StatCard(value: "\(site.nodes)", label: Ll("Nodes"),
                              icon: AnyView(BridgeIcon(.salud, size: 28)))
                     StatCard(value: "\(site.latency) ms", label: L("latency to core"),
                              tint: site.latency > 40 ? Theme.warn : Theme.text,
                              icon: AnyView(Image(systemName: "timer").font(.title2)
                                 .foregroundStyle(Theme.text2)))
-                    StatCard(value: site.stores > 0 ? "\(site.stores)" : "—", label: L("stores served"),
+                    StatCard(value: site.stores > 0 ? "\(site.stores)" : "—", label: Ll("Stores served"),
                              icon: AnyView(BridgeIcon(.tiendas, size: 28)))
                     if site.kind == "recovery" {
-                        StatCard(value: "\(site.lag) s", label: L("replication lag"),
+                        StatCard(value: "\(site.lag) s", label: Ll("Replication lag"),
                                  tint: site.lag > 0 ? Theme.warn : Theme.led,
                                  icon: AnyView(Image(systemName: "arrow.triangle.2.circlepath")
                                     .font(.title2).foregroundStyle(Theme.text2)))

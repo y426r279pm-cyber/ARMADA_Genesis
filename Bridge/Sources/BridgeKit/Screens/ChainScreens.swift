@@ -12,7 +12,7 @@ struct ChainScreen: View {
                          subtitle: L("every action, sealed in order, each seal covering the one before it"))
 
             CardGrid {
-                StatCard(value: "\(store.chain.count)", label: L("sealed events"),
+                StatCard(value: "\(store.chain.count)", label: Ll("Sealed events"),
                          icon: AnyView(BridgeIcon(.cadena, size: 28)))
                 StatCard(value: verificationText, label: L("chain state"),
                          tint: store.chainState.isIntact ? Theme.led : Theme.crit,
@@ -158,7 +158,7 @@ struct AuditScreen: View {
                     if let lastCheck {
                         switch lastCheck {
                         case .intact(let length):
-                            StatusPill(kind: .ok, text: "\(L("intact")) · \(length) \(L("events"))")
+                            StatusPill(kind: .ok, text: "\(L("intact")) · \(length) \(Ll("Events"))")
                         case .broken(let seq):
                             StatusPill(kind: .crit, text: "\(L("broken at")) #\(seq)")
                         }

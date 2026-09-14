@@ -2228,7 +2228,7 @@
         }
       }
     },
-    "Case": {
+    "Case (label)": {
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -3178,7 +3178,7 @@
         }
       }
     },
-    "Continue": {
+    "Continue (label)": {
       "extractionState": "manual",
       "localizations": {
         "en": {
@@ -5042,23 +5042,6 @@
         }
       }
     },
-    "GOVERN": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "GOVERN"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "GOBIERNO"
-          }
-        }
-      }
-    },
     "GPT-4o class on Meta's launch benchmarks; closed models lead on code and reasoning. The Llama octet's model of record.": {
       "extractionState": "manual",
       "localizations": {
@@ -5551,23 +5534,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "INSTALACIÓN · PASO"
-          }
-        }
-      }
-    },
-    "INTELLIGENCE": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "INTELLIGENCE"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "INTELIGENCIA"
           }
         }
       }
@@ -7330,6 +7296,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Esta compilación no incluye un motor de inferencia local."
+          }
+        }
+      }
+    },
+    "No model available": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No model available"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin modelo disponible"
           }
         }
       }
@@ -9312,23 +9296,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "RMF 2.7.1.32 · CFF 83 y 84 · 69-B · aceptación de cancelación"
-          }
-        }
-      }
-    },
-    "RUN": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "RUN"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "OPERACIÓN"
           }
         }
       }
@@ -12049,7 +12016,7 @@
         }
       }
     },
-    "Switch": {
+    "Switch (label)": {
       "comment": "Introduced by the Swift port; not present in the prototype.",
       "extractionState": "manual",
       "localizations": {
@@ -12097,23 +12064,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Salud del sistema"
-          }
-        }
-      }
-    },
-    "TRUST": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "TRUST"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "CONFIANZA"
           }
         }
       }
@@ -12217,23 +12167,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Taylor está en la sala"
-          }
-        }
-      }
-    },
-    "Taylor is in the room.": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Taylor is in the room."
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Taylor está en la sala."
           }
         }
       }
@@ -14981,23 +14914,6 @@
         }
       }
     },
-    "accounts": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "accounts"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "cuentas"
-          }
-        }
-      }
-    },
     "accounts being chased, and by whom": {
       "comment": "Introduced by the Swift port; not present in the prototype.",
       "extractionState": "manual",
@@ -15602,23 +15518,6 @@
         }
       }
     },
-    "bringing Taylor in": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "bringing Taylor in"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "trayendo a Taylor"
-          }
-        }
-      }
-    },
     "broken at": {
       "comment": "Introduced by the Swift port; not present in the prototype.",
       "extractionState": "manual",
@@ -15654,24 +15553,6 @@
         }
       }
     },
-    "cancel": {
-      "comment": "Fixed dictionary key from the prototype's I18N block.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cancel"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Cancelar"
-          }
-        }
-      }
-    },
     "cancelled at SAT": {
       "extractionState": "manual",
       "localizations": {
@@ -15685,23 +15566,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "cancelado en el SAT"
-          }
-        }
-      }
-    },
-    "capabilities": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "capabilities"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "capacidades"
           }
         }
       }
@@ -15916,40 +15780,6 @@
         }
       }
     },
-    "choose a store": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "choose a store"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "elija una tienda"
-          }
-        }
-      }
-    },
-    "choose a supplier": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "choose a supplier"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "elija un proveedor"
-          }
-        }
-      }
-    },
     "clear": {
       "extractionState": "manual",
       "localizations": {
@@ -16122,41 +15952,6 @@
         }
       }
     },
-    "connect": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "connect"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "conectar"
-          }
-        }
-      }
-    },
-    "connected": {
-      "comment": "Introduced by the Swift port; not present in the prototype.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "connected"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "conectada"
-          }
-        }
-      }
-    },
     "connected [home/integraciones/tileHint]": {
       "comment": "Spanish agreement differs by context; key disambiguated by enclosing screen. Prototype call sites: line 2682, line 3193, line 3512.",
       "extractionState": "manual",
@@ -16241,23 +16036,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "ajustes de la consola"
-          }
-        }
-      }
-    },
-    "context": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "context"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "contexto"
           }
         }
       }
@@ -16675,23 +16453,6 @@
         }
       }
     },
-    "escalated to Kimi": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "escalated to Kimi"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "escalado a Kimi"
-          }
-        }
-      }
-    },
     "escalation brain": {
       "extractionState": "manual",
       "localizations": {
@@ -16757,23 +16518,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "escalaciones a Kimi"
-          }
-        }
-      }
-    },
-    "events": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "events"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "eventos"
           }
         }
       }
@@ -16896,23 +16640,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "exportar"
-          }
-        }
-      }
-    },
-    "failed": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "failed"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "falló"
           }
         }
       }
@@ -17244,24 +16971,6 @@
         }
       }
     },
-    "good_morning": {
-      "comment": "Fixed dictionary key from the prototype's I18N block.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Good morning"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Buenos días"
-          }
-        }
-      }
-    },
     "grid open": {
       "extractionState": "manual",
       "localizations": {
@@ -17292,23 +17001,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "red en espera"
-          }
-        }
-      }
-    },
-    "guardrails": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "guardrails"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "guardarraíles"
           }
         }
       }
@@ -17416,23 +17108,6 @@
         }
       }
     },
-    "history": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "history"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "historial"
-          }
-        }
-      }
-    },
     "illustrative": {
       "extractionState": "manual",
       "localizations": {
@@ -17514,24 +17189,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "industria: 0.8 a 2% de los desembolsos (APQC, IOFM)"
-          }
-        }
-      }
-    },
-    "installed": {
-      "comment": "Introduced by the Swift port; not present in the prototype.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "installed"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "instalado"
           }
         }
       }
@@ -17642,23 +17299,6 @@
         }
       }
     },
-    "invoice": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "invoice"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "factura"
-          }
-        }
-      }
-    },
     "is due on the 26th. If it has already been paid, thank you; if not, the payment complement can be requested from this same message. I can only help with invoices and payments; a person from the bank handles anything else.": {
       "extractionState": "manual",
       "localizations": {
@@ -17672,23 +17312,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "vence el día 26. Si ya fue pagada, gracias; si no, el complemento de pago puede solicitarse desde este mismo mensaje. Solo puedo ayudar con facturas y pagos; una persona del banco atiende cualquier otro tema."
-          }
-        }
-      }
-    },
-    "islanded": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "islanded"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "en isla"
           }
         }
       }
@@ -18148,23 +17771,6 @@
         }
       }
     },
-    "memory": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "memory"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "memoria"
-          }
-        }
-      }
-    },
     "memory bar": {
       "extractionState": "manual",
       "localizations": {
@@ -18195,23 +17801,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "minutos × tarifa horaria cargada; EST"
-          }
-        }
-      }
-    },
-    "model": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "model"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "modelo"
           }
         }
       }
@@ -18854,23 +18443,6 @@
         }
       }
     },
-    "no payment yet": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "no payment yet"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "sin pago aún"
-          }
-        }
-      }
-    },
     "no published benchmark; the Discovery number": {
       "extractionState": "manual",
       "localizations": {
@@ -18922,40 +18494,6 @@
         }
       }
     },
-    "node": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "node"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "nodo"
-          }
-        }
-      }
-    },
-    "nodes": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "nodes"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "nodos"
-          }
-        }
-      }
-    },
     "nodes in all": {
       "extractionState": "manual",
       "localizations": {
@@ -18987,23 +18525,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "nodos, temperatura, memoria"
-          }
-        }
-      }
-    },
-    "none": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "none"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "ninguno"
           }
         }
       }
@@ -19107,23 +18628,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "octeto(s)"
-          }
-        }
-      }
-    },
-    "octets": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "octets"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "octetos"
           }
         }
       }
@@ -19474,24 +18978,6 @@
         }
       }
     },
-    "open": {
-      "comment": "Introduced by the Swift port; not present in the prototype.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "open"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "abierto"
-          }
-        }
-      }
-    },
     "open (islanded)": {
       "extractionState": "manual",
       "localizations": {
@@ -19505,6 +18991,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "abierto (en isla)"
+          }
+        }
+      }
+    },
+    "open (label)": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "open"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "abierto"
           }
         }
       }
@@ -19541,23 +19045,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "abiertos"
-          }
-        }
-      }
-    },
-    "open cases": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "open cases"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "casos abiertos"
           }
         }
       }
@@ -19711,40 +19198,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "gobierno propio: usuarios, guardarraíles y términos, versionados y sellados"
-          }
-        }
-      }
-    },
-    "paid": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "paid"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "pagado"
-          }
-        }
-      }
-    },
-    "parameters": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "parameters"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "parámetros"
           }
         }
       }
@@ -19943,23 +19396,6 @@
         }
       }
     },
-    "per node": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "per node"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "por nodo"
-          }
-        }
-      }
-    },
     "per octet": {
       "extractionState": "manual",
       "localizations": {
@@ -20079,23 +19515,6 @@
         }
       }
     },
-    "published": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "published"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "publicada"
-          }
-        }
-      }
-    },
     "published and sealed. [find]": {
       "comment": "Spanish agreement differs by context; key disambiguated by enclosing screen. Prototype call sites: line 8743.",
       "extractionState": "manual",
@@ -20127,40 +19546,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "sacrificio de calidad; último recurso"
-          }
-        }
-      }
-    },
-    "queued": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "queued"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "en cola"
-          }
-        }
-      }
-    },
-    "rack": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "rack"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "rack"
           }
         }
       }
@@ -20403,24 +19788,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "estado replicado y capacidad de recuperación probada"
-          }
-        }
-      }
-    },
-    "replication lag": {
-      "comment": "Introduced by the Swift port; not present in the prototype.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "replication lag"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "retraso de replicación"
           }
         }
       }
@@ -20720,23 +20087,6 @@
         }
       }
     },
-    "rules": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "rules"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "reglas"
-          }
-        }
-      }
-    },
     "rules, not judgement": {
       "comment": "Introduced by the Swift port; not present in the prototype.",
       "extractionState": "manual",
@@ -20906,23 +20256,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sellado en la cadena"
-          }
-        }
-      }
-    },
-    "sealed events": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "sealed events"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "eventos sellados"
           }
         }
       }
@@ -21322,40 +20655,6 @@
         }
       }
     },
-    "store": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "store"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "almacén"
-          }
-        }
-      }
-    },
-    "stores": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "stores"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "tiendas"
-          }
-        }
-      }
-    },
     "stores of records": {
       "comment": "Introduced by the Swift port; not present in the prototype.",
       "extractionState": "manual",
@@ -21370,24 +20669,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "almacenes de registros"
-          }
-        }
-      }
-    },
-    "stores served": {
-      "comment": "Introduced by the Swift port; not present in the prototype.",
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "stores served"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "tiendas atendidas"
           }
         }
       }
@@ -21544,23 +20825,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "interruptor abierto"
-          }
-        }
-      }
-    },
-    "tap a node to open it": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "tap a node to open it"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "toque un nodo para abrirlo"
           }
         }
       }
@@ -22391,23 +21655,6 @@
         }
       }
     },
-    "today": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "today"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "hoy"
-          }
-        }
-      }
-    },
     "took the case": {
       "extractionState": "manual",
       "localizations": {
@@ -22438,23 +21685,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "toque enviado por un agente"
-          }
-        }
-      }
-    },
-    "touches today": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "touches today"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "toques hoy"
           }
         }
       }
@@ -23115,23 +22345,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "con registros en cola sin conexión"
-          }
-        }
-      }
-    },
-    "words": {
-      "extractionState": "manual",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "words"
-          }
-        },
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "palabras"
           }
         }
       }

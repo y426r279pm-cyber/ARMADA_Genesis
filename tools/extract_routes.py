@@ -15,7 +15,7 @@ relationships live.
 import os, re, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from lib.jsscan import (read_source, strip_comments, find_block, read_string_end,
-                        starts_regex, read_regex_end, swift_string, banner)
+                        starts_regex, read_regex_end, swift_string, banner, catalog_key)
 
 OUT = "Bridge/Sources/BridgeKit/Router/Route.swift"
 KEY = re.compile(r'([A-Za-z_$][\w$]*|"[^"]+")\s*\(\s*(p?)\s*\)\s*\{')
@@ -133,7 +133,7 @@ def main():
     for key in sorted(crumbs):
         ident = key.replace("-", "_")
         if ident in {k for k, _ in screens} or ident == key:
-            L.append(f"        case .{ident}: L({swift_string(crumbs[key])})")
+            L.append(f"        case .{ident}: L({swift_string(catalog_key(crumbs[key]))})")
     L.append("        default: Key(rawValue: \"nav_\\(rawValue)\")?.string ?? rawValue")
     L.append("        }")
     L.append("    }")

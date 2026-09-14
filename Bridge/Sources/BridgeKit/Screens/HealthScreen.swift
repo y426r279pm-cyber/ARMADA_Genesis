@@ -20,7 +20,7 @@ struct HealthScreen: View {
                 StatCard(value: "\(avgTemp)°", label: L("avg temp"),
                          tint: avgTemp >= 75 ? Theme.warn : Theme.text,
                          icon: AnyView(Thermometer(celsius: avgTemp)))
-                StatCard(value: "\(avgMemory)%", label: L("memory"),
+                StatCard(value: "\(avgMemory)%", label: Ll("Memory"),
                          icon: AnyView(MemoryRing(usedGB: avgMemoryGB)))
                 StatCard(value: ledgerCurrent ? L("current") : L("behind"),
                          label: L("ledger on every node"),

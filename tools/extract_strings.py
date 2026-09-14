@@ -21,7 +21,7 @@ The catalog uses the English string as the key, which is idiomatic for
 import json, os, re, sys
 sys.path.insert(0, os.path.dirname(__file__))
 from lib.jsscan import (read_source, strip_comments, find_block, read_js_string,
-                        swift_string, banner)
+                        swift_string, banner, SWIFT_KEYWORDS, catalog_symbol)
 
 OUT_CATALOG = "Bridge/Sources/BridgeKit/Resources/Localizable.xcstrings"
 SUPPLEMENT = "tools/strings_supplement.json"
@@ -115,6 +115,61 @@ def parse_inline_pairs(js, origin):
     return pairs, total, skipped
 
 
+SWIFT_KEYWORDS = {
+    "associatedtype", "break", "case", "catch", "class", "continue", "default", "defer",
+    "deinit", "do", "else", "enum", "extension", "fallthrough", "false", "final", "for",
+    "func", "guard", "if", "import", "in", "init", "internal", "is", "lazy", "let", "nil",
+    "open", "operator", "private", "protocol", "public", "repeat", "return", "self", "static",
+    "struct", "subscript", "super", "switch", "throw", "throws", "true", "try", "typealias",
+    "var", "weak", "where", "while",
+}
+
+
+def symbol_of(key):
+    """Approximate the identifier Xcode derives from a catalog key."""
+    return re.sub(r"[^A-Za-z0-9]+", " ", key).strip().lower()
+
+
+def resolve_symbol_collisions(strings):
+    """One key per generated symbol, and no key that lands on a Swift keyword.
+
+    Returns (strings, merges, renames). `merges` names each dropped key and the
+    one that absorbed it; `renames` names each key moved off a reserved word.
+    """
+    by_symbol = {}
+    for key in strings:
+        by_symbol.setdefault(symbol_of(key), []).append(key)
+
+    merges = []
+    for sym, keys in by_symbol.items():
+        if len(keys) < 2:
+            continue
+        # Keep the Title-case spelling: a label reads correctly as-is, and the
+        # running-text use is one Ll() away. The reverse is not true.
+        keeper = max(keys, key=lambda k: (k[:1].isupper(), -len(k), k))
+        for dropped in keys:
+            if dropped == keeper:
+                continue
+            merges.append((dropped, keeper,
+                           spanish(strings[dropped]) != spanish(strings[keeper])))
+            del strings[dropped]
+
+    # A key whose symbol is a Swift keyword is renamed, not dropped. The English
+    # value is untouched, so what renders does not change.
+    renames = []
+    for key in list(strings):
+        if symbol_of(key).replace(" ", "") in SWIFT_KEYWORDS:
+            new = f"{key} (label)"
+            strings[new] = strings.pop(key)
+            renames.append((key, new))
+
+    return strings, merges, renames
+
+
+def spanish(entry):
+    return entry.get("localizations", {}).get("es", {}).get("stringUnit", {}).get("value")
+
+
 def main():
     raw = read_source()
     js = strip_comments(raw)
@@ -184,6 +239,18 @@ def main():
             add(en, en, es, "Introduced by the Swift port; not present in the prototype.")
             supplement_added += 1
 
+    # Xcode generates a Swift symbol per catalog key, and it derives that symbol
+    # by folding case and punctuation. So "Accounts" and "accounts" are two keys
+    # but one symbol, and the build fails with 95 of those. Keying on the English
+    # string — which is what makes the call sites readable — is what creates
+    # them: the prototype wrote a word lowercase in running text and Title-case
+    # as a label, and both became keys.
+    #
+    # One key survives each collision. Where the port needs the other casing it
+    # calls Ll(), which lowercases the first letter at render time. Nothing is
+    # lost: the two entries were the same word.
+    strings, merges, renames = resolve_symbol_collisions(strings)
+
     catalog = {"sourceLanguage": "en", "version": "1.0", "strings": strings}
     os.makedirs(os.path.dirname(OUT_CATALOG), exist_ok=True)
     with open(OUT_CATALOG, "w", encoding="utf-8") as fh:
@@ -211,6 +278,19 @@ def main():
     L.append("/// The English string is the catalog key, so call sites stay readable.")
     L.append("public func L(_ english: String.LocalizationValue) -> String {")
     L.append("    String(localized: english, bundle: .module)")
+    L.append("}\n")
+    L.append("/// The same string, lowercased for a running-text position.")
+    L.append("///")
+    L.append("/// Xcode derives one Swift symbol per catalog key by folding case, so")
+    L.append("/// \"Accounts\" and \"accounts\" cannot both be keys. One survives, and this")
+    L.append("/// produces the other spelling at render time.")
+    L.append("///")
+    L.append("/// Only the first character changes. Lowercasing the whole string would")
+    L.append("/// damage a proper noun sitting inside it.")
+    L.append("public func Ll(_ english: String.LocalizationValue) -> String {")
+    L.append("    let text = L(english)")
+    L.append("    guard let first = text.first else { return text }")
+    L.append("    return first.lowercased() + text.dropFirst()")
     L.append("}\n")
     if conflicts:
         L.append("/// Strings whose Spanish depends on the noun they sit beside.")
@@ -302,6 +382,7 @@ def main():
     print(f"         {total} L() call sites, {len(pairs)} literal pairs, {len(skipped)} needing a hand")
     print(f"         {len(by_en)} distinct English strings, {len(conflicts)} with an agreement conflict")
     print(f"         {supplement_added} from the port's supplement")
+    print(f"         {len(merges)} merged onto their Title-case twin, {len(renames)} moved off a Swift keyword")
     print(f"         {len(strings)} catalog entries -> {OUT_CATALOG}")
     print(f"         findings -> docs/STRING_CONFLICTS.md")
 

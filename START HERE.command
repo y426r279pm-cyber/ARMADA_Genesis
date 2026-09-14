@@ -78,7 +78,7 @@ say
 rule
 say "${bold}Building Bridge. First time takes a few minutes.${off}"
 rule
-say
+rm -f build-log.txt
 
 # ---- 3. Build ---------------------------------------------------------------
 logfile="build-log.txt"
@@ -86,21 +86,38 @@ if swift build --package-path Bridge 2>&1 | tee "$logfile"; then
   say
   ok "${bold}It builds.${off}"
   say
-  say "Now the tests:"
+  say "Running the tests. Three matter most:"
+  say "  CanonicalSealTests · the sealed chain matches the browser exactly"
+  say "  StringAuditTests   · no wording claims fiscal validity"
+  say "  DemoModeTests      · no model name reaches the client build"
   say
-  swift test --package-path Bridge 2>&1 | tail -30
+  if swift test --package-path Bridge 2>&1 | tee -a "$logfile" | tail -25; then
+    say
+    ok "${bold}Tests pass.${off}"
+  else
+    say
+    warn "Some tests failed. The detail is in ${bold}build-log.txt${off}; send it to me."
+  fi
 else
   errors=$(grep -c "error:" "$logfile" 2>/dev/null); errors=${errors:-0}
   say
   warn "${bold}It did not build yet — ${errors} error(s).${off}"
   say
-  say "  This is expected. None of this code has met a compiler before."
-  say "  The full list is saved in:  ${bold}build-log.txt${off}"
+  say "  This is expected on an early run. None of this code met a compiler"
+  say "  until you ran it, so the first passes find real mistakes."
   say
+  say "  The full list is in:  ${bold}build-log.txt${off}"
   say "  ${bold}Send me that file and I will fix them.${off}"
   say
-  say "  The first few:"
-  grep "error:" "$logfile" 2>/dev/null | head -5 | sed 's/^/    /'
+
+  # Which file the errors sit in decides what kind of problem it is, so say so.
+  say "  Where they are:"
+  grep "error:" "$logfile" 2>/dev/null \
+    | sed -E 's|.*/([^/:]+):[0-9]+:[0-9]+: error:.*|\1|' \
+    | sort | uniq -c | sort -rn | head -8 | sed 's/^/    /'
+  say
+  say "  The first three, in full:"
+  grep "error:" "$logfile" 2>/dev/null | head -3 | sed 's/^/    /'
 fi
 
 # ---- 4. Open it -------------------------------------------------------------

@@ -177,7 +177,7 @@ struct DataScreen: View {
                          subtitle: L("what is held, and who may see it"))
 
             CardGrid {
-                StatCard(value: "\(store.chain.count)", label: L("sealed events"),
+                StatCard(value: "\(store.chain.count)", label: Ll("Sealed events"),
                          icon: AnyView(BridgeIcon(.cadena, size: 28)),
                          action: { store.navigator.go(.cadena) })
                 // Not routed through DemoMode: a count of record stores is not a

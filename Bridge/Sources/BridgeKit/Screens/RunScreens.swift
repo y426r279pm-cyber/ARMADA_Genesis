@@ -23,7 +23,7 @@ struct ModelsScreen: View {
                                 .font(.headline).foregroundStyle(Theme.text)
                             Text(model.version).font(.caption).foregroundStyle(Theme.text2)
                             StatusPill(kind: model.status == "ok" ? .ok : .warn,
-                                       text: model.status == "ok" ? L("installed") : model.status)
+                                       text: model.status == "ok" ? Ll("Installed") : model.status)
                         }
                         .padding(16)
                         .frame(maxWidth: .infinity, alignment: .leading)
@@ -137,7 +137,7 @@ struct IntegrationsScreen: View {
                             Text(integration.name).font(.callout).foregroundStyle(Theme.text)
                             Spacer()
                             StatusPill(kind: integration.status == "ok" ? .ok : .warn,
-                                       text: integration.status == "ok" ? L("connected") : integration.status)
+                                       text: integration.status == "ok" ? Ll("Connected") : integration.status)
                             Image(systemName: "chevron.right")
                                 .font(.caption2).foregroundStyle(Theme.muted)
                         }

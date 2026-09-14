@@ -101,7 +101,7 @@ public enum MatchRules {
         Check(rule: "M-02",
               name: L("Unit price matches the purchase order"),
               passed: e.billedPrice != nil && e.billedPrice == e.orderedPrice,
-              detail: "\(L("order")) $\(text(e.orderedPrice)) · \(L("invoice")) $\(text(e.billedPrice))")
+              detail: "\(L("order")) $\(text(e.orderedPrice)) · \(Ll("Invoice")) $\(text(e.billedPrice))")
     }
 
     /// M-03 · the RFC on the CFDI matches the supplier of record.
@@ -155,8 +155,8 @@ public enum MatchRules {
                      name: L("Bank record equals the invoice amount, or no payment yet"),
                      passed: passed,
                      detail: e.paidAmount == nil
-                        ? L("no payment yet")
-                        : "\(L("paid")) \(text(e.paidAmount)) · \(L("billed")) \(text(e.billedTotal))")
+                        ? Ll("No payment yet")
+                        : "\(Ll("Paid")) \(text(e.paidAmount)) · \(L("billed")) \(text(e.billedTotal))")
     }
 
     static func text(_ value: Int?) -> String { value.map(String.init) ?? "—" }

@@ -145,8 +145,8 @@ struct EnergyDetailScreen: View {
              (L("Usable above the floor"), String(format: "%.1f kWh", Energy.usableKWh(reading))),
              (L("Runs the rack for"), Energy.formatHours(Energy.autonomyH(reading)))]
         case .red:
-            [(L("State"), reading.islanded ? L("islanded") : reading.grid),
-             (L("Switch"), reading.islanded ? L("open") : L("closed")),
+            [(L("State"), reading.islanded ? Ll("Islanded") : reading.grid),
+             (L("Switch (label)"), reading.islanded ? L("open (label)") : L("closed")),
              (L("Rack load"), String(format: "%.1f kW", Energy.rackKW))]
         default:
             [(L("Bridge remaining"), "\(reading.upsMin) min"),

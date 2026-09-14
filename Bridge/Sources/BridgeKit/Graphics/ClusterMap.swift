@@ -79,7 +79,7 @@ struct ClusterMap: View {
                         value: "\(avgTemp)°", caption: L("avg temp"))
             SummaryRing(share: Double(avgMem) / 100,
                         color: avgMem > 90 ? Theme.warn : Theme.info,
-                        value: "\(avgMem)%", caption: L("memory"))
+                        value: "\(avgMem)%", caption: Ll("Memory"))
         }
     }
 

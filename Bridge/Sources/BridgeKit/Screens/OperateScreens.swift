@@ -14,7 +14,7 @@ struct CollectionsScreen: View {
                          subtitle: L("accounts being chased, and by whom"))
 
             HStack(spacing: 10) {
-                Chip(text: "\(accounts.count) \(L("accounts"))", dot: Theme.led)
+                Chip(text: "\(accounts.count) \(Ll("Accounts"))", dot: Theme.led)
                 Chip(text: "\(escalated) \(L("escalated"))",
                      dot: escalated > 0 ? Theme.warn : Theme.led)
                 SampleBadge()
