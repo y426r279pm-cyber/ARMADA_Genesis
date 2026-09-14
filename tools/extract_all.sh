@@ -16,6 +16,7 @@ python3 tools/extract_strings.py
 python3 tools/extract_icons.py
 node    tools/seed_harness.mjs
 python3 tools/extract_schema.py
+python3 tools/redact_seed.py
 
 echo; echo "== checks =="
 python3 tools/check_strings.py

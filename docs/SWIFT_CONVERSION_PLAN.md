@@ -4,8 +4,48 @@ audience: Internal, Armada. Engineering plan. Inherits the RC2 brief's disclosur
 prepared_by: Taylor, for M. David King
 date: 2026-09-13
 source: Bridge_RC2_1.html (RC2.1, 13 Sep 2026) · Bridge RC2 Decision Brief (12 Sep 2026)
-status: Phases 0-4 complete 14 Sep 2026. Phase 5 next.
+status: All six phases complete 14 Sep 2026. Next: Xcode.
 ---
+
+# 0f · Phase 5 · the rest, and the client build
+
+All 43 routes are built. 57 files, 11,852 lines of Swift.
+
+| Built | Where |
+|---|---|
+| The client demo build: redacted seed + compile flag | `Core/DemoMode.swift`, `tools/redact_seed.py`, `tools/make_client_build.sh` |
+| RFC, CLABE, PEM, URL, host, port | `Core/Validators.swift` |
+| Policy versioning and the clause diff | `Core/PolicyVersions.swift` |
+| Collections, Account, Agents, Agent, Incidents | `Screens/OperateScreens.swift` |
+| Policies, Data, Profile, User, Update | `Screens/GovernScreens.swift` |
+| Models, Catalogue, Configuration, Integrations, Connect, Installer | `Screens/RunScreens.swift` |
+| Demo-mode audit, validators, policy diff | `Tests/DemoModeTests.swift` |
+
+**The client build removes, it does not hide.** This is the promise from §2 made
+good. A runtime toggle leaves "Kimi shard" in `Seed.json`, in a crash log, in a
+screenshot, in an unzipped `.app`. So there are two steps: the seed is replaced
+with one in which no model family name survives, and the binary is compiled with
+`-DCLIENT_DEMO` so the branches that would print a count or a price are not in
+it. Either alone is a half measure, and `docs/DEMO_MODE.md` says why.
+
+**The audit reads the shipped file, not the running app.** `DemoModeTests`
+checks `Seed.client.json` itself for forbidden names, checks that the *internal*
+seed still contains them (otherwise a redactor that emptied the file would pass),
+and checks the record counts match — a client demo that is quietly a smaller
+product is its own failure.
+
+**The CLABE check digit is verified against two published numbers.** Eighteen
+digits that merely look right are accepted by a form and refused by a bank, and
+the person who typed them finds out days later.
+
+**The policy diff works in clauses, not lines**, so reflowing a paragraph is not
+reported as rewriting it — and a policy is versioned rather than edited, because
+an agent's recommendation cites the version it was written beneath and that
+version has to still exist to be read back.
+
+Self-review caught three schema mismatches this phase — `InstalledModel` has no
+`role`, `Policy` has no `title`, `Integration` carries more fields than I wrote —
+exactly what a compiler finds in a second. Still no toolchain here.
 
 # 0e · Phase 4 · Taylor
 

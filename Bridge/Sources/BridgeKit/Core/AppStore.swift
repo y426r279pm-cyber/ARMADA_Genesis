@@ -81,6 +81,11 @@ public final class AppStore {
 
     public func setEvidence(_ evidence: [String: MatchEvidence]) { matchEvidence = evidence }
 
+    /// What each store holds, for the Data screen.
+    public private(set) var seedCounts: [(store: String, records: Int)] = []
+
+    public func setSeedCounts(_ counts: [(store: String, records: Int)]) { seedCounts = counts }
+
     // MARK: Actions
 
     /// Everything a person can do that changes a record.
@@ -101,6 +106,7 @@ public final class AppStore {
         /// Only a passed gate can produce the payload, so this case cannot be
         /// constructed from a loose Bool somewhere down the call chain.
         case approvePayment(ApprovalGate.Approval)
+        case publishPolicy(id: String, version: String)
     }
 
     /// Apply an action, seal what it did, and report what the person should see.
@@ -166,6 +172,14 @@ public final class AppStore {
                                       ("action", .string(action.rawValue)),
                                       ("guardrails", .string(guardrailsVersion))])
 
+        case let .publishPolicy(id, version):
+            guard canWrite else { return .refused(reason: .readOnly) }
+            guard isAdmin else { return .refused(reason: .notPermitted) }
+            // The version is sealed with the text's identity, so an agent
+            // recommendation citing it can be read back against what it said.
+            return await seal(es: "política publicada", en: "policy published",
+                              extra: [("policy", .string(id)), ("version", .string(version))])
+
         case let .approvePayment(approval):
             // The gate has already refused every path that is not an explicit
             // confirmation, including an ambiguous one. Nothing is re-decided
@@ -206,5 +220,6 @@ public final class AppStore {
     public func load(seed: SeedBundle) {
         chain = seed.ledger
         chainState = Seal.verify(chain)
+        seedCounts = seed.counts
     }
 }

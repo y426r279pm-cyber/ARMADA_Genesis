@@ -24,7 +24,8 @@ public enum BridgeStore {
     public static func seedIfEmpty(_ context: ModelContext) throws {
         let existing = try context.fetchCount(FetchDescriptor<ClusterNode>())
         guard existing == 0 else { return }
-        guard let url = Bundle.module.url(forResource: "Seed", withExtension: "json") else {
+        guard let url = Bundle.module.url(forResource: DemoMode.seedResource,
+                                          withExtension: "json") else {
             throw SeedBundle.LoadError.missingFile
         }
         let bundle = try SeedBundle.load(from: url)
@@ -104,6 +105,44 @@ public enum BridgeStore {
                                      agent: row.string("agent"),
                                      planogram: row.optionalString("planogram"),
                                      tickets: row.int("tickets")))
+        }
+        for row in bundle.rows("accounts") {
+            context.insert(Account(id: row.string("id"), name: row.string("name"),
+                                   uuid: row.string("uuid"), next: row.string("next"),
+                                   status: row.string("status"),
+                                   touchesToday: row.int("touchesToday"),
+                                   paused: row.bool("paused"), escalated: row.bool("escalated"),
+                                   history: []))
+        }
+        for row in bundle.rows("agents") {
+            context.insert(Agent(id: row.string("id"), name: row.string("name"),
+                                 kind: row.string("kind"), count: row.int("count"),
+                                 status: row.string("status"), version: row.int("version"),
+                                 tone: row.string("tone"), limits: row.string("limits"),
+                                 publishedAt: row.string("publishedAt")))
+        }
+        for row in bundle.rows("models") {
+            context.insert(InstalledModel(id: row.string("id"), name: row.string("name"),
+                                          version: row.string("version"),
+                                          status: row.string("status"), history: [],
+                                          activatedAt: row.string("activatedAt")))
+        }
+        for row in bundle.rows("policies") {
+            context.insert(Policy(id: row.string("id"), version: row.string("version"),
+                                  lang: row.string("lang"), text: row.string("text"),
+                                  hash: row.string("hash"),
+                                  publishedAt: row.string("publishedAt"),
+                                  publishedBy: row.string("publishedBy"), history: []))
+        }
+        for row in bundle.rows("integrations") {
+            context.insert(Integration(id: row.string("id"), family: row.string("family"),
+                                       template: row.string("template"), name: row.string("name"),
+                                       status: row.string("status"),
+                                       endpoint: row.string("endpoint"),
+                                       lastTest: row.string("lastTest"),
+                                       fields: row.encoded("fields") ?? Data("{}".utf8),
+                                       mapping: row.encoded("mapping") ?? Data("{}".utf8),
+                                       createdAt: row.string("createdAt")))
         }
         for row in bundle.rows("sites") {
             context.insert(Site(id: row.string("id"), name: row.string("name"),

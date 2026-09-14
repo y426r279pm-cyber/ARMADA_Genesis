@@ -47,32 +47,37 @@ struct ScreenHost: View {
         // MARK: Phase 4 · Taylor (built)
         case .chat: ChatScreen()
 
-        // MARK: Phase 5 · the rest
-        case .actualizar: ScreenStub(.actualizar, recordID: recordID, phase: 5)
-        case .agente: ScreenStub(.agente, recordID: recordID, phase: 5)
-        case .agentes: ScreenStub(.agentes, recordID: recordID, phase: 5)
+        // MARK: Phase 5 · the rest (built)
+        case .actualizar: UpdateScreen()
+        case .agente: AgentScreen(agentID: recordID)
+        case .agentes: AgentsScreen()
         case .ajustes: SettingsScreen()
-        case .catalogo: ScreenStub(.catalogo, recordID: recordID, phase: 5)
-        case .cobranza: ScreenStub(.cobranza, recordID: recordID, phase: 5)
-        case .conectar: ScreenStub(.conectar, recordID: recordID, phase: 5)
-        case .configuracion: ScreenStub(.configuracion, recordID: recordID, phase: 5)
-        case .cuenta: ScreenStub(.cuenta, recordID: recordID, phase: 5)
-        case .datos: ScreenStub(.datos, recordID: recordID, phase: 5)
-        case .incidente: ScreenStub(.incidente, recordID: recordID, phase: 5)
-        case .incidentes: ScreenStub(.incidentes, recordID: recordID, phase: 5)
-        case .installer: ScreenStub(.installer, recordID: recordID, phase: 5)
-        case .integracion: ScreenStub(.integracion, recordID: recordID, phase: 5)
-        case .integraciones: ScreenStub(.integraciones, recordID: recordID, phase: 5)
-        case .modelo: ScreenStub(.modelo, recordID: recordID, phase: 5)
-        case .modelos: ScreenStub(.modelos, recordID: recordID, phase: 5)
-        case .perfil: ScreenStub(.perfil, recordID: recordID, phase: 5)
-        case .politicas: ScreenStub(.politicas, recordID: recordID, phase: 5)
-        case .usuario: ScreenStub(.usuario, recordID: recordID, phase: 5)
+        case .catalogo: CatalogueScreen()
+        case .cobranza: CollectionsScreen()
+        case .conectar: ConnectScreen()
+        case .configuracion: ConfigurationScreen()
+        case .cuenta: AccountScreen(accountID: recordID)
+        case .datos: DataScreen()
+        case .incidente: IncidentScreen(incidentID: recordID)
+        case .incidentes: IncidentsScreen()
+        case .installer: InstallerScreen()
+        case .integracion: IntegrationScreen(integrationID: recordID)
+        case .integraciones: IntegrationsScreen()
+        case .modelo: ModelScreen(modelID: recordID)
+        case .modelos: ModelsScreen()
+        case .perfil: ProfileScreen()
+        case .politicas: PoliciesScreen()
+        case .usuario: UserScreen(userID: recordID)
         }
     }
 }
 
 /// A screen that has not been built yet.
+///
+/// Every route is built as of phase 5, so nothing reaches this today. It is kept
+/// because the switch above has no `default`: a route added to the prototype and
+/// picked up by tools/extract_routes.py breaks the build, and this is what the
+/// new case points at while somebody decides what the screen should show.
 ///
 /// Deliberately plain, and deliberately honest about being a stub: a
 /// half-dressed screen invites being mistaken for a finished one.

@@ -27,9 +27,20 @@ public struct SeedBundle: Sendable {
         return SeedBundle(ledger: try rows.map(entry(from:)), raw: raw)
     }
 
+    /// A seed resource inside BridgeKit's own bundle.
+    ///
+    /// Exposed so the demo-mode audit can read both seeds directly. The audit
+    /// has to inspect the shipped file, not a running app: a name that is hidden
+    /// at render time is still in the bundle, where a screenshot or an unzipped
+    /// app package will find it.
+    public static func resourceURL(_ name: String) -> URL? {
+        Bundle.module.url(forResource: name, withExtension: "json")
+    }
+
     /// Load the copy bundled with the app.
     public static func bundled() throws -> SeedBundle {
-        guard let url = Bundle.module.url(forResource: "Seed", withExtension: "json") else {
+        guard let url = Bundle.module.url(forResource: DemoMode.seedResource,
+                                          withExtension: "json") else {
             throw LoadError.missingFile
         }
         return try load(from: url)

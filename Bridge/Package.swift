@@ -30,6 +30,9 @@ let package = Package(
                 .process("Resources/Colors.xcassets"),
                 .process("Resources/Localizable.xcstrings"),
                 .copy("Resources/Seed.json"),
+                // The client demo seed: model names absent rather than hidden.
+                // tools/make_client_build.sh swaps it in before archiving.
+                .copy("Resources/Seed.client.json"),
             ]
         ),
         .testTarget(
