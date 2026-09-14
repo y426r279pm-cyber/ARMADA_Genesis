@@ -36,9 +36,33 @@ public final class AppStore {
     // MARK: Wiring
 
     public let navigator = Navigator()
+    public var authenticator: Authenticator
     private let context: ModelContext?
 
-    public init(context: ModelContext? = nil) { self.context = context }
+    /// The guardrails version every agent recommendation is written under.
+    ///
+    /// Carried on the finding rather than assumed, so a later reader knows which
+    /// rules the agent was reasoning inside when it wrote what it wrote.
+    public private(set) var guardrailsVersion = "1.4"
+
+    /// The records the match rules read. Populated from the store on load.
+    private var matchEvidence: [String: MatchEvidence] = [:]
+
+    public init(context: ModelContext? = nil, authenticator: Authenticator = .system) {
+        self.context = context
+        self.authenticator = authenticator
+    }
+
+    /// The four records behind one case.
+    ///
+    /// Returns empty evidence rather than nil when a case has no records yet:
+    /// the rules then fail rather than pass, which is the safe direction. A
+    /// missing record is not agreement.
+    public func evidence(for item: MatchCase) -> MatchEvidence {
+        matchEvidence[item.id] ?? MatchEvidence()
+    }
+
+    public func setEvidence(_ evidence: [String: MatchEvidence]) { matchEvidence = evidence }
 
     // MARK: Actions
 
@@ -55,6 +79,11 @@ public final class AppStore {
         case openIncident(title: String, severity: String)
         case assignIncident(id: String, to: String)
         case resolveCase(id: String, outcome: String)
+        case takeCase(id: String)
+        case caseAction(id: String, action: MatchFinding.Action)
+        /// Only a passed gate can produce the payload, so this case cannot be
+        /// constructed from a loose Bool somewhere down the call chain.
+        case approvePayment(ApprovalGate.Approval)
     }
 
     /// Apply an action, seal what it did, and report what the person should see.
@@ -105,6 +134,30 @@ public final class AppStore {
             guard canWrite else { return .refused(reason: .readOnly) }
             return await seal(es: "caso resuelto", en: "case resolved",
                               extra: [("case", .string(id)), ("outcome", .string(outcome))])
+
+        case let .takeCase(id):
+            guard canWrite else { return .refused(reason: .readOnly) }
+            return await seal(es: "caso tomado", en: "case taken",
+                              extra: [("case", .string(id))])
+
+        case let .caseAction(id, action):
+            guard canWrite else { return .refused(reason: .readOnly) }
+            // The recommendation and the decision are sealed together, so the
+            // record shows what was advised as well as what was done.
+            return await seal(es: "acción sobre el caso", en: "case action",
+                              extra: [("case", .string(id)),
+                                      ("action", .string(action.rawValue)),
+                                      ("guardrails", .string(guardrailsVersion))])
+
+        case let .approvePayment(approval):
+            // The gate has already refused every path that is not an explicit
+            // confirmation, including an ambiguous one. Nothing is re-decided
+            // here; this only records it.
+            return await seal(es: "pago aprobado en la compuerta",
+                              en: "payment approved at the gate",
+                              extra: [("case", .string(approval.caseID)),
+                                      ("approver", .string(approval.actor)),
+                                      ("guardrails", .string(guardrailsVersion))])
         }
     }
 

@@ -4,8 +4,55 @@ audience: Internal, Armada. Engineering plan. Inherits the RC2 brief's disclosur
 prepared_by: Taylor, for M. David King
 date: 2026-09-13
 source: Bridge_RC2_1.html (RC2.1, 13 Sep 2026) · Bridge RC2 Decision Brief (12 Sep 2026)
-status: Phases 0-2 complete 14 Sep 2026. Phase 3 next.
+status: Phases 0-3 complete 14 Sep 2026. Phase 4 next.
 ---
+
+# 0d · Phase 3 · the Enterprise group
+
+Eight screens: the four-record match and its case, the pilot measures, stores,
+topology and its sites, and AgentStudio's scope step. 21 of 43 routes are now
+built.
+
+| Built | Where |
+|---|---|
+| The seven deterministic rules, M-01 to M-07 | `Core/MatchRules.swift` |
+| The approval gate and its refusals | `Core/ApprovalGate.swift` |
+| `LocalAuthentication`, injectable | `Core/Authenticator.swift` |
+| The eight measures and their benchmarks | `Core/Measures.swift` |
+| Match, case, measures, stores, topology, sites, studio | `Screens/` |
+| Rule and gate tests | `Tests/MatchRulesTests`, `ApprovalGateTests` |
+
+**The ambiguity rule is a type, not a comment.** The brief says an ambiguous
+timeout is never permission to pay again. `AuthenticationResult` therefore has
+three cases rather than a Bool, and every path that is not an explicit
+confirmation — cancelled, timed out, backgrounded, sensor unavailable, an error
+code a later OS invents — returns `.ambiguous`, which the gate refuses. Only a
+passed gate can construct `ApprovalGate.Approval`, and only that type reaches the
+sealing path, so an approval cannot be fabricated from a Bool further down. A
+comment cannot fail a build; this can, and `ApprovalGateTests` proves it does.
+
+**The checks are structurally apart from the finding.** Deterministic rules run
+first, in their own card, with the rule number beside each. The agent's reading
+sits in a separate card carrying the guardrails version it was written under. A
+rule that can be stated as arithmetic is a control; a model's reading of it is
+not, and one list would invite reading the second as the first.
+
+**A missing record fails rather than passes.** M-01 with no receiving record is a
+failure, not a pass — nothing to compare against is not agreement. So is an
+unknown SAT status. The safe direction for a rule with nothing to read is no, and
+the tests pin it.
+
+**The gate refuses before it asks.** A red check blocks before the authenticator
+is reached. Asking somebody for a fingerprint and then telling them M-01 was red
+wastes their attention and teaches them the gate is theatre.
+
+**Nothing invents the planogram number.** Stores and Measures both show "to be
+measured" rather than a placeholder. It is the number FEMSA does not have, which
+is the whole reason for measuring it — and a seeded stand-in would be exactly the
+invented evidence the brief's rule against unmeasured results exists to prevent.
+
+**56 more strings needed Spanish**, caught by `tools/check_strings.py` before
+they could ship as English.
 
 # 0c · Phase 2 · the demo path
 

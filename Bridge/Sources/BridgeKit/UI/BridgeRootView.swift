@@ -27,7 +27,9 @@ public struct BridgeRootView: View {
         guard container == nil else { return }
         do {
             container = try BridgeStore.container()
-            store.load(seed: try SeedBundle.bundled())
+            let seed = try SeedBundle.bundled()
+            store.load(seed: seed)
+            store.setEvidence(BridgeStore.evidence(from: seed))
         } catch {
             loadFailure = String(describing: error)
         }

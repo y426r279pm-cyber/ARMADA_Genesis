@@ -34,15 +34,15 @@ struct ScreenHost: View {
         case .solar: EnergyDetailScreen(screen: .solar)
         case .ups: EnergyDetailScreen(screen: .ups)
 
-        // MARK: Phase 3 · the Enterprise group
-        case .caso: ScreenStub(.caso, recordID: recordID, phase: 3)
-        case .conciliacion: ScreenStub(.conciliacion, recordID: recordID, phase: 3)
-        case .medidas: ScreenStub(.medidas, recordID: recordID, phase: 3)
-        case .sitio: ScreenStub(.sitio, recordID: recordID, phase: 3)
-        case .studio: ScreenStub(.studio, recordID: recordID, phase: 3)
-        case .tienda: ScreenStub(.tienda, recordID: recordID, phase: 3)
-        case .tiendas: ScreenStub(.tiendas, recordID: recordID, phase: 3)
-        case .topologia: ScreenStub(.topologia, recordID: recordID, phase: 3)
+        // MARK: Phase 3 · the Enterprise group (built)
+        case .caso: CaseScreen(caseID: recordID)
+        case .conciliacion: MatchScreen()
+        case .medidas: MeasuresScreen()
+        case .sitio: SiteScreen(siteID: recordID)
+        case .studio: StudioScreen()
+        case .tienda: StoreScreen(storeID: recordID)
+        case .tiendas: StoresScreen()
+        case .topologia: TopologyScreen()
 
         // MARK: Phase 4 · Taylor
         case .chat: ScreenStub(.chat, recordID: recordID, phase: 4)

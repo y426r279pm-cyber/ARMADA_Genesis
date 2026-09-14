@@ -68,6 +68,96 @@ public enum BridgeStore {
             context.insert(User(id: row.string("id"), name: row.string("name"),
                                 role: row.string("role"), createdAt: row.string("createdAt")))
         }
+        for row in bundle.rows("suppliers") {
+            context.insert(Supplier(id: row.string("id"), name: row.string("name"),
+                                    rfc: row.string("rfc"), status: row.string("status"),
+                                    terms: row.int("terms"), openCases: row.int("openCases")))
+        }
+        for row in bundle.rows("pos") {
+            context.insert(PurchaseOrder(id: row.string("id"), supplier: row.string("supplier"),
+                                         date: row.string("date"), qty: row.int("qty"),
+                                         price: row.int("price"), total: row.int("total")))
+        }
+        for row in bundle.rows("receipts") {
+            context.insert(ReceivingRecord(id: row.string("id"), po: row.string("po"),
+                                           date: row.string("date"), qty: row.int("qty"),
+                                           dc: row.string("dc")))
+        }
+        for row in bundle.rows("bankrecs") {
+            context.insert(BankRecord(id: row.string("id"), invoice: row.string("invoice"),
+                                      date: row.string("date"), amount: row.int("amount"),
+                                      reference: row.string("reference")))
+        }
+        for row in bundle.rows("cases") {
+            context.insert(MatchCase(id: row.string("id"), invoice: row.string("invoice"),
+                                     po: row.string("po"), supplier: row.string("supplier"),
+                                     status: row.string("status"), title: row.string("title"),
+                                     owner: row.string("owner"), opened: row.string("opened"),
+                                     minutes: row.int("minutes"), agent: row.string("agent"),
+                                     actions: [], finding: row.string("finding")))
+        }
+        for row in bundle.rows("stores") {
+            context.insert(StoreSite(id: row.string("id"), name: row.string("name"),
+                                     city: row.string("city"), dc: row.string("dc"),
+                                     site: row.string("site"), connector: row.string("connector"),
+                                     queued: row.int("queued"), openCases: row.int("openCases"),
+                                     agent: row.string("agent"),
+                                     planogram: row.optionalString("planogram"),
+                                     tickets: row.int("tickets")))
+        }
+        for row in bundle.rows("sites") {
+            context.insert(Site(id: row.string("id"), name: row.string("name"),
+                                city: row.string("city"), kind: row.string("kind"),
+                                nodes: row.int("nodes"), octets: row.int("octets"),
+                                stores: row.int("stores"), queued: row.int("queued"),
+                                lag: row.int("lag"), latency: row.int("latency")))
+        }
+    }
+
+    /// Assemble the four records behind every case, once, at load.
+    ///
+    /// Built here rather than looked up per view so the rules always see the
+    /// same evidence, and so a duplicate UUID is detected across the whole set
+    /// of payables rather than whatever happens to be on screen.
+    public static func evidence(from bundle: SeedBundle) -> [String: MatchEvidence] {
+        let invoices = bundle.rows("invoices")
+        let orders = bundle.rows("pos")
+        let receipts = bundle.rows("receipts")
+        let payments = bundle.rows("bankrecs")
+        let suppliers = bundle.rows("suppliers")
+
+        var uuidCounts: [String: Int] = [:]
+        for invoice in invoices where invoice.string("type") == "payable" {
+            uuidCounts[invoice.string("uuid"), default: 0] += 1
+        }
+
+        var result: [String: MatchEvidence] = [:]
+        for item in bundle.rows("cases") {
+            let invoice = invoices.first { $0.string("id") == item.string("invoice") }
+            let order = orders.first { $0.string("id") == item.string("po") }
+            let receipt = receipts.first { $0.string("po") == item.string("po") }
+            let payment = payments.first { $0.string("invoice") == item.string("invoice") }
+            let supplier = suppliers.first { $0.string("id") == item.string("supplier") }
+            let uuid = invoice?.string("uuid")
+
+            result[item.string("id")] = MatchEvidence(
+                orderedQty: order?.optionalInt("qty"),
+                orderedPrice: order?.optionalInt("price"),
+                orderedTotal: order?.optionalInt("total"),
+                receivedQty: receipt?.optionalInt("qty"),
+                receivingCentre: receipt?.optionalString("dc"),
+                billedQty: invoice?.optionalInt("qty"),
+                billedPrice: invoice?.optionalInt("price"),
+                billedTotal: invoice?.optionalInt("amount"),
+                billedUUID: uuid,
+                billedRFC: invoice?.optionalString("rfc"),
+                satStatus: invoice?.optionalString("sat"),
+                paidAmount: payment?.optionalInt("amount"),
+                supplierRFC: supplier?.optionalString("rfc"),
+                supplierStatus: supplier?.optionalString("status"),
+                uuidSeenOnAnotherPayable: uuid.map { (uuidCounts[$0] ?? 0) > 1 } ?? false)
+        }
+        return result
     }
 }
 

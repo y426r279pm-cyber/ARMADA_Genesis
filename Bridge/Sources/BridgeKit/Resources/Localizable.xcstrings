@@ -222,6 +222,60 @@
         }
       }
     },
+    "A narrowed scope must name what it is narrowed to.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A narrowed scope must name what it is narrowed to."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un alcance restringido debe nombrar a qué se restringe."
+          }
+        }
+      }
+    },
+    "A person still decides. The agent recommends, and the chain records both the recommendation and the decision.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A person still decides. The agent recommends, and the chain records both the recommendation and the decision."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una persona sigue decidiendo. El agente recomienda, y la cadena registra tanto la recomendación como la decisión."
+          }
+        }
+      }
+    },
+    "A store connector holds records locally when the link is down and replays them in order when it returns. A store showing no exceptions while its connector is offline has not been checked; it has not reported.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A store connector holds records locally when the link is down and replays them in order when it returns. A store showing no exceptions while its connector is offline has not been checked; it has not reported."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El conector de la tienda guarda los registros localmente cuando el enlace cae y los reenvía en orden cuando vuelve. Una tienda sin excepciones mientras su conector está sin conexión no ha sido revisada; no ha reportado."
+          }
+        }
+      }
+    },
     "A store-scoped agent has its own store identifier, permitted records, unresolved cases and escalation contacts; shared models do its work when an event arrives or someone asks. One agent per scope, never thousands of models.": {
       "extractionState": "manual",
       "localizations": {
@@ -235,6 +289,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Un agente con alcance de tienda tiene su propio identificador, registros permitidos, casos sin resolver y contactos de escalación; los modelos compartidos hacen su trabajo cuando llega un evento o alguien pregunta. Un agente por alcance, nunca miles de modelos."
+          }
+        }
+      }
+    },
+    "A store-scoped agent is a permission boundary, not a model. Every scoped agent in the estate runs on the same shared model services; scoping decides what it may read and act on, not what it thinks with.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A store-scoped agent is a permission boundary, not a model. Every scoped agent in the estate runs on the same shared model services; scoping decides what it may read and act on, not what it thinks with."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un agente con alcance de tienda es un límite de permisos, no un modelo. Todos los agentes con alcance del parque operan sobre los mismos servicios de modelo compartidos; el alcance decide qué puede leer y sobre qué puede actuar, no con qué piensa."
           }
         }
       }
@@ -683,6 +755,24 @@
         }
       }
     },
+    "All accounts": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All accounts"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todas las cuentas"
+          }
+        }
+      }
+    },
     "All seven checks pass; the case can close and the invoice proceed to payment on its terms.": {
       "extractionState": "manual",
       "localizations": {
@@ -836,6 +926,42 @@
         }
       }
     },
+    "Approval needs every check green. Still failing:": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Approval needs every check green. Still failing:"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La aprobación exige todas las verificaciones en verde. Siguen fallando:"
+          }
+        }
+      }
+    },
+    "Approve": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Approve"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aprobar"
+          }
+        }
+      }
+    },
     "Approve for payment": {
       "extractionState": "manual",
       "localizations": {
@@ -887,6 +1013,24 @@
         }
       }
     },
+    "Approve this payment": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Approve this payment"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aprobar este pago"
+          }
+        }
+      }
+    },
     "Approved": {
       "extractionState": "manual",
       "localizations": {
@@ -900,6 +1044,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Aprobado"
+          }
+        }
+      }
+    },
+    "Approved and sealed": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Approved and sealed"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aprobado y sellado"
           }
         }
       }
@@ -1402,6 +1564,24 @@
         }
       }
     },
+    "Blocked by": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blocked by"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bloqueado por"
+          }
+        }
+      }
+    },
     "Branches": {
       "extractionState": "manual",
       "localizations": {
@@ -1795,6 +1975,24 @@
         }
       }
     },
+    "Cases": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cases"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Casos"
+          }
+        }
+      }
+    },
     "Central finance and treasury": {
       "extractionState": "manual",
       "localizations": {
@@ -1962,6 +2160,42 @@
           "stringUnit": {
             "state": "translated",
             "value": "Suma de verificación"
+          }
+        }
+      }
+    },
+    "Choose a store": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a store"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elija una tienda"
+          }
+        }
+      }
+    },
+    "Choose a supplier": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose a supplier"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elija un proveedor"
           }
         }
       }
@@ -2496,6 +2730,42 @@
         }
       }
     },
+    "Console": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Console"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consola"
+          }
+        }
+      }
+    },
+    "Console and cluster share a site. Everything the institution runs sits in one room, on one power spine, with one store of records.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Console and cluster share a site. Everything the institution runs sits in one room, on one power spine, with one store of records."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La consola y el clúster comparten sitio. Todo lo que opera la institución está en una sala, sobre una sola espina de energía, con un solo almacén de registros."
+          }
+        }
+      }
+    },
     "Contact details beyond the account's own": {
       "extractionState": "manual",
       "localizations": {
@@ -2594,6 +2864,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Copiar hash"
+          }
+        }
+      }
+    },
+    "Core": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Core"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Núcleo"
           }
         }
       }
@@ -6199,6 +6487,24 @@
         }
       }
     },
+    "No template. Scope, guardrails and tone are set by hand.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No template. Scope, guardrails and tone are set by hand."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin plantilla. El alcance, las salvaguardas y el tono se definen a mano."
+          }
+        }
+      }
+    },
     "No threats, no artificial urgency": {
       "extractionState": "manual",
       "localizations": {
@@ -6539,6 +6845,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "¿En qué canales?"
+          }
+        }
+      }
+    },
+    "One rack": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One rack"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un rack"
           }
         }
       }
@@ -7226,6 +7550,24 @@
         }
       }
     },
+    "Planned shelf against tickets and replenishment, per store. There is no published benchmark for this and no figure yet: it is the number the Discovery exists to produce.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planned shelf against tickets and replenishment, per store. There is no published benchmark for this and no figure yet: it is the number the Discovery exists to produce."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Anaquel planeado contra tickets y reabasto, por tienda. No hay referencia publicada ni cifra aún: es el número que el Discovery existe para producir."
+          }
+        }
+      }
+    },
     "Planogram": {
       "extractionState": "manual",
       "localizations": {
@@ -7857,6 +8199,24 @@
         }
       }
     },
+    "Rack": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rack"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rack"
+          }
+        }
+      }
+    },
     "Rack load": {
       "comment": "Introduced by the Swift port; not present in the prototype.",
       "extractionState": "manual",
@@ -7940,6 +8300,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Capacidad"
+          }
+        }
+      }
+    },
+    "Reads the planned shelf against tickets and replenishment for one store, and reports what differs. This is the Discovery measurement.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reads the planned shelf against tickets and replenishment for one store, and reports what differs. This is the Discovery measurement."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lee el anaquel planeado contra tickets y reabasto de una tienda, y reporta lo que difiere. Ésta es la medición del Discovery."
           }
         }
       }
@@ -8196,6 +8574,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Referencia"
+          }
+        }
+      }
+    },
+    "Regional": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regional"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regional"
           }
         }
       }
@@ -8842,6 +9238,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Rotar invalida el token anterior de inmediato. Sellado."
+          }
+        }
+      }
+    },
+    "Route": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Route"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ruta"
           }
         }
       }
@@ -9905,6 +10319,24 @@
         }
       }
     },
+    "Start from nothing": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start from nothing"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Empezar de cero"
+          }
+        }
+      }
+    },
     "Start from the current text": {
       "extractionState": "manual",
       "localizations": {
@@ -10165,6 +10597,24 @@
         }
       }
     },
+    "Stores": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stores"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiendas"
+          }
+        }
+      }
+    },
     "Stores served": {
       "extractionState": "manual",
       "localizations": {
@@ -10195,6 +10645,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tiendas: estado del conector, agregado por región"
+          }
+        }
+      }
+    },
+    "Supplier": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Supplier"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Proveedor"
           }
         }
       }
@@ -10798,6 +11266,24 @@
         }
       }
     },
+    "The CFDI is not in force at the SAT. Hold and confirm its status before any payment.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The CFDI is not in force at the SAT. Hold and confirm its status before any payment."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El CFDI no está vigente ante el SAT. Retener y confirmar su estatus antes de cualquier pago."
+          }
+        }
+      }
+    },
     "The RFC does not match the supplier of record. Route to the regional team before anything else.": {
       "extractionState": "manual",
       "localizations": {
@@ -10833,6 +11319,78 @@
         }
       }
     },
+    "The agent sees every account in its division. Use this only where the work genuinely spans them.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The agent sees every account in its division. Use this only where the work genuinely spans them."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El agente ve todas las cuentas de su división. Úselo sólo donde el trabajo realmente las abarque."
+          }
+        }
+      }
+    },
+    "The agent sees one delivery route and the stores on it.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The agent sees one delivery route and the stores on it."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El agente ve una ruta de entrega y las tiendas que están en ella."
+          }
+        }
+      }
+    },
+    "The agent sees one store's records. Twenty-four thousand scoped agents share the same model services; they are not twenty-four thousand models.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The agent sees one store's records. Twenty-four thousand scoped agents share the same model services; they are not twenty-four thousand models."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El agente ve los registros de una tienda. Veinticuatro mil agentes con alcance comparten los mismos servicios de modelo; no son veinticuatro mil modelos."
+          }
+        }
+      }
+    },
+    "The agent sees one supplier across the stores that buy from it.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The agent sees one supplier across the stores that buy from it."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El agente ve un proveedor a través de las tiendas que le compran."
+          }
+        }
+      }
+    },
     "The array feeds the rack first and the bank second. When the bank is full and the array is still making more than the rack needs, the surplus is clipped rather than stored.": {
       "comment": "Introduced by the Swift port; not present in the prototype.",
       "extractionState": "manual",
@@ -10847,6 +11405,42 @@
           "stringUnit": {
             "state": "translated",
             "value": "El arreglo alimenta primero al rack y después al banco. Cuando el banco está lleno y el arreglo sigue generando más de lo que el rack necesita, el excedente se recorta en lugar de almacenarse."
+          }
+        }
+      }
+    },
+    "The authenticator neither confirmed nor refused, so nothing was approved. An ambiguous timeout is never permission to pay again.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The authenticator neither confirmed nor refused, so nothing was approved. An ambiguous timeout is never permission to pay again."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El autenticador no confirmó ni rechazó, por lo que no se aprobó nada. Un tiempo de espera ambiguo nunca es permiso para pagar de nuevo."
+          }
+        }
+      }
+    },
+    "The authenticator refused.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The authenticator refused."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El autenticador rechazó."
           }
         }
       }
@@ -10886,6 +11480,24 @@
         }
       }
     },
+    "The bank record does not equal the invoice amount. Flag the mismatch and reconcile before anything further is paid.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The bank record does not equal the invoice amount. Flag the mismatch and reconcile before anything further is paid."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El registro bancario no coincide con el monto de la factura. Marcar la discrepancia y conciliar antes de pagar nada más."
+          }
+        }
+      }
+    },
     "The browser database could not be opened: ": {
       "extractionState": "manual",
       "localizations": {
@@ -10916,6 +11528,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "El instalador comprueba el entorno antes de tocar nada."
+          }
+        }
+      }
+    },
+    "The issuer appears on the 69-B list. Gather the evidence of actual receipt within thirty days or the fiscal effect is lost.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The issuer appears on the 69-B list. Gather the evidence of actual receipt within thirty days or the fiscal effect is lost."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El emisor aparece en la lista 69-B. Reunir la evidencia de la recepción efectiva dentro de treinta días o se pierde el efecto fiscal."
           }
         }
       }
@@ -10968,6 +11598,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "La marca: una T cuya barra se convierte en una serie ascendente, la línea del quant, que termina en una chispa lima."
+          }
+        }
+      }
+    },
+    "The offline queue": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The offline queue"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La cola sin conexión"
           }
         }
       }
@@ -11094,6 +11742,24 @@
         }
       }
     },
+    "The typed word did not match.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The typed word did not match."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La palabra escrita no coincidió."
+          }
+        }
+      }
+    },
     "The unit price differs from the order. Ask the supplier for the price agreement or a credit note.": {
       "extractionState": "manual",
       "localizations": {
@@ -11175,6 +11841,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Este UUID ya fue registrado en otra cuenta por pagar. Tratar como probable duplicado; retener el pago y enviar a finanzas central."
+          }
+        }
+      }
+    },
+    "This case is owned by": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This case is owned by"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Este caso pertenece a"
           }
         }
       }
@@ -12172,6 +12856,24 @@
         }
       }
     },
+    "Watches one supplier's CFDI, receiving records and payment complements, and opens a case when they disagree.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Watches one supplier's CFDI, receiving records and payment complements, and opens a case when they disagree."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vigila los CFDI, registros de recepción y complementos de pago de un proveedor, y abre un caso cuando no coinciden."
+          }
+        }
+      }
+    },
     "Weights": {
       "extractionState": "manual",
       "localizations": {
@@ -12202,6 +12904,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pesos a"
+          }
+        }
+      }
+    },
+    "What a scoped agent is not": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "What a scoped agent is not"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lo que un agente con alcance no es"
           }
         }
       }
@@ -13828,6 +14548,24 @@
         }
       }
     },
+    "cross-store reconciliation, supplier cases, approval controls": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "cross-store reconciliation, supplier cases, approval controls"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "conciliación entre tiendas, casos de proveedores, controles de aprobación"
+          }
+        }
+      }
+    },
     "current": {
       "comment": "Introduced by the Swift port; not present in the prototype.",
       "extractionState": "manual",
@@ -14378,6 +15116,24 @@
         }
       }
     },
+    "fails": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "fails"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "falla"
+          }
+        }
+      }
+    },
     "fast; good Spanish and English": {
       "extractionState": "manual",
       "localizations": {
@@ -14477,6 +15233,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "cabe solo a"
+          }
+        }
+      }
+    },
+    "flag a receiving mismatch": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "flag a receiving mismatch"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "marcar una discrepancia de recepción"
           }
         }
       }
@@ -15185,6 +15959,24 @@
         }
       }
     },
+    "latency": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "latency"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "latencia"
+          }
+        }
+      }
+    },
     "latency to core": {
       "extractionState": "manual",
       "localizations": {
@@ -15250,6 +16042,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "amenazas legales"
+          }
+        }
+      }
+    },
+    "lightweight connector with a protected offline queue": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "lightweight connector with a protected offline queue"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "conector ligero con una cola protegida sin conexión"
           }
         }
       }
@@ -16356,6 +17166,24 @@
         }
       }
     },
+    "octets of eight plus an admin node": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "octets of eight plus an admin node"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "octetos de ocho más un nodo administrador"
+          }
+        }
+      }
+    },
     "of": {
       "comment": "Introduced by the Swift port; not present in the prototype.",
       "extractionState": "manual",
@@ -17012,6 +17840,24 @@
         }
       }
     },
+    "passes": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "passes"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "pasa"
+          }
+        }
+      }
+    },
     "paused [actualizar/agentes]": {
       "comment": "Spanish agreement differs by context; key disambiguated by enclosing screen. Prototype call sites: line 2812, line 3020.",
       "extractionState": "manual",
@@ -17527,6 +18373,42 @@
         }
       }
     },
+    "replicated state and tested recovery capacity": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "replicated state and tested recovery capacity"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "estado replicado y capacidad de recuperación probada"
+          }
+        }
+      }
+    },
+    "replication lag": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "replication lag"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "retraso de replicación"
+          }
+        }
+      }
+    },
     "replies": {
       "extractionState": "manual",
       "localizations": {
@@ -17821,6 +18703,24 @@
         }
       }
     },
+    "rules, not judgement": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "rules, not judgement"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "reglas, no criterio"
+          }
+        }
+      }
+    },
     "runs alone = bank autonomy + UPS bridge": {
       "extractionState": "manual",
       "localizations": {
@@ -17885,6 +18785,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "mismas reglas de hardware que el rack del banco"
+          }
+        }
+      }
+    },
+    "same site": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "same site"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "mismo sitio"
           }
         }
       }
@@ -18005,6 +18923,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "siete pasos de una idea a un agente publicado y sellado"
+          }
+        }
+      }
+    },
+    "shared clusters serving store workloads and regional investigators": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "shared clusters serving store workloads and regional investigators"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "clústeres compartidos que atienden cargas de tienda e investigadores regionales"
           }
         }
       }
@@ -18299,6 +19235,24 @@
         }
       }
     },
+    "step 1 of 7": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "step 1 of 7"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "paso 1 de 7"
+          }
+        }
+      }
+    },
     "storage, the store, ARCO": {
       "extractionState": "manual",
       "localizations": {
@@ -18346,6 +19300,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "tiendas"
+          }
+        }
+      }
+    },
+    "stores served": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "stores served"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "tiendas atendidas"
           }
         }
       }
@@ -19450,6 +20422,24 @@
         }
       }
     },
+    "two octets and an admin node": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "two octets and an admin node"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "dos octetos y un nodo administrador"
+          }
+        }
+      }
+    },
     "usable = (charge − floor) × capacity; autonomy = usable ÷ rack load": {
       "extractionState": "manual",
       "localizations": {
@@ -19829,6 +20819,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "qué prueba el sello, y qué no"
+          }
+        }
+      }
+    },
+    "what this agent is for, and what it is allowed to see": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "what this agent is for, and what it is allowed to see"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "para qué sirve este agente, y qué se le permite ver"
           }
         }
       }
