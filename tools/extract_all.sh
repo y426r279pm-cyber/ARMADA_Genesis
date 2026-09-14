@@ -19,6 +19,7 @@ python3 tools/extract_schema.py
 
 echo; echo "== checks =="
 python3 tools/check_strings.py
+bash    tools/check_idempotent.sh
 
 echo; echo "== chain =="
 python3 tools/verify_chain.py

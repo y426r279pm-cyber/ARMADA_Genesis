@@ -75,13 +75,58 @@ function fakeElement() {
   return el;
 }
 
+/* ---- determinism ----------------------------------------------------------
+ * The prototype seeds with crypto.randomUUID() and the wall clock, so running
+ * this twice produces two different files: every record id changes, every
+ * timestamp moves, and the sealed hashes move with them.
+ *
+ * That makes the generated artefact undiffable. `extract_all.sh` would dirty
+ * the tree on every run, and a real change to the seed would arrive buried in
+ * a hundred and fifty lines of churn nobody reads.
+ *
+ * So the harness pins both. Ids come from a counter shaped into a UUID, and the
+ * clock is frozen. crypto.subtle stays real: the chain must be sealed with
+ * genuine SHA-256 or the fixture proves nothing.
+ * -------------------------------------------------------------------------- */
+
+const FROZEN_ISO = "2026-09-14T00:00:00.000Z";
+const FROZEN_MS = Date.parse(FROZEN_ISO);
+const RealDate = Date;
+
+function deterministicCrypto() {
+  let counter = 0;
+  const hex = (n, width) => Math.abs(n).toString(16).padStart(width, "0").slice(-width);
+  return {
+    subtle: globalThis.crypto.subtle,
+    getRandomValues: (array) => {
+      for (let i = 0; i < array.length; i++) array[i] = (counter * 31 + i) & 0xff;
+      counter += 1;
+      return array;
+    },
+    randomUUID: () => {
+      const n = ++counter;
+      /* Shaped like a v4 UUID so anything that parses one still works. */
+      return [hex(n, 8), hex(n, 4), "4" + hex(n, 3), "8" + hex(n * 7, 3), hex(n * 2654435761, 12)]
+        .join("-");
+    },
+  };
+}
+
+class FrozenDate extends RealDate {
+  constructor(...args) {
+    if (args.length === 0) super(FROZEN_MS);
+    else super(...args);
+  }
+  static now() { return FROZEN_MS; }
+}
+
 const html = readFileSync(SOURCE, "utf8");
 const script = html.slice(html.indexOf("<script>") + 8, html.lastIndexOf("</script>"));
 
 const storage = new Map();
 const sandbox = {
   indexedDB: fakeIndexedDB(),
-  crypto: globalThis.crypto,
+  crypto: deterministicCrypto(),
   console,
   queueMicrotask,
   setTimeout, clearTimeout, setInterval, clearInterval,
@@ -107,7 +152,7 @@ const sandbox = {
     addEventListener() {}, removeEventListener() {},
   },
   URL, Blob: class { constructor() {} }, TextEncoder, TextDecoder,
-  Intl, Math, Date, JSON,
+  Intl, Math, Date: FrozenDate, JSON,
 };
 sandbox.window = sandbox;
 sandbox.globalThis = sandbox;
