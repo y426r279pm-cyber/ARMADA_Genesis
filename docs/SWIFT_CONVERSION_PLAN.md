@@ -4,8 +4,49 @@ audience: Internal, Armada. Engineering plan. Inherits the RC2 brief's disclosur
 prepared_by: Taylor, for M. David King
 date: 2026-09-13
 source: Bridge_RC2_1.html (RC2.1, 13 Sep 2026) · Bridge RC2 Decision Brief (12 Sep 2026)
-status: Phases 0 and 1 complete 14 Sep 2026. Phase 2 next.
+status: Phases 0-2 complete 14 Sep 2026. Phase 3 next.
 ---
+
+# 0c · Phase 2 · the demo path
+
+Thirteen screens, and the graphics behind them.
+
+| Built | Where |
+|---|---|
+| `Gfx` as SwiftUI: solar, battery, grid, UPS, spine, thermometer, memory and storage rings | `Graphics/Gfx.swift` |
+| The cluster health map, tiles tappable and legible to VoiceOver | `Graphics/ClusterMap.swift` |
+| Card, stat card, chip, status pill, meter, header, scaffold | `UI/Components.swift` |
+| SwiftData container and first-launch seed import | `Core/BridgeStore.swift` |
+| Home with its five groups; Health; Node | `Screens/Home…`, `Health…` |
+| Energy and its four pages, all figures derived | `Screens/EnergyScreens.swift` |
+| Invoices with the compliance clocks; the invoice page | `Screens/InvoiceScreens.swift` |
+| Chain, Event, Audit | `Screens/ChainScreens.swift` |
+| Energy arithmetic, compliance and seed tests | `Tests/` |
+
+**The cluster map is a real view, not a picture.** The prototype draws it as one
+800-unit SVG with everything placed by coordinate, which means the node tiles
+cannot be focused, tabbed to, or read aloud. Here each tile is a button with its
+own accessibility label, and the octets rewrap rather than overflow. Same
+information, same layout, but a person using VoiceOver can now get into the
+cluster rather than being told there is a picture of one.
+
+**Every energy figure is derived, never stored.** `Energy` holds the rack load,
+the bank capacity and the array peak; autonomy, surplus, clipping and usable
+energy are computed from a reading. That keeps the arithmetic in one place and
+testable, and `EnergyTests` asserts each claim the screen makes — in particular
+that autonomy counts only what sits above the reserve floor, since treating the
+floor as available would overstate how long the rack survives a transfer.
+
+**112 new strings needed Spanish.** The port introduces UI strings the prototype
+has no equivalent for. A missing key does not fail at runtime — `String(localized:)`
+falls back to the key — so the Spanish build would have quietly rendered English.
+They are hand-authored in `tools/strings_supplement.json`, merged by the
+extractor so regeneration cannot lose them, and `tools/check_strings.py` now
+fails the pipeline if any `L()` key is missing or monolingual.
+
+**Still not compile-verified.** No Swift toolchain in this environment. Reviewed
+for the errors most likely to bite and three were found and fixed, but that is
+review, not a compiler.
 
 # 0b · Phase 1 · the shell and the spine
 

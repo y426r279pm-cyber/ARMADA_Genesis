@@ -17,6 +17,9 @@ python3 tools/extract_icons.py
 node    tools/seed_harness.mjs
 python3 tools/extract_schema.py
 
+echo; echo "== checks =="
+python3 tools/check_strings.py
+
 echo; echo "== chain =="
 python3 tools/verify_chain.py
 

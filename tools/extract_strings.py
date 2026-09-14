@@ -24,6 +24,7 @@ from lib.jsscan import (read_source, strip_comments, find_block, read_js_string,
                         swift_string, banner)
 
 OUT_CATALOG = "Bridge/Sources/BridgeKit/Resources/Localizable.xcstrings"
+SUPPLEMENT = "tools/strings_supplement.json"
 OUT_SWIFT = "Bridge/Sources/BridgeKit/Localization/Strings.swift"
 
 
@@ -170,6 +171,19 @@ def main():
                     f"screen. Prototype call sites: {', '.join(f'line {l}' for l, _ in sorted(sites))}.")
                 key_of[(en, es)] = key
 
+    # Strings the port introduces that the prototype has no equivalent for.
+    # Hand-authored, merged here so regenerating from the prototype does not
+    # lose them. The prototype always wins a collision: it is the canon.
+    supplement, supplement_added = {}, 0
+    if os.path.exists(SUPPLEMENT):
+        with open(SUPPLEMENT, encoding="utf-8") as fh:
+            supplement = json.load(fh).get("strings", {})
+        for en, es in supplement.items():
+            if en in strings:
+                continue
+            add(en, en, es, "Introduced by the Swift port; not present in the prototype.")
+            supplement_added += 1
+
     catalog = {"sourceLanguage": "en", "version": "1.0", "strings": strings}
     os.makedirs(os.path.dirname(OUT_CATALOG), exist_ok=True)
     with open(OUT_CATALOG, "w", encoding="utf-8") as fh:
@@ -287,6 +301,7 @@ def main():
     print(f"strings: {len(dictionary['en'])} dictionary keys x 2 languages (halves agree)")
     print(f"         {total} L() call sites, {len(pairs)} literal pairs, {len(skipped)} needing a hand")
     print(f"         {len(by_en)} distinct English strings, {len(conflicts)} with an agreement conflict")
+    print(f"         {supplement_added} from the port's supplement")
     print(f"         {len(strings)} catalog entries -> {OUT_CATALOG}")
     print(f"         findings -> docs/STRING_CONFLICTS.md")
 

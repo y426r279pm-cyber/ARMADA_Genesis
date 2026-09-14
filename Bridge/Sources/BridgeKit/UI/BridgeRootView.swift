@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 /// The console shell: a sidebar, a breadcrumb trail, and the screen itself.
 ///
@@ -7,11 +8,42 @@ import SwiftUI
 /// a Mac and on an iPad in landscape.
 public struct BridgeRootView: View {
     @State private var store: AppStore
-    @Environment(\.horizontalSizeClass) private var sizeClass
+    @State private var container: ModelContainer?
+    @State private var loadFailure: String?
 
     public init(store: AppStore = AppStore()) { _store = State(initialValue: store) }
 
     public var body: some View {
+        content
+            .task { await openStore() }
+    }
+
+    /// Open the store and load the seeded ledger before anything is shown.
+    ///
+    /// The chain is verified here rather than lazily: a console whose evidence
+    /// does not hold should say so on the way in, not when somebody happens to
+    /// open the Audit screen.
+    private func openStore() async {
+        guard container == nil else { return }
+        do {
+            container = try BridgeStore.container()
+            store.load(seed: try SeedBundle.bundled())
+        } catch {
+            loadFailure = String(describing: error)
+        }
+    }
+
+    @ViewBuilder private var content: some View {
+        if let loadFailure {
+            StoreFailureView(message: loadFailure)
+        } else if let container {
+            shell.modelContainer(container)
+        } else {
+            ProgressView().frame(maxWidth: .infinity, maxHeight: .infinity).background(Theme.bg)
+        }
+    }
+
+    private var shell: some View {
         Group {
             if store.role == nil {
                 FrontDoorView(store: store)
@@ -195,5 +227,29 @@ struct BreadcrumbBar: View {
         .background(Theme.bg)
         .accessibilityElement(children: .contain)
         .accessibilityLabel("Breadcrumb")
+    }
+}
+
+/// Shown when the store cannot be opened.
+///
+/// Stated plainly rather than as an empty console: a Bridge that silently shows
+/// no records looks like a Bridge with no work in it.
+struct StoreFailureView: View {
+    var message: String
+
+    var body: some View {
+        VStack(spacing: 12) {
+            Image(systemName: "externaldrive.badge.exclamationmark")
+                .font(.largeTitle).foregroundStyle(Theme.crit)
+            Text(L("The local store could not be opened."))
+                .font(.headline).foregroundStyle(Theme.text)
+            Text(message)
+                .font(.caption).foregroundStyle(Theme.muted)
+                .multilineTextAlignment(.center)
+                .textSelection(.enabled)
+        }
+        .padding(32)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(Theme.bg)
     }
 }
