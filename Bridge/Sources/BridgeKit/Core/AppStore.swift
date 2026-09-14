@@ -36,6 +36,8 @@ public final class AppStore {
     // MARK: Wiring
 
     public let navigator = Navigator()
+    public let deviceModel: DeviceModel
+    public let taylor: Taylor
     public var authenticator: Authenticator
     private let context: ModelContext?
 
@@ -48,9 +50,24 @@ public final class AppStore {
     /// The records the match rules read. Populated from the store on load.
     private var matchEvidence: [String: MatchEvidence] = [:]
 
-    public init(context: ModelContext? = nil, authenticator: Authenticator = .system) {
+    public init(context: ModelContext? = nil, authenticator: Authenticator = .system,
+                engine: LocalEngine = .mlx) {
         self.context = context
         self.authenticator = authenticator
+        let device = DeviceModel(engine: engine)
+        self.deviceModel = device
+        self.taylor = Taylor(device: device)
+    }
+
+    /// Bring the local model in at launch.
+    ///
+    /// Not at the first message: moving several gigabytes into unified memory
+    /// takes seconds, and those seconds must be spent while somebody is still
+    /// talking about the architecture rather than after a question has been
+    /// asked. Weights are never fetched here — if they are not on the machine,
+    /// the console says so.
+    public func warmUpLocalModel() async {
+        await deviceModel.load()
     }
 
     /// The four records behind one case.

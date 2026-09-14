@@ -44,14 +44,14 @@ struct ScreenHost: View {
         case .tiendas: StoresScreen()
         case .topologia: TopologyScreen()
 
-        // MARK: Phase 4 · Taylor
-        case .chat: ScreenStub(.chat, recordID: recordID, phase: 4)
+        // MARK: Phase 4 · Taylor (built)
+        case .chat: ChatScreen()
 
         // MARK: Phase 5 · the rest
         case .actualizar: ScreenStub(.actualizar, recordID: recordID, phase: 5)
         case .agente: ScreenStub(.agente, recordID: recordID, phase: 5)
         case .agentes: ScreenStub(.agentes, recordID: recordID, phase: 5)
-        case .ajustes: ScreenStub(.ajustes, recordID: recordID, phase: 5)
+        case .ajustes: SettingsScreen()
         case .catalogo: ScreenStub(.catalogo, recordID: recordID, phase: 5)
         case .cobranza: ScreenStub(.cobranza, recordID: recordID, phase: 5)
         case .conectar: ScreenStub(.conectar, recordID: recordID, phase: 5)

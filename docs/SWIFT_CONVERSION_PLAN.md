@@ -4,8 +4,59 @@ audience: Internal, Armada. Engineering plan. Inherits the RC2 brief's disclosur
 prepared_by: Taylor, for M. David King
 date: 2026-09-13
 source: Bridge_RC2_1.html (RC2.1, 13 Sep 2026) · Bridge RC2 Decision Brief (12 Sep 2026)
-status: Phases 0-3 complete 14 Sep 2026. Phase 4 next.
+status: Phases 0-4 complete 14 Sep 2026. Phase 5 next.
 ---
+
+# 0e · Phase 4 · Taylor
+
+The chat, the on-device model, the keyed rails, and Settings. 23 of 43 routes
+built.
+
+| Built | Where |
+|---|---|
+| Rails, provenance, turns | `Core/Rail.swift` |
+| The ladder and the consent boundary | `Core/Taylor.swift` |
+| On-device model, memory pre-flight, staged load | `Core/DeviceModel.swift` |
+| MLX adapter, isolated | `Core/MLXEngine.swift` |
+| OpenAI, Anthropic, Gemini, Groq over URLSession | `Core/KeyedRails.swift` |
+| Keys in the Keychain, device-only | `Core/Keychain.swift` |
+| Chat with the thread drawer; Settings | `Screens/ChatScreen.swift`, `SettingsScreen.swift` |
+
+**The ladder does not fall off the device.** This is the one place the port
+deliberately departs from the prototype's behaviour. RC2.1 tries rails in order
+and takes the first that answers — which means a slow local model silently
+promotes the conversation to OpenAI, and nobody is told. For a product whose
+argument is that the institution's work stays on hardware it owns, that is not a
+fallback; it is the failure. So `leavesDevice` is not a position in a list.
+Taylor falls back freely among on-device rails and never crosses to an
+off-device one unless the person agrees, for that conversation only. When it
+cannot answer locally it asks, naming what happens, and stops.
+
+**Provenance is carried, not printed.** Every reply records the rail that made it
+and whether it left the machine, and `TaylorTests` fails if a reply arrives
+without it. A reply with no provenance would quietly undo the claim.
+
+**The 16 GB decision is in the code, not a document.** `MemoryReport` reads free,
+inactive and speculative pages, recommends the 7B or the 3B accordingly, and
+refuses rather than swapping. Weights are never fetched during a session: absent
+weights report `.notPresent`, and a test asserts no download is attempted. The
+model loads at launch, while somebody is still talking about the architecture.
+
+**Keys go in the Keychain, `ThisDeviceOnly`.** Settings checks whether a key
+exists without reading it back — reading one to draw a checkmark is how secrets
+reach screenshots. A key that syncs to iCloud has left the machine it was entered
+on, which is the thing this product promises does not happen.
+
+**MLX is quarantined.** `Core/MLXEngine.swift` is the one file written against an
+API no compiler here could check, so it sits behind a four-function seam and the
+package dependency is commented out with the same warning. Without it the build
+is clean, the console says there is no local model, and every other rail works.
+Enabling it is: uncomment two blocks in `Package.swift`, resolve, verify four
+calls.
+
+Self-review found three genuine compile errors this phase — `await` in a `where`
+clause, a mutable capture in a `@Sendable` closure, a needless `@escaping` — all
+fixed. Still no toolchain here, so that remains review rather than compilation.
 
 # 0d · Phase 3 · the Enterprise group
 

@@ -222,6 +222,24 @@
         }
       }
     },
+    "A keyed rail sends the conversation to that provider's servers. Taylor never uses one unless you agree to it, and agreement lasts only for that conversation.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A keyed rail sends the conversation to that provider's servers. Taylor never uses one unless you agree to it, and agreement lasts only for that conversation."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un riel con llave envía la conversación a los servidores de ese proveedor. Taylor nunca usa uno sin su consentimiento, y el consentimiento dura sólo esa conversación."
+          }
+        }
+      }
+    },
     "A narrowed scope must name what it is narrowed to.": {
       "comment": "Introduced by the Swift port; not present in the prototype.",
       "extractionState": "manual",
@@ -858,6 +876,24 @@
         }
       }
     },
+    "Answer from the records you are given. Say plainly when you do not know.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Answer from the records you are given. Say plainly when you do not know."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Responda a partir de los registros que se le den. Diga con claridad cuando no sepa."
+          }
+        }
+      }
+    },
     "Answer in the customer's language; Spanish by default.": {
       "extractionState": "manual",
       "localizations": {
@@ -1118,6 +1154,24 @@
         }
       }
     },
+    "Ask Taylor": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ask Taylor"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pregunte a Taylor"
+          }
+        }
+      }
+    },
     "Ask or instruct…": {
       "extractionState": "manual",
       "localizations": {
@@ -1303,6 +1357,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "La autonomía cuenta sólo lo que está por encima del piso de reserva; el piso no se gasta."
+          }
+        }
+      }
+    },
+    "Available now": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Available now"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disponible ahora"
           }
         }
       }
@@ -1941,6 +2013,24 @@
         }
       }
     },
+    "Cancelled.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelled."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelado."
+          }
+        }
+      }
+    },
     "Capabilities": {
       "extractionState": "manual",
       "localizations": {
@@ -2126,6 +2216,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Carga"
+          }
+        }
+      }
+    },
+    "Check this machine": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Check this machine"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Revisar esta máquina"
           }
         }
       }
@@ -2813,6 +2921,42 @@
           "stringUnit": {
             "state": "translated",
             "value": "Continuar"
+          }
+        }
+      }
+    },
+    "Conversations": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conversations"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conversaciones"
+          }
+        }
+      }
+    },
+    "Conversations are not kept between launches yet.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conversations are not kept between launches yet."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las conversaciones aún no se conservan entre sesiones."
           }
         }
       }
@@ -4078,6 +4222,24 @@
         }
       }
     },
+    "Every reply records the rail that produced it and whether it left this machine. A reply with no provenance is a defect, not an omission.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Every reply records the rail that produced it and whether it left this machine. A reply with no provenance is a defect, not an omission."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada respuesta registra el riel que la produjo y si salió de esta máquina. Una respuesta sin procedencia es un defecto, no una omisión."
+          }
+        }
+      }
+    },
     "Every seal is recomputed from the event it covers and the seal before it. A mismatch names the first event that does not hold.": {
       "comment": "Introduced by the Swift port; not present in the prototype.",
       "extractionState": "manual",
@@ -4998,6 +5160,24 @@
         }
       }
     },
+    "I am Taylor. I answer from the records this console holds, and every reply says where it came from.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "I am Taylor. I answer from the records this console holds, and every reply says where it came from."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soy Taylor. Respondo a partir de los registros que guarda esta consola, y cada respuesta indica de dónde proviene."
+          }
+        }
+      }
+    },
     "INSTALL · STEP": {
       "extractionState": "manual",
       "localizations": {
@@ -5617,6 +5797,24 @@
         }
       }
     },
+    "Keyed rails": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keyed rails"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rieles con llave"
+          }
+        }
+      }
+    },
     "Keys stay in this browser's store, never in the file. Only the cluster keeps the conversation in the room.": {
       "extractionState": "manual",
       "localizations": {
@@ -5890,6 +6088,24 @@
         }
       }
     },
+    "Load": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Load"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cargar"
+          }
+        }
+      }
+    },
     "MXN 450 to 670 per document, range pending DOF verification": {
       "extractionState": "manual",
       "localizations": {
@@ -6061,6 +6277,24 @@
         }
       }
     },
+    "Model on this device": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Model on this device"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modelo en este dispositivo"
+          }
+        }
+      }
+    },
     "Models": {
       "extractionState": "manual",
       "localizations": {
@@ -6198,6 +6432,42 @@
         }
       }
     },
+    "Never claim to have taken an action. You recommend; a person decides.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Never claim to have taken an action. You recommend; a person decides."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nunca afirme haber tomado una acción. Usted recomienda; una persona decide."
+          }
+        }
+      }
+    },
+    "Never state that a document is fiscally valid: the console witnesses what was recorded and does not rule on validity.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Never state that a document is fiscally valid: the console witnesses what was recorded and does not rule on validity."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nunca afirme que un documento es fiscalmente válido: la consola atestigua lo registrado y no se pronuncia sobre la validez."
+          }
+        }
+      }
+    },
     "New": {
       "extractionState": "manual",
       "localizations": {
@@ -6245,6 +6515,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Chat nuevo"
+          }
+        }
+      }
+    },
+    "New conversation": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New conversation"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nueva conversación"
           }
         }
       }
@@ -6470,6 +6758,42 @@
         }
       }
     },
+    "No local inference engine is linked into this build.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No local inference engine is linked into this build."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta compilación no incluye un motor de inferencia local."
+          }
+        }
+      }
+    },
+    "No model on this device can answer right now. A keyed rail can, but the conversation would be sent to that provider's servers and would leave this machine. Send it?": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No model on this device can answer right now. A keyed rail can, but the conversation would be sent to that provider's servers and would leave this machine. Send it?"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ningún modelo en este dispositivo puede responder ahora. Un riel con llave sí puede, pero la conversación se enviaría a los servidores de ese proveedor y saldría de esta máquina. ¿Enviarla?"
+          }
+        }
+      }
+    },
     "No payment yet": {
       "extractionState": "manual",
       "localizations": {
@@ -6483,6 +6807,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sin pago aún"
+          }
+        }
+      }
+    },
+    "No rail is ready. Load the local model, or add a key in Settings.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No rail is ready. Load the local model, or add a key in Settings."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ningún riel está listo. Cargue el modelo local, o agregue una llave en Ajustes."
           }
         }
       }
@@ -6624,6 +6966,60 @@
         }
       }
     },
+    "Not configured:": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not configured:"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin configurar:"
+          }
+        }
+      }
+    },
+    "Not enough free memory to run a model locally. Close what you can, or use a keyed rail.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not enough free memory to run a model locally. Close what you can, or use a keyed rail."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay memoria libre suficiente para ejecutar un modelo localmente. Cierre lo que pueda, o use un riel con llave."
+          }
+        }
+      }
+    },
+    "Not ready:": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not ready:"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No está listo:"
+          }
+        }
+      }
+    },
     "Nothing leaves the cluster whatever is switched on here.": {
       "extractionState": "manual",
       "localizations": {
@@ -6637,6 +7033,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nada sale del clúster, se active lo que se active aquí."
+          }
+        }
+      }
+    },
+    "Nothing leaves this device unless you say so.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing leaves this device unless you say so."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nada sale de este dispositivo sin que usted lo autorice."
           }
         }
       }
@@ -6948,6 +7362,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Un proveedor"
+          }
+        }
+      }
+    },
+    "Only for this conversation.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only for this conversation."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sólo para esta conversación."
           }
         }
       }
@@ -7312,6 +7744,24 @@
         }
       }
     },
+    "Paste a key": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Paste a key"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pegue una llave"
+          }
+        }
+      }
+    },
     "Paste from clipboard": {
       "extractionState": "manual",
       "localizations": {
@@ -7512,6 +7962,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "compuerta Fase 0: conmutación en diez minutos"
+          }
+        }
+      }
+    },
+    "Physical memory": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Physical memory"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Memoria física"
           }
         }
       }
@@ -7751,6 +8219,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Precios: configurador de Apple EE. UU., consultado 25 y 26 ago 2026 (M5 Ultra 256 GB núcleos completos $10,799; con 16 TB $18,299); 512 GB sin publicar, EST; M3 Ultra descontinuado, EST; solar y baterías, costo instalado EST."
+          }
+        }
+      }
+    },
+    "Provenance": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Provenance"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Procedencia"
           }
         }
       }
@@ -9533,6 +10019,24 @@
         }
       }
     },
+    "Save": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar"
+          }
+        }
+      }
+    },
     "Save as draft": {
       "extractionState": "manual",
       "localizations": {
@@ -9956,6 +10460,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Enviar toque"
+          }
+        }
+      }
+    },
+    "Send it off this device": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Send it off this device"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enviarla fuera de este dispositivo"
           }
         }
       }
@@ -11654,6 +12176,42 @@
         }
       }
     },
+    "The rail did not answer in time.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The rail did not answer in time."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El riel no respondió a tiempo."
+          }
+        }
+      }
+    },
+    "The rail returned nothing.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The rail returned nothing."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El riel no devolvió nada."
+          }
+        }
+      }
+    },
     "The reserve floor is not available power. It is what the bank keeps back so that an unplanned transfer has something to draw on, which is why autonomy counts only what sits above it.": {
       "comment": "Introduced by the Swift port; not present in the prototype.",
       "extractionState": "manual",
@@ -11811,6 +12369,24 @@
         }
       }
     },
+    "There is room for the full model.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "There is room for the full model."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hay espacio para el modelo completo."
+          }
+        }
+      }
+    },
     "Thinking…": {
       "extractionState": "manual",
       "localizations": {
@@ -11859,6 +12435,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Este caso pertenece a"
+          }
+        }
+      }
+    },
+    "This conversation may be sent to a keyed provider.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This conversation may be sent to a keyed provider."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Esta conversación puede enviarse a un proveedor con llave."
           }
         }
       }
@@ -11927,6 +12521,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Tickets al día"
+          }
+        }
+      }
+    },
+    "Tight. The smaller model will run; the full one risks swapping mid-answer.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tight. The smaller model will run; the full one risks swapping mid-answer."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Justo. El modelo pequeño correrá; el completo arriesga usar memoria de intercambio a media respuesta."
           }
         }
       }
@@ -12565,6 +13177,24 @@
         }
       }
     },
+    "Use": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar"
+          }
+        }
+      }
+    },
     "User": {
       "extractionState": "manual",
       "localizations": {
@@ -12908,6 +13538,24 @@
         }
       }
     },
+    "Weights, plus headroom for the conversation to grow. On a machine with 16 GB the risk is not a refusal to load but memory pressure mid-answer, so the smaller model is the right choice when the machine is already busy.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weights, plus headroom for the conversation to grow. On a machine with 16 GB the risk is not a refusal to load but memory pressure mid-answer, so the smaller model is the right choice when the machine is already busy."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pesos, más margen para que la conversación crezca. En una máquina de 16 GB el riesgo no es que se niegue a cargar, sino la presión de memoria a media respuesta, por lo que el modelo pequeño es la opción correcta cuando la máquina ya está ocupada."
+          }
+        }
+      }
+    },
     "What a scoped agent is not": {
       "comment": "Introduced by the Swift port; not present in the prototype.",
       "extractionState": "manual",
@@ -13181,6 +13829,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "Escriba como le explicaría a un colega nuevo: qué hacer, qué no hacer nunca, cuándo entregar a una persona…"
+          }
+        }
+      }
+    },
+    "You are Taylor, a software assistant inside a private console.": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You are Taylor, a software assistant inside a private console."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usted es Taylor, un asistente de software dentro de una consola privada."
           }
         }
       }
@@ -14077,6 +14743,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "cambiar"
+          }
+        }
+      }
+    },
+    "checking this machine": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "checking this machine"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "revisando esta máquina"
           }
         }
       }
@@ -15891,6 +16575,24 @@
         }
       }
     },
+    "key stored": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "key stored"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "llave guardada"
+          }
+        }
+      }
+    },
     "keyless first; a publishable pk_ key from enter.pollinations.ai if the keyless rail is closed": {
       "extractionState": "manual",
       "localizations": {
@@ -15904,6 +16606,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "sin llave primero; una llave publicable pk_ de enter.pollinations.ai si la vía sin llave está cerrada"
+          }
+        }
+      }
+    },
+    "keys are held in the Keychain, never synced off this device": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "keys are held in the Keychain, never synced off this device"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "las llaves se guardan en el Llavero, nunca se sincronizan fuera de este dispositivo"
           }
         }
       }
@@ -16029,6 +16749,24 @@
         }
       }
     },
+    "left this device": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "left this device"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "salió de este dispositivo"
+          }
+        }
+      }
+    },
     "legal threats": {
       "extractionState": "manual",
       "localizations": {
@@ -16060,6 +16798,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "conector ligero con una cola protegida sin conexión"
+          }
+        }
+      }
+    },
+    "loading": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "loading"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "cargando"
           }
         }
       }
@@ -16910,6 +17666,24 @@
         }
       }
     },
+    "no model loaded": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no model loaded"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "sin modelo cargado"
+          }
+        }
+      }
+    },
     "no payment yet": {
       "extractionState": "manual",
       "localizations": {
@@ -17111,6 +17885,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "no cargado"
+          }
+        }
+      }
+    },
+    "nothing is downloaded during a session": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "nothing is downloaded during a session"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "no se descarga nada durante una sesión"
           }
         }
       }
@@ -20576,6 +21368,24 @@
         }
       }
     },
+    "weights not on this machine": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "weights not on this machine"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "los pesos no están en esta máquina"
+          }
+        }
+      }
+    },
     "what Bridge is connected to": {
       "comment": "Introduced by the Swift port; not present in the prototype.",
       "extractionState": "manual",
@@ -20590,6 +21400,24 @@
           "stringUnit": {
             "state": "translated",
             "value": "a qué está conectado Bridge"
+          }
+        }
+      }
+    },
+    "what answers, what it costs this machine, and what leaves it": {
+      "comment": "Introduced by the Swift port; not present in the prototype.",
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "what answers, what it costs this machine, and what leaves it"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "qué responde, qué le cuesta a esta máquina, y qué sale de ella"
           }
         }
       }

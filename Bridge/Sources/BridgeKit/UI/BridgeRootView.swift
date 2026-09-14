@@ -30,6 +30,8 @@ public struct BridgeRootView: View {
             let seed = try SeedBundle.bundled()
             store.load(seed: seed)
             store.setEvidence(BridgeStore.evidence(from: seed))
+            // Warm the local model while the front door is on screen.
+            Task { await store.warmUpLocalModel() }
         } catch {
             loadFailure = String(describing: error)
         }
