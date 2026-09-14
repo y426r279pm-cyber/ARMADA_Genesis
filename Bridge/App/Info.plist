@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Add this to the app target in Xcode, or copy its keys into the target's Info
+  settings. Two entries are load-bearing:
+
+  · NSFaceIDUsageDescription — without it, the approval gate's call to
+    LocalAuthentication fails on a Face ID machine. It fails as .ambiguous,
+    which the gate treats as a refusal, so nothing unsafe happens; but nothing
+    can be approved either, and the reason would be obscure.
+
+  · ITSAppUsesNonExemptEncryption — false, because Bridge uses only the
+    platform's own cryptography (CryptoKit, Keychain, TLS).
+-->
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key>
+    <string>Bridge</string>
+    <key>CFBundleDisplayName</key>
+    <string>Bridge</string>
+    <key>CFBundleIdentifier</key>
+    <string>ai.armada.bridge</string>
+    <key>CFBundleShortVersionString</key>
+    <string>2.1</string>
+    <key>CFBundleVersion</key>
+    <string>1</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>14.0</string>
+    <key>NSHumanReadableCopyright</key>
+    <string>ONE NanoScience, Inc. and Armada Tech.AI</string>
+    <key>NSFaceIDUsageDescription</key>
+    <string>Bridge asks for your fingerprint or face to confirm a payment approval. Nothing is approved without it.</string>
+    <key>ITSAppUsesNonExemptEncryption</key>
+    <false/>
+</dict>
+</plist>

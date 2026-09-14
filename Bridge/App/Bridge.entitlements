@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Sandboxed. Four capabilities, and no more:
+
+  · app-sandbox           — required for notarised distribution.
+  · network.client        — the keyed rails, and nothing else. There is no
+                            network.server entitlement: Bridge does not listen.
+  · files.user-selected   — exporting an evidence pack the person chose to save.
+  · keychain-access-groups — where the rail keys live.
+
+  Deliberately absent: camera, microphone, location, contacts, calendars, and
+  any network.server. If a future feature needs one, that is a decision to make
+  out loud rather than a line to add quietly.
+-->
+<plist version="1.0">
+<dict>
+    <key>com.apple.security.app-sandbox</key>
+    <true/>
+    <key>com.apple.security.network.client</key>
+    <true/>
+    <key>com.apple.security.files.user-selected.read-write</key>
+    <true/>
+    <key>keychain-access-groups</key>
+    <array>
+        <string>$(AppIdentifierPrefix)ai.armada.bridge</string>
+    </array>
+</dict>
+</plist>
