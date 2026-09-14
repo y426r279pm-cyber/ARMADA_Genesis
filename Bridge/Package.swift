@@ -19,6 +19,10 @@ let package = Package(
                 .copy("Resources/Seed.json"),
             ]
         ),
-        .testTarget(name: "BridgeKitTests", dependencies: ["BridgeKit"]),
+        .testTarget(
+            name: "BridgeKitTests",
+            dependencies: ["BridgeKit"],
+            resources: [.copy("Fixtures/ChainFixture.json")]
+        ),
     ]
 )

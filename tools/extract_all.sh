@@ -10,6 +10,7 @@ python3 tools/test_jsscan.py
 
 echo; echo "== extract =="
 python3 tools/extract_tokens.py
+python3 tools/extract_routes.py
 python3 tools/extract_roles.py
 python3 tools/extract_strings.py
 python3 tools/extract_icons.py

@@ -13,6 +13,15 @@ from lib.jsscan import read_source, strip_comments, find_block, banner
 
 OUT = "Bridge/Sources/BridgeKit/RBAC/Role.swift"
 
+# `operator` is a Swift keyword and needs escaping in a case name.
+SWIFT_KEYWORDS = {"operator", "class", "struct", "enum", "protocol", "default", "internal",
+                  "static", "public", "private", "case", "func", "var", "let", "in", "is", "as"}
+
+
+def ident(name):
+    return f"`{name}`" if name in SWIFT_KEYWORDS else name
+
+
 NOTES = {
     "admin": "Sees every screen and may change records; the wizard and the policies are theirs.",
     "enterprise": "Everything Admin sees plus the Enterprise group: supplier match, measures, stores, topology.",
@@ -51,16 +60,17 @@ def main():
             if s not in every:
                 every.append(s)
 
-    L = [banner("tools/extract_roles.py"), ""]
-    L.append("/// Every screen Bridge can route to.")
-    L.append("///")
-    L.append("/// The raw value is the prototype's route name and is load-bearing: it keys")
-    L.append("/// the string catalog (`nav_<raw>`), the icon set, and the seeded ledger.")
-    L.append("public enum Screen: String, CaseIterable, Sendable, Codable {")
-    for s in every:
-        L.append(f"    case {s}")
-    L.append("}\n")
+    # Screen lives in Route.swift, which knows all 43 routes rather than only the
+    # 22 that reach a sidebar. Assert the two agree rather than defining it twice.
+    route_file = "Bridge/Sources/BridgeKit/Router/Route.swift"
+    if os.path.exists(route_file):
+        known = set(re.findall(r"^    case ([a-z_]+)$", open(route_file, encoding="utf-8").read(), re.M))
+        unknown = [s for s in every if s not in known]
+        if unknown:
+            raise SystemExit(f"roles name screens that no route defines: {unknown}\n"
+                             f"run tools/extract_routes.py first")
 
+    L = [banner("tools/extract_roles.py"), ""]
     L.append("/// Who may see and change what.")
     L.append("///")
     L.append("/// Screens absent from a role are hidden, not disabled. Mutating controls")
@@ -68,20 +78,20 @@ def main():
     L.append("/// in production; the picker on the front door is the demo stand-in.")
     L.append("public enum Role: String, CaseIterable, Sendable, Codable {")
     for key, _, _, _ in roles:
-        L.append(f"    case {key}")
+        L.append(f"    case {ident(key)}")
     L.append("")
     L.append("    /// String-catalog key for this role's display name.")
     L.append("    public var labelKey: String {")
     L.append("        switch self {")
     for key, label, _, _ in roles:
-        L.append(f'        case .{key}: "{label}"')
+        L.append(f'        case .{ident(key)}: "{label}"')
     L.append("        }")
     L.append("    }\n")
     L.append("    /// May this role change records?")
     L.append("    public var canWrite: Bool {")
     L.append("        switch self {")
     for key, _, _, write in roles:
-        L.append(f"        case .{key}: {str(write).lower()}")
+        L.append(f"        case .{ident(key)}: {str(write).lower()}")
     L.append("        }")
     L.append("    }\n")
     L.append("    /// Administrative roles reach the wizard and the policy editor.")
@@ -91,7 +101,7 @@ def main():
     L.append("        switch self {")
     for key, _, screens, _ in roles:
         L.append(f"        // {NOTES.get(key, '')}")
-        L.append(f"        case .{key}: [{', '.join('.' + s for s in screens)}]")
+        L.append(f"        case .{ident(key)}: [{', '.join('.' + s for s in screens)}]")
     L.append("        }")
     L.append("    }\n")
     L.append("    /// Hidden, not greyed: the sidebar never advertises a screen the role cannot open.")

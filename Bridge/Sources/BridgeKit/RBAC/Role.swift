@@ -3,35 +3,6 @@
 // The prototype is the canon. This file is its shadow.
 
 
-/// Every screen Bridge can route to.
-///
-/// The raw value is the prototype's route name and is load-bearing: it keys
-/// the string catalog (`nav_<raw>`), the icon set, and the seeded ledger.
-public enum Screen: String, CaseIterable, Sendable, Codable {
-    case home
-    case cobranza
-    case facturas
-    case agentes
-    case modelos
-    case catalogo
-    case configuracion
-    case cadena
-    case datos
-    case chat
-    case salud
-    case energia
-    case integraciones
-    case ajustes
-    case incidentes
-    case actualizar
-    case auditoria
-    case perfil
-    case conciliacion
-    case medidas
-    case tiendas
-    case topologia
-}
-
 /// Who may see and change what.
 ///
 /// Screens absent from a role are hidden, not disabled. Mutating controls
@@ -40,7 +11,7 @@ public enum Screen: String, CaseIterable, Sendable, Codable {
 public enum Role: String, CaseIterable, Sendable, Codable {
     case admin
     case enterprise
-    case operator
+    case `operator`
     case auditor
     case reception
 
@@ -49,7 +20,7 @@ public enum Role: String, CaseIterable, Sendable, Codable {
         switch self {
         case .admin: "role_admin"
         case .enterprise: "role_enterprise"
-        case .operator: "role_operator"
+        case .`operator`: "role_operator"
         case .auditor: "role_auditor"
         case .reception: "role_reception"
         }
@@ -60,7 +31,7 @@ public enum Role: String, CaseIterable, Sendable, Codable {
         switch self {
         case .admin: true
         case .enterprise: true
-        case .operator: true
+        case .`operator`: true
         case .auditor: false
         case .reception: false
         }
@@ -77,7 +48,7 @@ public enum Role: String, CaseIterable, Sendable, Codable {
         // Everything Admin sees plus the Enterprise group: supplier match, measures, stores, topology.
         case .enterprise: [.home, .conciliacion, .medidas, .tiendas, .topologia, .cobranza, .facturas, .agentes, .modelos, .catalogo, .configuracion, .cadena, .datos, .chat, .salud, .energia, .integraciones, .ajustes, .incidentes, .actualizar, .auditoria, .perfil]
         // The working roles: collections, invoices, agents, incidents.
-        case .operator: [.home, .cobranza, .facturas, .agentes, .catalogo, .configuracion, .chat, .salud, .energia, .incidentes, .perfil]
+        case .`operator`: [.home, .cobranza, .facturas, .agentes, .catalogo, .configuracion, .chat, .salud, .energia, .incidentes, .perfil]
         // Reads everything that carries evidence; changes nothing.
         case .auditor: [.home, .cadena, .datos, .salud, .auditoria, .perfil]
         // The front desk: health, agents, chat, profile. Nothing financial.

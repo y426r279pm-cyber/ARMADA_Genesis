@@ -10,8 +10,17 @@ from it. When RC2.2 lands, drop in the new file and re-run.
 | Script | Reads | Writes |
 |---|---|---|
 | `extract_tokens.py`  | the `:root` block | `Theme.swift`, `Colors.xcassets` |
-| `extract_roles.py`   | `ROLES` | `Role.swift`, `Screen` enum |
+| `extract_routes.py`  | `SCREENS` (four registration sites) + `crumbLabel` | `Route.swift`, `Screen` enum |
+| `extract_roles.py`   | `ROLES` | `Role.swift` |
 | `extract_strings.py` | `I18N` + every `L()` call site | `Localizable.xcstrings`, `Strings.swift`, `docs/STRING_CONFLICTS.md` |
+| `extract_icons.py`   | `ICONS`, `BRIDGE_MARK`, `TAYLOR_MARK` | `Icons.swift` |
+| `seed_harness.mjs`   | runs the prototype's `seed()` in Node | `Seed.json` |
+| `extract_schema.py`  | `STORES` + the seeded records | `Stores.swift` |
+| `chain_fixture.mjs`  | drives the prototype's `seal()` | `ChainFixture.json` |
+| `verify_chain.py`    | the seeded ledger | proof, printed |
+
+`ScreenHost.swift` was written once by a script and is **not** regenerated —
+replace a stub with the real screen as each is built.
 
 ## On `lib/jsscan.py`
 
