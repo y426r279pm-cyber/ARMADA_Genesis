@@ -73,12 +73,51 @@ prototype misrepresent something. Read this before changing `index.html`.
     message text, draft bodies, incident content, images, or private interests.
     Deletion leaves tombstones so the chain still verifies after erasure.
 
+## The member's side of the relationship
+
+21. **Guilt is banned copy, not discouraged copy.** Nothing the platform says
+    first may imply the member owes it attention. The ban is the
+    `PROHIBITED_COPY` list, and `selfCheck()` scans every string, thread prompt,
+    crisis line, and proactive check-in against it. Re-engagement is opt-in and
+    off by default.
+22. **No plan or upgrade prompt inside a conversation room, ever, and none
+    anywhere for the configured window after a safety signal.**
+    `upgradePromptsAllowed()` is the only place that decides, and it refuses on
+    context before it looks at the clock.
+23. **Sensitive categories are never written to memory.** Crisis, health, abuse,
+    finances, immigration status, and anything the member marks private are
+    excluded from persona memory and from group memory by
+    `sensitiveCategoryOf()`, on every write path. A companion that never forgets
+    a vulnerability is the failure this answers.
+24. **Memory is the member's, visibly.** Every remembered fact is an editable
+    card carrying the message it came from. Remember, forget, rewind, and fresh
+    start are member actions, and fresh start never touches a long-term fact.
+
+## The crisis experience
+
+25. **On a trigger the persona steps back and the platform speaks.** The avatar
+    dims, playback stops, the persona sends nothing further. The card is a
+    sheet, never a modal takeover: the transcript stays visible, the composer
+    stays available, and no sound plays.
+26. **Two lines, three actions, and nothing else.** No question that forces a
+    disclosure, no warning, no lecture, no symptom list, no clinical label, and
+    no mention of the member's subscription. No red, no warning icon, no
+    illustration.
+27. **Grounded mode reflects and stays.** It asks no probing questions, never
+    role-plays, never claims to be a person, never expresses love or dependence,
+    and restates every few turns that a person is available now. No lockout, no
+    time limit.
+28. **The disclosure is not kept.** It reaches neither persona memory nor group
+    memory; the record gets a `moderation_action` with no text; "Your week"
+    never mentions it.
+
 ## Requirement IDs
 
 Preserve them. `S-` plans, `M-` member journey, `C-` creator, `T-` technical,
 `P-` production, `D-` deck-driven, `R-` regulatory and safety, `K-` the record,
 `L-` the rights model, `V-` adapters and code structure, `G-` the rights guards
-added in v0.3. `VERIFICATION.md` maps each one to where it lives.
+added in v0.3, `E-` the experience requirements and `X-` the crisis experience
+added in v0.4. `VERIFICATION.md` maps each one to where it lives.
 
 ## What is never built without being asked
 

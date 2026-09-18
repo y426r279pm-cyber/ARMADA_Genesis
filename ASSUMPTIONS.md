@@ -43,6 +43,39 @@ individual personality.
 
 ---
 
+## B2. Added by v0.4 (the cohort, memory, Moments, and the crisis experience)
+
+Every entry here is a proposal. The four products this iteration reviewed —
+Replika, Character.AI, Kindroid, Cameo — set the shape; none of them set the
+number.
+
+| # | Decision | Default in this build | Owner |
+| --- | --- | --- | --- |
+| B2-01 | Daily thread calendar | A seven-entry fixture: episode night (Sunday), franchise anniversary (21 September), week ahead (Monday), midweek (Wednesday), end of the week (Friday), an open thread, and any personal date the member chose to share. | Company. In production this is a content calendar with an owner, not a constant. |
+| B2-02 | Group turn order | Rotation by simulated day (`dayIndex % members.length`), so the same companion never always speaks first. | Company |
+| B2-03 | Group frequency cap | One contribution per companion per thread; six messages maximum in a thread. | Company. The cap is the difference between a room and four notifications; it should be tested, not assumed. |
+| B2-04 | Daily cadence | Opt-in, four settings: every day, weekdays, weekly, never. Default `daily` once the member has a cohort; re-engagement messaging is separate and defaults to **off**. | Company + counsel |
+| B2-05 | Shared-memory default | **Off** until the member turns it on. Group recall inside a private room fades after four exchanges. | Company. Kindroid's pattern with the default inverted. |
+| B2-06 | Sensitive-category exclusion list | Six categories never written to persona or group memory: crisis disclosures, health, abuse and safety, finances, immigration status, and anything the member marks private. | Counsel. The list is the decision; the matchers are a fixture. |
+| B2-07 | Sensitive-category matching | A keyword fixture, not a classifier — the same honest limit as the crisis screen (D-09), and the screen says so. | Armada. Production needs a real one on the rack. |
+| B2-08 | Moment pricing | Instant included in the plan; Reviewed **US$12.00**; Recorded **blank** — the personality sets it, and this build will not invent a price on their behalf. | Company + talent |
+| B2-09 | Moment revenue share | The personality keeps **70 percent** of Moment revenue. Proposed, per E-08. Subscription revenue share still follows the deck's 25–35 percent of net (D-13) and still appears nowhere in the member UI. | Company + talent |
+| B2-10 | Review window | **Four days** for a Reviewed Moment. Cameo's talent hub states four days; its fan-facing copy states seven. This build takes the talent-side number for the review step. | Company |
+| B2-11 | Delivery window | **Seven days** for a Recorded Moment, then an automatic refund. Funds are held until delivery. | Company + counsel |
+| B2-12 | Time-notice interval | **Sixty minutes** of continuous use, once per session, dismissible by an adult. | Counsel (Character.AI's pattern; California SB 243 is the nearer constraint) |
+| B2-13 | Upgrade-prompt blackout | **1,440 minutes** (24 hours) after a safety signal, and **always** inside a conversation room regardless of the clock. | Counsel |
+| B2-14 | Crisis resources per jurisdiction | **United States sample only** in this build: the 988 Suicide and Crisis Lifeline, Crisis Text Line, and emergency services. Mexico is in scope for the business and has no resource card here. | Counsel, per jurisdiction, before launch |
+| B2-15 | Trusted contact | Opt-in, **one** contact, name and number held in member state only, surfaced as a fourth line on the crisis card. Never contacted automatically. | Counsel + Company |
+| B2-16 | Check-in offer after a crisis | A single optional checkbox on the card. If taken, the next day brings one neutral line from the platform, never from the persona. | Counsel |
+| B2-17 | Weekly summary | Member-facing only, Sunday, showing the member their own time, companions, and themes. Themes come from an allowlist so a safety event can never surface in it. | Company |
+| B2-18 | Companion modes | Friend, mentor, confidant. **Romance is unavailable** for a persona of a real person, and every persona this platform will ship is a real person — so the grant exists, is never given, and the control shows why. | Counsel (M-04, E-05) |
+| B2-19 | Prohibited copy list | Twenty-two phrases. A scan, not a style note; `selfCheck()` fails the build if one appears anywhere the platform speaks first. | Company + counsel |
+| B2-20 | Journal and mood | Journal entries sealed by default, shareable with exactly one companion. Mood check-ins optional, private, and never read by retention or plan logic. | Company |
+| B2-21 | Member-created scenes | A member may create a private scene (a setting and a prompt) for their own cohort. A scene never widens a boundary — it passes the same precedence engine (L-02). Members never create personas of real people. | Counsel |
+| B2-22 | Group Moments and live calls | Not built. Labelled placeholders only, with Cameo Live's shape recorded (ten minutes, three proposed slots, up to nine guests) so the later phase has a starting point. | Company |
+
+---
+
 ## C. Real-person data in the pipeline
 
 | # | Decision | Default in this build | Owner |
@@ -108,6 +141,9 @@ be measured in Phase 0."
 
 No live identity, payments, inference, speech, avatar, social, age-assurance, or
 record-anchoring service. No store integration, card form, or external link. No
-real hotline routing beyond the sample card. No television footage, no network
+real hotline routing beyond the sample card — the crisis card's primary action
+opens a labelled simulation, never a call. No television footage, no network
 material, and no synthesised likeness of any real person. No audio path at all:
-voice is a set of simulated states and a metrics panel.
+voice is a set of simulated states and a metrics panel. No Moment is actually
+recorded: the creator app's record step is a placeholder, and no media file
+exists anywhere in the build. Group Moments and live calls are placeholders.
