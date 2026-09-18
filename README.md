@@ -14,6 +14,10 @@ network call of any kind.
 > all. Save the file and double-click it, or drag it onto a browser window. If
 > the script is blocked or fails, the page now says so in place and gives the
 > reason; it can no longer come up empty.
+>
+> If you have opened an earlier build at the same address, the stored state from
+> it is reseeded automatically on first load — `SCHEMA_VERSION` gates it, and a
+> missing slice is seeded rather than allowed to break boot.
 
 | File | What it is |
 | --- | --- |
@@ -269,9 +273,9 @@ visible throughout.
   only warnings are three intentionally unused `catch` bindings around
   `localStorage`, which must not throw.
 - 1.03 MB, against the 1.5 MB ceiling.
-- **17 of 17** acceptance scenarios and **39 of 39** in-file rule self-checks
+- **18 of 18** acceptance scenarios and **39 of 39** in-file rule self-checks
   pass, across **26** routes, with no console error. See `VERIFICATION.md` for
-  how they were run and for the three real defects they found.
+  how they were run and for the four real defects they found.
 
 ## Known limits
 

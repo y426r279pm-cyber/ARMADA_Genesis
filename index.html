@@ -4125,8 +4125,13 @@
       };
 
       /* T-03 / V-02 */
+      /* T-05 / V-02: the storage key is deliberately stable across versions so an
+   upgrade overwrites the old blob rather than orphaning it. SCHEMA_VERSION is
+   what gates compatibility, so it must be bumped whenever a state slice is
+   added — a build that adds a slice and leaves the version alone hands the
+   returning member a state object missing that slice. */
       const STORAGE_KEY = "persona.ai.v0_3";
-      const SCHEMA_VERSION = 3;
+      const SCHEMA_VERSION = 4;
       const RNG_SEED = 20260917;
       const CLOCK_EPOCH = Date.UTC(2026, 8, 17, 15, 0, 0);
 
@@ -7884,12 +7889,41 @@
         persist();
       }
 
+      /* T-05 / V-02: a stored blob from an older build reseeds rather than being
+   upgraded in place, because there is no upgrade path worth pretending to.
+   The version is bumped whenever a slice is added, and a build that forgets to
+   bump it is exactly how a member ends up with a state object missing a slice
+   the new code dereferences. */
       function migrate(raw) {
         if (!raw || typeof raw !== "object") return null;
-        if (raw.schemaVersion === SCHEMA_VERSION) return raw;
-        /* v0.2 stored a different shape under its own key; there is no in-place
-     upgrade path worth pretending to, so a stale blob reseeds. */
-        return null;
+        if (raw.schemaVersion !== SCHEMA_VERSION) return null;
+        if (!raw.state || typeof raw.state !== "object") return null;
+        return raw;
+      }
+
+      /* T-05: the version check is the intended guard, and this is the backstop for
+   the case it misses — a blob written by a build that added a slice without
+   bumping the version. A missing slice is filled from a fresh one so boot can
+   never die dereferencing it. Named slices only; nothing inside them is
+   merged, because a half-merged slice is worse than a seeded one. */
+      function fillMissingSlices(restored) {
+        const fresh = freshState();
+        let filled = 0;
+        Object.keys(fresh).forEach(function (k) {
+          const have = restored[k];
+          if (have === null || have === undefined || typeof have !== typeof fresh[k]) {
+            restored[k] = fresh[k];
+            filled++;
+          }
+        });
+        if (filled && window.console && console.warn) {
+          console.warn(
+            "perSONA AI — restored state was missing " +
+              filled +
+              " slice(s); they were seeded. This means SCHEMA_VERSION was not bumped.",
+          );
+        }
+        return restored;
       }
       function persist() {
         try {
@@ -7925,7 +7959,7 @@
           seedScenes();
           return false;
         }
-        state = ok.state;
+        state = fillMissingSlices(ok.state);
         Clock.now = ok.clock || CLOCK_EPOCH;
         LAUNCH_STATE = ok.launchState || "live";
         BILLING_CHANNEL = ok.billingChannel || "web";
@@ -25461,7 +25495,11 @@
         const panel = document.getElementById("boot");
         const slot = document.getElementById("bootErr");
         if (panel) panel.className = "failed";
-        if (slot) slot.textContent = String(err && err.stack ? err.stack : err);
+        /* T-06: Safari's stack omits the message, and the message is the half that
+     says what actually broke, so both are printed. */
+        const msg = String(err && err.message ? err.message : err);
+        const stack = err && err.stack ? String(err.stack) : "";
+        if (slot) slot.textContent = stack.indexOf(msg) === 0 ? stack : msg + "\n\n" + stack;
         if (window.console && console.error) console.error("perSONA AI — boot failed:", err);
       }
 

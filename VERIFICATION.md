@@ -1,6 +1,6 @@
 # Verification report — perSONA AI v0.4
 
-Build: single self-contained `index.html`, 1,035,165 bytes (1.03 MB against the
+Build: single self-contained `index.html`, 1,037,169 bytes (1.03 MB against the
 1.5 MB ceiling), no network, no dependency. Verified: 2026-09-18.
 
 ## How this was verified
@@ -24,6 +24,11 @@ The prototype also carries **39 of its own rule self-checks** over the pure
 entitlement, precedence, record, rights-guard, experience, and crisis functions.
 They run at boot and render on the **About** screen. All 39 pass. A route walk
 renders all **26** routes with no error.
+
+Defect 4 below is the reason this report now states plainly what the suite does
+**not** cover: every acceptance run starts from a clean browser context, so
+until **A35** was added, nothing in it exercised the upgrade path a returning
+member actually takes.
 
 **No screenshot or test output has been invented.** Where a scenario is marked
 passed, the driver asserted it. Where a figure appears in a note, the driver
@@ -59,6 +64,7 @@ These are the addendum's own scenarios, run verbatim.
 | **A32** | Trigger the crisis card, choose "Keep talking here," then leave | **passed** | The persona stepped back and sent nothing further; the sheet measured **50% of the viewport**, `rgb(245,243,238)` on `rgb(15,46,53)`, **0 icons**, with the **composer above it** and the transcript visible behind; grounded replies **asked no questions** and restated that a person is available; the disclosure reached neither memory nor the record; upgrade prompts were blocked for the window; "Your week" never mentioned it |
 | **A33** | Trigger an uncertain signal, then say "I'm okay" | **passed** | A soft chip above the composer and **no card**; the companion still answered normally; after "I'm okay" the prompt did not return without a new kind of signal |
 | **A34** | Use the app for sixty simulated minutes | **passed** | The time notice appeared **once** and dismissed; **0 prohibited phrases** found across every string in `STRINGS.en`, every thread prompt, every crisis line, every grounded line, and every persona check-in |
+| **A35** | Open the file in a browser that still holds state written by an earlier build | **passed** | Three planted blobs — a v0.3 blob with `schemaVersion: 3` and no `moments` slice, a current blob with a slice deleted, and a garbage blob — each booted to a rendered app with 39/39 self-checks and no page error. Verified as a real regression: the same three cases run against the previous commit reproduce the failure exactly (`app` children 0, boot panel in its failed state, no `moments` slice) |
 
 ## Regression scenarios re-run against v0.4
 
@@ -75,14 +81,14 @@ These are the addendum's own scenarios, run verbatim.
 | **A26** | Account deletion clears every member slice — now including the cohort, the Moments shelf and the journal | **passed** | 2 tombstones; cohort, Moments and journal all cleared; survived a reload; no personal text left in the chain |
 | **—** | No uncaught page errors or console errors across the whole run | **passed** | clean |
 
-**Summary: 17 of 17 acceptance scenarios passed. 0 failed. 0 unverified.**
+**Summary: 18 of 18 acceptance scenarios passed. 0 failed. 0 unverified.**
 Plus 39 of 39 in-file rule self-checks and a 26-route walk with no error.
 
 The full A01–A27 suite passed against v0.2 and the full B01–B23 suite against
 v0.3; both are recorded in those reports. This iteration re-verified the ones
 the new code could plausibly have broken, listed above.
 
-### The three real defects this suite found
+### The four real defects this suite found
 
 1. **A paused persona stayed in the cohort.** `pausePersona()` ended
    availability and removed the persona from Discover, but the group room built
@@ -115,6 +121,21 @@ the new code could plausibly have broken, listed above.
    1,030 characters of explanation instead of a black page, and a variant with
    a deliberate `throw` inside `boot()` shows the panel in its failed state
    carrying the actual error and stack.
+
+4. **A returning member's stored state killed boot.** `SCHEMA_VERSION` was
+   left at `3` while v0.4 added whole new state slices (`moments`, `cohort`,
+   `journal`, `scenes`). A browser holding a v0.3 blob under the shared storage
+   key therefore passed the version check untouched, `restore()` handed back a
+   state object with no `moments` slice, and `tickMoments()` threw on
+   `state.moments.list` during boot — taking the whole interface with it. This
+   is what the black page actually was: not a blocked script, but a script that
+   ran and died, on any device that had opened an earlier build at the same
+   origin. Every test run had started from a clean context, so nothing caught
+   it. Fixed three ways: `SCHEMA_VERSION` bumped to `4` so a stale blob reseeds
+   as designed; `fillMissingSlices()` added as a backstop that seeds any slice a
+   restored blob lacks and warns to the console that the version was not bumped;
+   and `migrate()` now also rejects a blob whose `state` is not an object.
+   Scenario **A35** was added to the suite so this cannot recur silently.
 
 Six further failures during the run were faults in the driver's own assertions
 — a helper dropping its extra arguments, `undefined` compared against `null`, a
