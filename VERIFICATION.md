@@ -1,6 +1,6 @@
 # Verification report — perSONA AI v0.4
 
-Build: single self-contained `index.html`, 1,029,863 bytes (1.01 MB against the
+Build: single self-contained `index.html`, 1,035,165 bytes (1.03 MB against the
 1.5 MB ceiling), no network, no dependency. Verified: 2026-09-18.
 
 ## How this was verified
@@ -82,7 +82,7 @@ The full A01–A27 suite passed against v0.2 and the full B01–B23 suite agains
 v0.3; both are recorded in those reports. This iteration re-verified the ones
 the new code could plausibly have broken, listed above.
 
-### The two real defects this suite found
+### The three real defects this suite found
 
 1. **A paused persona stayed in the cohort.** `pausePersona()` ended
    availability and removed the persona from Discover, but the group room built
@@ -97,6 +97,24 @@ the new code could plausibly have broken, listed above.
    are one fixed stack, composer first, sheet `position: relative` beneath it.
    The driver now measures both boxes and asserts the composer's bottom edge is
    above the sheet's top edge.
+
+3. **A blocked or failed script showed an empty black page.** Every pixel of
+   the interface is painted by script into three empty divs, so any environment
+   that does not run the script — a preview pane, an email client, an in-app
+   file viewer, JavaScript switched off — rendered the dark background and
+   nothing else, with no way to tell a blocked script from a broken file. This
+   was reported from outside the suite, by opening the delivered file in a
+   viewer, which is why no scenario caught it: the driver always executes the
+   script. Fixed: the body now carries an authored fallback panel that is
+   visible by default and removed only once `boot()` has actually completed,
+   plus a `<noscript>` block; `boot()` is wrapped so a throw marks the panel
+   failed and prints the real stack in place; and the listener falls back to a
+   direct call if the document has already finished parsing. Verified three
+   ways against the real file — a normal boot removes the panel and renders the
+   app with no console error, a context with `javaScriptEnabled: false` shows
+   1,030 characters of explanation instead of a black page, and a variant with
+   a deliberate `throw` inside `boot()` shows the panel in its failed state
+   carrying the actual error and stack.
 
 Six further failures during the run were faults in the driver's own assertions
 — a helper dropping its extra arguments, `undefined` compared against `null`, a
@@ -180,7 +198,7 @@ anywhere the platform speaks first, the About screen goes red.
 | V-02 State shape | implemented — slices, pure reducers, hash router, schema version, one reset |
 | V-03 Deterministic simulation | implemented — one seed, one clock, one `FIXTURES` |
 | V-04 String table | implemented, with the same deviation recorded in v0.2 |
-| V-05 Build hygiene | implemented — no external asset, 1.01 MB, Prettier and ESLint clean |
+| V-05 Build hygiene | implemented — no external asset, 1.03 MB, Prettier and ESLint clean |
 | S-01…S-05, M-01…M-09, C-01…C-06, T-01…T-06, P-01…P-06 | implemented as reconstructed; see the v0.2 report for the mapping |
 
 ---

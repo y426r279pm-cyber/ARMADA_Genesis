@@ -8,9 +8,16 @@ file.
 Open `index.html` in a browser. No build step, no dependency, no server, and no
 network call of any kind.
 
+> **It must be opened by a browser, not by a preview pane.** The whole interface
+> is painted by script from this one file, so a viewer that does not run scripts
+> — an email client, a chat preview, an in-app file viewer — shows nothing at
+> all. Save the file and double-click it, or drag it onto a browser window. If
+> the script is blocked or fails, the page now says so in place and gives the
+> reason; it can no longer come up empty.
+
 | File | What it is |
 | --- | --- |
-| `index.html` | The prototype. 1.01 MB, everything inline including SHA-256, the wordmark, and every icon. |
+| `index.html` | The prototype. 1.03 MB, everything inline including SHA-256, the wordmark, and every icon. |
 | `wireframe-v0.2.html` | The original tappable wireframe, kept so the progression is traceable. |
 | `CLAUDE.md` | The coding rules, carried from v0.1 and extended at each iteration. Read before changing anything. |
 | `ASSUMPTIONS.md` | Every unresolved decision, its default in this build, and who decides it. |
@@ -261,10 +268,10 @@ visible throughout.
 - Formatted with Prettier (printWidth 100); ESLint reports **zero errors** — the
   only warnings are three intentionally unused `catch` bindings around
   `localStorage`, which must not throw.
-- 1.01 MB, against the 1.5 MB ceiling.
+- 1.03 MB, against the 1.5 MB ceiling.
 - **17 of 17** acceptance scenarios and **39 of 39** in-file rule self-checks
   pass, across **26** routes, with no console error. See `VERIFICATION.md` for
-  how they were run and for the two real defects they found.
+  how they were run and for the three real defects they found.
 
 ## Known limits
 

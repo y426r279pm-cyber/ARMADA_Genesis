@@ -3212,9 +3212,135 @@
           color: #000;
         }
       }
+
+      /* T-06 / V-05: the whole interface is painted by script, so an environment that
+   does not run the script would otherwise show an empty page on a dark
+   background and say nothing about why. This panel is authored into the markup,
+   is visible by default, and is removed only once boot has actually succeeded.
+   A blank screen is therefore never a silent failure. */
+      #boot {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 56px 24px 72px;
+        font-family: var(--sans);
+        color: var(--ink);
+      }
+      #boot .boot-mark {
+        font-size: 1.45rem;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+        margin: 0 0 26px;
+      }
+      #boot h1 {
+        font-size: 1.6rem;
+        line-height: 1.2;
+        letter-spacing: -0.02em;
+        margin: 0 0 14px;
+      }
+      #boot p {
+        color: var(--ink-2);
+        line-height: 1.6;
+        margin: 0 0 14px;
+        font-size: 1rem;
+      }
+      #boot ol {
+        color: var(--ink-2);
+        line-height: 1.7;
+        padding-left: 20px;
+        margin: 0 0 18px;
+      }
+      #boot li {
+        margin-bottom: 7px;
+      }
+      #boot .boot-card {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 18px 20px;
+        background: var(--s1);
+        margin: 22px 0 0;
+      }
+      #boot .boot-note {
+        color: var(--ink-3);
+        font-size: 0.86rem;
+        line-height: 1.6;
+        margin: 26px 0 0;
+      }
+      #boot .boot-err {
+        display: none;
+        white-space: pre-wrap;
+        font-family: var(--mono);
+        font-size: 0.8rem;
+        color: var(--ink);
+        background: var(--s2);
+        border: 1px solid var(--line);
+        border-radius: 10px;
+        padding: 14px;
+        margin: 18px 0 0;
+        overflow-x: auto;
+      }
+      #boot.failed .boot-err {
+        display: block;
+      }
+      #boot.failed .boot-blocked {
+        display: none;
+      }
+      #boot.failed h1::after {
+        content: " — it started, then stopped.";
+        font-weight: 400;
+        color: var(--ink-2);
+      }
     </style>
   </head>
   <body>
+    <div id="boot">
+      <p class="boot-mark">perSONA&nbsp;AI</p>
+      <h1>This page needs JavaScript to draw itself</h1>
+      <p>
+        Everything in this prototype — every screen, every figure, the whole simulated backend — is
+        built in the browser from one file. Nothing is fetched, so if the script does not run there
+        is nothing to show.
+      </p>
+      <div class="boot-card boot-blocked">
+        <p>
+          <strong>If you are seeing this, the script was blocked.</strong>
+          The usual reason is that the file is open inside a preview pane, an email client, or an
+          in-app viewer, which will not run scripts.
+        </p>
+        <ol>
+          <li>
+            Save
+            <code>index.html</code>
+            to your computer.
+          </li>
+          <li>
+            Open it with a browser directly — double-click it, or drag it onto a browser window.
+          </li>
+          <li>If your browser has JavaScript switched off, switch it on for local files.</li>
+        </ol>
+        <p>It runs entirely offline once open. It makes no network call of any kind.</p>
+      </div>
+      <pre class="boot-err" id="bootErr"></pre>
+      <p class="boot-note">
+        perSONA AI — high-fidelity prototype. Simulated data throughout, labelled on screen. No real
+        person in this build has a persona, a voice, or a conversation.
+      </p>
+    </div>
+    <noscript>
+      <div
+        style="
+          max-width: 640px;
+          margin: 0 auto;
+          padding: 0 24px 56px;
+          font:
+            16px/1.6 system-ui,
+            sans-serif;
+          color: #b3b8c2;
+        "
+      >
+        JavaScript is switched off in this browser. This prototype is a single file that builds its
+        whole interface in the browser, so it cannot show anything without it.
+      </div>
+    </noscript>
     <div id="app"></div>
     <div id="overlay"></div>
     <div id="toasts" class="toast-stack" role="status" aria-live="polite"></div>
@@ -25217,7 +25343,12 @@
           renderOverlay();
         }
       });
-      window.addEventListener("DOMContentLoaded", function () {
+      /* T-06 / V-05: boot is wrapped because the whole interface is painted by this
+   script — if it throws, the page keeps the dark background and shows nothing,
+   which reads as a broken file rather than a broken build. The authored #boot
+   panel stays on screen until boot has actually finished, and carries the error
+   if it did not. */
+      function boot() {
         restore();
         applyPrefsToDom();
         installFavicon();
@@ -25239,7 +25370,7 @@
         });
         if (window.console && console.log) {
           console.log(
-            "perSONA AI v0.3 — self-checks: " +
+            "perSONA AI v0.4 — self-checks: " +
               (res.length - failed.length) +
               "/" +
               res.length +
@@ -25320,7 +25451,32 @@
           },
         };
         render();
-      });
+        const panel = document.getElementById("boot");
+        if (panel && panel.parentNode) panel.parentNode.removeChild(panel);
+      }
+
+      /* T-06: a failed boot says so in place, with the actual error, rather than
+   leaving an empty page to be reported as "nothing shows". */
+      function bootFailed(err) {
+        const panel = document.getElementById("boot");
+        const slot = document.getElementById("bootErr");
+        if (panel) panel.className = "failed";
+        if (slot) slot.textContent = String(err && err.stack ? err.stack : err);
+        if (window.console && console.error) console.error("perSONA AI — boot failed:", err);
+      }
+
+      function startBoot() {
+        try {
+          boot();
+        } catch (e) {
+          bootFailed(e);
+        }
+      }
+
+      /* T-06: the listener alone would never fire if the document had already
+   finished parsing by the time this script ran. */
+      if (document.readyState === "loading") window.addEventListener("DOMContentLoaded", startBoot);
+      else startBoot();
     </script>
   </body>
 </html>
