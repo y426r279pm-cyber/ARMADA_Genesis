@@ -7,7 +7,7 @@ purpose: an invented number here becomes a quoted number later.
 **Owner** — *Company*: the talent-side operator. *Armada*: the technology
 partner. *Counsel*: external counsel in both countries. *Phase 0*: measured
 during the thirty-day gate, not decided by anyone in advance. *Talent*: the
-individual personality.
+individual talent.
 
 ---
 
@@ -37,7 +37,7 @@ individual personality.
 | B-11 | Incident ownership | An incident always has a named human owner and cannot be closed without a name. | Company |
 | B-12 | Creator roles | Three in the prototype: `talent_manager`, `operator`, `counsel`. Role-based permissions are declared in the adapter contracts but not enforced per-field. | Company |
 | B-13 | Training GPU cost | Rented US$2.40 a GPU hour (Armada estimate). Owned is **blank** — it is electricity, and the rate is a Phase 0 measurement. | Phase 0 |
-| B-14 | Whether an expired licence keeps agent coverage | Yes — an expired term may be renewed and the talent still needs support, so they stay in the coverage matrix but are marked not available to members. Revoked personalities are removed entirely. | Company |
+| B-14 | Whether an expired licence keeps agent coverage | Yes — an expired term may be renewed and the talent still needs support, so they stay in the coverage matrix but are marked not available to members. Revoked personas are removed entirely. | Company |
 | B-15 | Relationship-depth metric | A composite of turns and saved memories, shown as a percentage, resets with deletion. It is a product surface, not a measurement. | Company |
 | B-16 | Typeface | No font is embedded (the no-network rule), so the wordmark is the supplied PNG and the interface uses a tightly tracked system stack. | Company. A licensed geometric face is a production decision. |
 
@@ -58,8 +58,8 @@ number.
 | B2-05 | Shared-memory default | **Off** until the member turns it on. Group recall inside a private room fades after four exchanges. | Company. Kindroid's pattern with the default inverted. |
 | B2-06 | Sensitive-category exclusion list | Six categories never written to persona or group memory: crisis disclosures, health, abuse and safety, finances, immigration status, and anything the member marks private. | Counsel. The list is the decision; the matchers are a fixture. |
 | B2-07 | Sensitive-category matching | A keyword fixture, not a classifier — the same honest limit as the crisis screen (D-09), and the screen says so. | Armada. Production needs a real one on the rack. |
-| B2-08 | Moment pricing | Instant included in the plan; Reviewed **US$12.00**; Recorded **blank** — the personality sets it, and this build will not invent a price on their behalf. | Company + talent |
-| B2-09 | Moment revenue share | The personality keeps **70 percent** of Moment revenue. Proposed, per E-08. Subscription revenue share still follows the deck's 25–35 percent of net (D-13) and still appears nowhere in the member UI. | Company + talent |
+| B2-08 | Moment pricing | Instant included in the plan; Reviewed **US$12.00**; Recorded **blank** — the talent sets it, and this build will not invent a price on their behalf. | Company + talent |
+| B2-09 | Moment revenue share | The talent keeps **70 percent** of Moment revenue. Proposed, per E-08. Subscription revenue share still follows the deck's 25–35 percent of net (D-13) and still appears nowhere in the member UI. | Company + talent |
 | B2-10 | Review window | **Four days** for a Reviewed Moment. Cameo's talent hub states four days; its fan-facing copy states seven. This build takes the talent-side number for the review step. | Company |
 | B2-11 | Delivery window | **Seven days** for a Recorded Moment, then an automatic refund. Funds are held until delivery. | Company + counsel |
 | B2-12 | Time-notice interval | **Sixty minutes** of continuous use, once per session, dismissible by an adult. | Counsel (Character.AI's pattern; California SB 243 is the nearer constraint) |
@@ -73,6 +73,36 @@ number.
 | B2-20 | Journal and mood | Journal entries sealed by default, shareable with exactly one companion. Mood check-ins optional, private, and never read by retention or plan logic. | Company |
 | B2-21 | Member-created scenes | A member may create a private scene (a setting and a prompt) for their own cohort. A scene never widens a boundary — it passes the same precedence engine (L-02). Members never create personas of real people. | Counsel |
 | B2-22 | Group Moments and live calls | Not built. Labelled placeholders only, with Cameo Live's shape recorded (ten minutes, three proposed slots, up to nine guests) so the later phase has a starting point. | Company |
+
+---
+
+## B3. Added by v0.5 (video presence, likeness, talent health)
+
+Every figure here is a proposal. Where a number would have to be invented to
+make a screen look finished, it is blank and renders as "not measured".
+
+| # | Decision | Default in this build | Owner |
+| --- | --- | --- | --- |
+| V-01 | Availability window | Talent-set. The seeded fixture is weekdays, 9am–8/9pm Pacific, varying by persona. Outside it, the call control becomes a callback request. | Talent |
+| V-02 | Minutes per plan | Entry 15, Expanded 45, Pro 120 a month. No carry-over, stated before purchase. | Company |
+| V-03 | Audio-only rate | Half a video minute. Also the cheapest minute the operator will ever serve, so it is surfaced rather than hidden. | Company + Phase 0 |
+| V-04 | Render cost per minute | **US$0.42 rented** (vendor estimate). Owned rack is **blank**. Inference per minute is **blank — to be quoted**. | Phase 0 |
+| V-05 | Low-minutes notice | One quiet notice at two minutes remaining, then a 45-second grace period. A call never cuts mid-sentence. | Company |
+| V-06 | Video after a safety signal | **Does not resume for the rest of that session.** "Keep talking here" returns to text in grounded mode, not to the face. | Counsel. *Claude's decision, flagged for reversal in the approved proposal.* |
+| V-07 | Freshness thresholds | 60 days due, 75 overdue, 90 video disabled, 120 hold recommended. | Company + talent |
+| V-08 | Who may hold an account | The care agent recommends; **one named human confirms**; instantly reversible, and the record carries the name. | Company. *Claude's decision, flagged for reversal.* |
+| V-09 | Update effort estimate | Fifteen minutes, four artifacts. The estimate is the most important copy on that screen. | Company |
+| V-10 | Suggestive band | Permitted only where the talent granted mature themes; calibrated per talent, not globally. Ships **conservative and labelled as under-tuned**, because a keyword engine gets this wrong in both directions. | Counsel + talent |
+| V-11 | Third-party clearance | Any named **or resolvable** real person blocks a script line until that person's own written clearance is recorded. Role references ("my ex-husband") count as names. | Counsel |
+| V-12 | Rig approval | A named human publishes; sending back to the vendor requires no reason. The record stores the version and vendor, never the asset. | Company |
+| V-13 | Video disclosure wording | "AI · licensed likeness" — generated, permanent, non-dismissible, counsel-owned. | Counsel |
+| V-14 | Boundary-pressure threshold | Six declined requests across three calls raises an alert to the talent's team. A pattern, never a single request. | Company |
+| V-15 | Vendor rig provenance | Recorded as a list of approved source sessions. The prototype stores the reference only; no asset exists. | Company + counsel |
+| V-16 | Render fidelity | **Blank.** There is no honest metric until real rigs exist; it renders as "not measured". | Phase 0 |
+| V-17 | Screen recording | Detected where the platform allows, logged as a pattern, and **named in the talent's agreement as a known limit**. It cannot be prevented on a general-purpose device and the product does not claim otherwise. | Counsel |
+| V-18 | Talent categories | Five. Only the 90 Day franchise carries sourced names; sport, screen character actors, adult performers, and models/influencers appear as a **market map with no named individuals**, because a citation cannot be invented. | Company |
+| V-19 | Group calls | Not built. A labelled placeholder. The daily cohort was designed for text and a four-way video room is a different product. | Company |
+| V-20 | Live human on a call | **Never.** Every call is the persona. No scheduling or payout flow for human time exists. | Company |
 
 ---
 
@@ -99,10 +129,10 @@ otherwise, it governs. See `VERIFICATION.md`.
 | # | Decision | Default | Owner |
 | --- | --- | --- | --- |
 | D-01 | Plan prices | Entry US$6.95, Expanded US$14.95, Pro US$29.95 a month. Proposed, not market-validated. | Company |
-| D-02 | Entry selection count | Four selected personalities in total. | Company |
+| D-02 | Entry selection count | Four selected companions in total. | Company |
 | D-03 | Entry swap frequency | **Unresolved.** No swap limit is enforced; history survives a release. | Company |
 | D-04 | Expanded entitlement | Four selections, labelled on screen as a prototype assumption and not an approved entitlement. | Company |
-| D-05 | Pro daily limit | Seven distinct personalities a day, counted at the first message, reset on a provisional UTC day. | Company |
+| D-05 | Pro daily limit | Seven distinct companions a day, counted at the first message, reset on a provisional UTC day. | Company |
 | D-06 | The word "unlimited" | Used on Plans and immediately qualified: advertised in production only after Phase 0 has measured inference, voice, storage, licensing, and moderation on the rack. | Company + Phase 0 |
 | D-07 | Cancellation | Access to the end of the paid period. One optional reason question; no countdown, no appeal, no mention of the companion. | Company |
 | D-08 | Disclosure reminder interval | Production default 180 minutes; demo default 3 minutes so the simulated clock can reach it. | Counsel (California SB 243, New York) |
@@ -144,6 +174,9 @@ record-anchoring service. No store integration, card form, or external link. No
 real hotline routing beyond the sample card — the crisis card's primary action
 opens a labelled simulation, never a call. No television footage, no network
 material, and no synthesised likeness of any real person. No audio path at all:
-voice is a set of simulated states and a metrics panel. No Moment is actually
-recorded: the creator app's record step is a placeholder, and no media file
-exists anywhere in the build. Group Moments and live calls are placeholders.
+voice is a set of simulated states and a metrics panel, and **video is the
+same** — a call is a state machine on the seeded clock, no camera is opened, no
+frame is rendered, and no media file of any kind exists in the build. No Moment
+is actually recorded: the creator app's record step is a placeholder. Group
+Moments, live calls and group video calls are labelled placeholders. No likeness
+of a real person is synthesised anywhere, by any path.

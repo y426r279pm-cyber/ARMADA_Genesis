@@ -1,7 +1,7 @@
-# perSONA AI — high-fidelity prototype (v0.4)
+# perSONA AI — high-fidelity prototype (v0.5)
 
-Licensed AI versions of the personalities fans already follow, met once a day as
-a group and any time one to one. This is the deck's **4K prototype** gate: it
+Licensed AI versions of the people fans already follow — met once a day as a
+group, any time one to one, and now face to face on a licensed video call. This is the deck's **4K prototype** gate: it
 behaves like the service, on a fully simulated backend, in one self-contained
 file.
 
@@ -21,7 +21,7 @@ network call of any kind.
 
 | File | What it is |
 | --- | --- |
-| `index.html` | The prototype. 1.03 MB, everything inline including SHA-256, the wordmark, and every icon. |
+| `index.html` | The prototype. 1.19 MB, everything inline including SHA-256, the wordmark, and every icon. |
 | `wireframe-v0.2.html` | The original tappable wireframe, kept so the progression is traceable. |
 | `CLAUDE.md` | The coding rules, carried from v0.1 and extended at each iteration. Read before changing anything. |
 | `ASSUMPTIONS.md` | Every unresolved decision, its default in this build, and who decides it. |
@@ -30,6 +30,61 @@ network call of any kind.
 ---
 
 ## What is new in this iteration
+
+v0.5 adds **video presence**: a licensed video call with a talent's approved
+likeness and voice, on-demand inside hours the talent sets.
+
+**The call.** Full-bleed, five controls, no shell. A disclosure gate first,
+stating in the negative that this is *not* the person and they are *not* on the
+call. During the call the AI label is permanent and cannot be dismissed. Minutes
+are an allowance shown before and after, never a meter ticking during an
+intimate conversation, and nothing on the call screen sells anything.
+
+**The look mixer.** The member styles setting, time of day, wardrobe and
+framing — but only from the menu the talent curated. Face, body, age, voice and
+mannerisms are fixed by the licence, and the panel says so rather than quietly
+omitting the controls. A withheld option shows locked with a padlock, not
+hidden: a padlock says a person made a choice.
+
+**The crisis hold on video.** The persona stops mid-thought, the frame dims and
+desaturates rather than cutting to black, and the platform speaks in its own
+voice. The call is **not** ended and the member is **not** ejected. "Keep
+talking here" returns to text in grounded mode rather than to the face. Nothing
+of the disclosure reaches memory, the record or "Your week".
+
+**Rig ingest.** The rig is built off-platform by a vendor and delivered. Nothing
+here creates a likeness — it receives one, runs the rights checks automatically,
+diffs it against the live version, and refuses to publish without a named human.
+The diff is the review: rights checks catch a lapsed licence, not a vendor
+quietly adding two expressions nobody agreed to.
+
+**The Talent Care agent.** An agent pointed at the talent rather than the
+public. It tracks a freshness clock, nudges in a warm professional register,
+escalates to the manager of record, disables video at ninety days — and then
+*recommends* a hold that only a named human can confirm. De-escalation is total:
+one substantive update clears the ladder, with no probation and no memory of
+having been chased. The guilt ban covers its outbound copy too, and that is now
+a self-check.
+
+**The script library.** How "gossip, set news and insider info" becomes
+shippable. A talent's own withheld story clears. A line naming a real person who
+signed nothing is blocked until that person's own written clearance is recorded
+— and "my ex-husband" counts as a name. The persona can only say what is
+cleared; there is no generative path to insider content.
+
+**The lexicon, settled.** Six words were doing the work of three. Now: **member**
+(who pays), **talent** (who signs), **persona** (what is built and versioned),
+**companion** (a member's own instance). On a call, none of them appear — the
+screen shows the name. Retrofitted across every existing screen, not just the
+new ones.
+
+**Removed.** The relationship-depth percentage. A progress meter on an intimate
+relationship is the pattern this product is designed against, and nothing
+replaced it.
+
+---
+
+## What was new in v0.4
 
 v0.4 comes from a review of four products that have already found the parts that
 work — Replika, Character.AI, Kindroid, Cameo — and is designed against the
@@ -55,7 +110,7 @@ vulnerability.
 **Moments**, stitched in from Cameo. Three fulfilment tiers, each labelled on
 the delivered item: an **Instant AI Moment** inside approved boundaries,
 delivered in the session and labelled AI-generated; a **Reviewed AI Moment**
-that queues to the creator app, where the personality approves, edits, or
+that queues to the creator app, where the talent approves, edits, or
 declines within four days; and a **Recorded Moment**, a real recording delivered
 within seven days or automatically refunded. Delivered Moments live on a shelf,
 sharing is a member choice, and a shared Moment never carries private
@@ -68,10 +123,10 @@ block a member, report harassment, boundary-breach alerts, a Reviewed preview
 before release, an impersonation takedown form, and a **persona-level pause**
 that ends availability immediately and writes to the record.
 
-**Persona Studio.** Definition in the personality's own words, greeting,
+**Persona Studio.** Definition in the talent's own words, greeting,
 backstory, approved and excluded topics, four plain-language sliders, a licensed
 voice selection, approved stills, sample dialogues, an in-character test chat,
-and a six-item checklist the personality completes before anything publishes.
+and a six-item checklist the talent completes before anything publishes.
 Every published change is versioned into the record.
 
 **Activities**, because a reason to open the app should not be the relationship
@@ -139,7 +194,7 @@ commercial plans, an audience band, who owns the relationship, and what would go
 wrong. Every fact carries the outlet that reported it.
 
 **They are never given a persona.** No biography, no invented quotes, no
-personality profile, no dialogue, no voice enrolment, no memory, and no
+persona profile, no dialogue, no voice enrolment, no memory, and no
 first-person agent. Five guards enforce it, and `selfCheck()` asserts each one:
 
 | Guard | What it refuses |
@@ -160,7 +215,7 @@ romance requires a grant that no real person holds, and the control shows why
 rather than hiding.
 
 **Big Ed** is carried exactly as the deck carries him: the proposed
-demonstration personality, rights status `pending`, labelled "Proposed, not
+demonstration persona, rights status `pending`, labelled "Proposed, not
 licensed", absent from Discover, with no biography and nothing to talk to. The
 consent workflow shows the whole path to a licensed persona — six artifacts, six
 owners — and stops at the one step the prototype cannot fake: approved source
@@ -171,8 +226,8 @@ material, which only the person can provide. That stop is the demonstration.
 ## Walking it in ten minutes
 
 1. Open the file. You land on the welcome flow; step two states what the product
-   is before it shows a single personality.
-2. `⌘K` / `Ctrl-K` opens the command palette — every screen, every personality,
+   is before it shows a single persona.
+2. `⌘K` / `Ctrl-K` opens the command palette — every screen, every persona,
    every pipeline record, and the demo actions.
 3. **Demo controls** (bottom of the rail) holds the simulated clock,
    `LAUNCH_STATE`, `billingChannel`, the disclosure interval, and the seeded
@@ -191,7 +246,7 @@ material, which only the person can provide. That stop is the demonstration.
    not say.
 7. **Ask for a Moment** on any companion detail. Take the Instant tier for the
    in-session version; take Reviewed and go to **Talent studio → Requests** to
-   approve it as the personality; take Recorded, then push the clock past seven
+   approve it as the persona; take Recorded, then push the clock past seven
    days and watch the refund arrive by itself.
 8. **Talent studio → Persona Studio.** Pick a pipeline prospect and watch it
    refuse. Pick Marisol Vega and publish a version — then find it in the record.
@@ -213,25 +268,29 @@ material, which only the person can provide. That stop is the demonstration.
 | Strings | `STRINGS.en` keyed by screen and element; `STRINGS.es` deliberately empty |
 | Core | SHA-256, canonical JSON, the seeded generator, the simulated clock, DOM helpers, generated portraits, the chart library |
 | State | Named slices, persistence with a schema version, events, the record, the precedence engine, the entitlement reducers |
-| Adapters | Twenty-four boundaries, one shape each, every one `mode: "mock"` |
+| Adapters | Twenty-eight boundaries, one shape each, every one `mode: "mock"` |
 | Engine | The deterministic conversation engine, the disclosure cadence, measurement |
 | v0.4 engine | `screenTurn`, `groundedReply`, `sensitiveCategoryOf`, `seedCohortThread`, `upgradePromptsAllowed`, `weekSummary` |
 | Training | Rights gates, run lifecycle, eval gates, voice, the memory queue |
 | Moments | Request, creator decision, acceptance, the refund tick, earnings, persona profiles and the pause |
 | Agents | Voice mode, risk and approval, draft generation, coverage, incidents |
 | Screens | Shell, member surface, the room, cohort, Moments, activities, settings, then the studio routes |
-| Router | Hash routes, render, thirty-nine self-checks, the seeded session, boot |
+| Video | The call state machine, minutes, the availability window, the suggestive band |
+| Likeness | Rig ingest and its checks, the mixer, the disclosure |
+| Talent health | The freshness clock, the care agent's ladder, the script library |
+| Router | Hash routes, render, fifty-one self-checks, the seeded session, boot |
 
-**Routes.** `#/welcome`, `#/cohort`, `#/discover`, `#/companion/:id`,
+**Routes.** `#/call/:id`, `#/minutes`, `#/welcome`, `#/cohort`, `#/discover`, `#/companion/:id`,
 `#/waitlist/:id`, `#/plans`, `#/account`, `#/profile`, `#/checkout`,
 `#/companions`, `#/conversation/:id`, `#/community`, `#/moments`,
 `#/activities`, `#/week`, `#/settings`, `#/about`, `#/demo`, and
-`#/studio/{pipeline,rights,persona,requests,training,agents,coverage,crisis,measurement,record}`.
+`#/studio/{pipeline,rights,persona,rig,likeness,freshness,care,update,scripts,videosafety,requests,training,agents,coverage,crisis,measurement,record}`.
 
 **Console handle.** `window.__persona` exposes `state()`, `adapters`, `Record`,
 `measure()`, `selfCheck()`, `Clock`, `reset()`, `seedDemoSession()`, `render()`,
 `go()`, plus `agents.*`, `training.*`, `guards.*`, `cohort.*`, `moments.*`,
-`persona.*`, and `safeguards.*`.
+`persona.*`, and `safeguards.*`. The v0.5 call, likeness and care functions are
+reachable as globals on the page for the same reason.
 
 ---
 
@@ -272,10 +331,10 @@ visible throughout.
 - Formatted with Prettier (printWidth 100); ESLint reports **zero errors** — the
   only warnings are three intentionally unused `catch` bindings around
   `localStorage`, which must not throw.
-- 1.03 MB, against the 1.5 MB ceiling.
-- **18 of 18** acceptance scenarios and **39 of 39** in-file rule self-checks
-  pass, across **26** routes, with no console error. See `VERIFICATION.md` for
-  how they were run and for the four real defects they found.
+- 1.19 MB, against the 1.5 MB ceiling.
+- **27 of 27** acceptance scenarios and **51 of 51** in-file rule self-checks
+  pass, across **41** routes, with no console error. See `VERIFICATION.md` for
+  how they were run and for the defects they found.
 
 ## Known limits
 
@@ -294,6 +353,22 @@ visible throughout.
 - No Moment is actually recorded: the creator app's record step is a
   placeholder, and no media file exists anywhere in the build. Group Moments and
   live calls are labelled placeholders.
+- **No video exists.** A call is a state machine on the seeded clock: no camera
+  is opened, no frame is rendered, no audio is produced, and no media file of
+  any kind is in the build. The persona on a call is a labelled placeholder,
+  because this prototype never synthesises a real person's likeness.
+- The suggestive band, the third-party detector, the crisis screen and the
+  sensitive-category matcher are keyword fixtures — not classifiers, not entity
+  resolvers. Each screen says so. The suggestive band in particular ships
+  deliberately conservative and labelled as under-tuned.
+- Screen recording cannot be prevented on a general-purpose device. It is
+  detected where the platform allows and named in the talent's agreement as a
+  known limit, rather than claimed as solved.
+- Three of the four video cost lines are blank and render as "not measured" or
+  "to be quoted". A per-minute video cost is the number the owned-rack case
+  rests on, so it waits for Phase 0.
+- Group video calls are a labelled placeholder. The daily cohort was designed
+  for text, and four companions on one call is a different product.
 - No typeface is embedded (the no-network rule), so the wordmark is the supplied
   PNG and the interface uses a tightly tracked system stack beneath it.
 - Platform capabilities are recorded as of September 2026 from public developer

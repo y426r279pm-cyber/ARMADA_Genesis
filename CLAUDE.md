@@ -111,17 +111,83 @@ prototype misrepresent something. Read this before changing `index.html`.
     memory; the record gets a `moderation_action` with no text; "Your week"
     never mentions it.
 
+## Video presence and likeness
+
+29. **The likeness of a real person is never synthesised in this prototype.**
+    The rig is built off-platform by a vendor and ingested; the build renders an
+    honest placeholder and labels it on every frame. `likenessStudioAllows()`
+    refuses a real name on the new surface exactly as the older guards do.
+30. **A vendor rig cannot publish itself.** Ingest runs the rights checks
+    automatically, but publication needs a named human, and the diff is the
+    review — the checks catch a rights problem, not a vendor quietly adding an
+    expression nobody agreed to. Sending one back requires no reason.
+31. **The video disclosure is permanent and not dismissible.** It is generated,
+    counsel owns the wording, and neither the operator nor the talent can soften
+    it. It is what separates a licensed product from a deepfake.
+32. **The member styles presentation, never identity.** The talent curates the
+    menu; the member picks from it. Face, body, age, voice and mannerisms are
+    fixed by the rig. A withheld option shows locked rather than hidden, because
+    a padlock says a person made a choice.
+33. **On a call, a persona is called by its name and nothing else.** The
+    category nouns — talent, persona, companion — belong in navigation and
+    rights screens, not over a face.
+34. **A call that meets a safety signal is held, not cut.** The frame dims, the
+    persona sends nothing further, the platform speaks in its own voice, and the
+    member is never ejected. Video does not resume for the rest of that session,
+    and "keep talking here" returns to text rather than to the face.
+35. **No progress meter on a relationship.** The relationship-depth percentage
+    was removed in v0.5. No streaks, levels, currencies or unlockables replace
+    it.
+
+## Talent health
+
+36. **A persona that has gone stale loses video before it loses conversation.**
+    A stale face and voice misrepresent a person more than stale text does. The
+    freshness clock is per talent and its thresholds are visible and editable.
+37. **The Talent Care agent runs every rung of the ladder except the hold.**
+    Suspending a talent's account needs a named human, is written to the record
+    with that name, and is instantly reversible.
+38. **The guilt ban protects the talent too.** `PROHIBITED_COPY` is scanned
+    across the care agent's outbound copy exactly as it is across member-facing
+    copy. De-escalation is total: one substantive update clears the ladder, with
+    no probation and no memory of having been chased.
+39. **Insider content is retrieved and cleared, never generated.** A persona can
+    only say what is in its cleared script library. A line naming — or resolving
+    to — a real person who signed nothing is blocked until that person's own
+    written clearance is recorded.
+40. **Explicit content stays blocked at the platform layer.** Suggestive is
+    permitted only where a talent granted it, is calibrated per talent rather
+    than globally, and ships labelled as under-tuned because a keyword engine
+    gets this band wrong in both directions.
+
 ## Requirement IDs
 
 Preserve them. `S-` plans, `M-` member journey, `C-` creator, `T-` technical,
 `P-` production, `D-` deck-driven, `R-` regulatory and safety, `K-` the record,
 `L-` the rights model, `V-` adapters and code structure, `G-` the rights guards
 added in v0.3, `E-` the experience requirements and `X-` the crisis experience
-added in v0.4. `VERIFICATION.md` maps each one to where it lives.
+added in v0.4, and `W-` video presence, `N-` name and likeness and `H-` talent
+health added in v0.5. `VERIFICATION.md` maps each one to where it lives.
 
 ## What is never built without being asked
 
-No live identity, payments, inference, speech, avatar, social, age-assurance, or
-record-anchoring service. No store integration, card form, or external link. No
-real hotline routing beyond the sample card. No television footage, no network
-material, and no synthesised likeness of any real person.
+No live identity, payments, inference, speech, avatar, video, render, social,
+age-assurance, or record-anchoring service. No store integration, card form, or
+external link. No real hotline routing beyond the sample card. No television
+footage, no network material, and no synthesised likeness of any real person —
+video calls are simulated states on the seeded clock, and no media file of any
+kind exists in the build.
+
+## The lexicon
+
+Four words, settled in v0.5, and they are not interchangeable:
+
+- **member** — the person paying for the product.
+- **talent** — the real human who signs the agreement. Rights, payouts and the
+  pipeline talk about the talent.
+- **persona** — the licensed AI version that is built, trained, versioned and
+  approved. The studio versions the persona.
+- **companion** — a member's own running instance of a persona, carrying their
+  history. The member opens their companion.
+
+On a call, none of these appear: the screen shows the name.

@@ -1,7 +1,7 @@
-# Verification report — perSONA AI v0.4
+# Verification report — perSONA AI v0.5
 
-Build: single self-contained `index.html`, 1,037,169 bytes (1.03 MB against the
-1.5 MB ceiling), no network, no dependency. Verified: 2026-09-18.
+Build: single self-contained `index.html`, 1,193,937 bytes (1.19 MB against the
+1.5 MB ceiling), no network, no dependency. Verified: 2026-09-19.
 
 ## How this was verified
 
@@ -12,23 +12,20 @@ actual state and record after each step. Three further passes ran alongside it:
 
 - **ESLint** over the whole script: **0 errors, 3 warnings** — all three are
   intentionally unused `catch` bindings around `localStorage`, which must not
-  throw. Two further unused bindings around `navigator.clipboard` were found by
-  this pass and removed, because CLAUDE.md rule 5 admits the exception for
-  storage access only.
+  throw. Five further warnings appeared during this build and none was silenced:
+  two were stray bindings and were removed; three were constants and a function
+  the proposal owed a screen to (`VIDEO_COST`, `TALENT_CATEGORIES`,
+  `rememberFromCall`), and each was wired to the surface it belonged on.
 - **Prettier** (printWidth 100) as the final formatting pass over the whole
   file; the acceptance suite was re-run afterwards and still passes.
 - **Console watch** across every run: no uncaught page error, no
   `console.error`.
 
-The prototype also carries **39 of its own rule self-checks** over the pure
-entitlement, precedence, record, rights-guard, experience, and crisis functions.
-They run at boot and render on the **About** screen. All 39 pass. A route walk
-renders all **26** routes with no error.
-
-Defect 4 below is the reason this report now states plainly what the suite does
-**not** cover: every acceptance run starts from a clean browser context, so
-until **A35** was added, nothing in it exercised the upgrade path a returning
-member actually takes.
+The prototype carries **51 of its own rule self-checks** — twelve of them new in
+this iteration — over the pure entitlement, precedence, record, rights-guard,
+experience, crisis, likeness, video and talent-health functions. They run at
+boot and render on the **About** screen. All 51 pass. A route walk renders all
+**41** routes with no error and none rendering thin.
 
 **No screenshot or test output has been invented.** Where a scenario is marked
 passed, the driver asserted it. Where a figure appears in a note, the driver
@@ -41,152 +38,124 @@ read it out of the running application.
 `claude-build-requirements-v0.1.md` has never been supplied. The IDs it defines
 — S-01 to S-05, M-01 to M-09, C-01 to C-06, T-01 to T-06, P-01 to P-06, and
 scenarios A01 to A16 — remain **reconstructed** from the v0.2 addendum's
-cross-references and from the concept deck, exactly as recorded in the v0.2
-report. This iteration did not change that reconstruction; it built on it. Where
-the real v0.1 disagrees, it governs.
-
-The D, R, K, L, and V requirements are the v0.2 addendum's own, the G series is
-v0.3's, and the **E** and **X** series are the v0.3 addendum's own text. None of
-those carry the caveat.
+cross-references and from the concept deck. Where the real v0.1 disagrees, it
+governs. The D, R, K, L and V requirements are the v0.2 addendum's own, G is
+v0.3's, E and X are v0.4's, and **W, N and H are new in this iteration** and
+derive from the approved proposal rather than from a supplied brief.
 
 ---
 
-## Acceptance scenarios — this iteration (A28–A34)
-
-These are the addendum's own scenarios, run verbatim.
+## Acceptance scenarios — this iteration (A36–A44)
 
 | ID | Scenario | Result | Evidence from the run |
 | --- | --- | --- | --- |
-| **A28** | Open the Cohort, read the daily thread, mute one companion, move into its private room and back | **passed** | Thread "End of the week" seeded with 4 messages from 3 companions, **capped at one contribution each**; muting silenced the companion in the group while its private room stayed open and answering; shared memory **off by default** and no group recall carried into the private room until the toggle was switched on |
-| **A29** | Mark a message "Remember this," then "Forget this," then Rewind and Fresh start | **passed** | The memory card appeared carrying its **source message** and disappeared on forget; Rewind stashed **6** messages and replayed them; Fresh start left **1** message in the transcript and **kept all 4** long-term facts |
-| **A30** | Ask for an Instant, a Reviewed, and a Recorded Moment | **passed** | Instant reached the shelf **within the session**, labelled AI-generated; Reviewed appeared in the creator inbox and came back **"Approved by Marisol Vega"**; Recorded **refunded itself automatically** once its seven-day window elapsed on the simulated clock |
-| **A31** | In the creator route, pause a persona and decline a Moment | **passed** | The paused persona left Discover **and the cohort** (a real defect, below), its open room went read-only, the decline recorded `reasonRequired: false`, and `Record.verify()` returned null |
-| **A32** | Trigger the crisis card, choose "Keep talking here," then leave | **passed** | The persona stepped back and sent nothing further; the sheet measured **50% of the viewport**, `rgb(245,243,238)` on `rgb(15,46,53)`, **0 icons**, with the **composer above it** and the transcript visible behind; grounded replies **asked no questions** and restated that a person is available; the disclosure reached neither memory nor the record; upgrade prompts were blocked for the window; "Your week" never mentioned it |
-| **A33** | Trigger an uncertain signal, then say "I'm okay" | **passed** | A soft chip above the composer and **no card**; the companion still answered normally; after "I'm okay" the prompt did not return without a new kind of signal |
-| **A34** | Use the app for sixty simulated minutes | **passed** | The time notice appeared **once** and dismissed; **0 prohibited phrases** found across every string in `STRINGS.en`, every thread prompt, every crisis line, every grounded line, and every persona check-in |
-| **A35** | Open the file in a browser that still holds state written by an earlier build | **passed** | Three planted blobs — a v0.3 blob with `schemaVersion: 3` and no `moments` slice, a current blob with a slice deleted, and a garbage blob — each booted to a rendered app with 39/39 self-checks and no page error. Verified as a real regression: the same three cases run against the previous commit reproduce the failure exactly (`app` children 0, boot panel in its failed state, no `moments` slice) |
+| **A36** | Place a call end to end | **passed** | The gate names the person it is *not*; the disclosure **"AI · licensed likeness"** is present and permanent on the call; **5** controls, no more; the likeness placeholder is labelled on the surface; **nothing on the call screen sells anything**; 10 minutes charged on the way out, not metered during; the record carries the rig version that spoke |
+| **A37** | The look mixer | **passed** | A withheld option is refused with `withheld_by_talent` and is **still shown, locked** rather than hidden; an allowed option applies; an identity attribute is refused outright; **4** attributes fixed by the licence |
+| **A38** | Crisis on a call | **passed** | The persona stepped back and the call was **held, not ended — the member is not ejected** (`state=held`, `calls.active` still set); no *new* video for the session (`safety_lock`); the phrase appears in **neither the record, memory, nor "Your week"**; the `moderation_action` entry carries no text; upgrade prompts blocked for the window |
+| **A39** | Vendor rig ingest | **passed** | Caught **2 unapproved expressions** (`smirk`, `flirt`) and a missing talent sign-off — the two things the rights checks do *not* catch; refused to publish without a named human (`requires_human`); refused while checks failed (`checks_failed`); published v5.0 naming **T. Brooks**; **no asset of any kind in the record** |
+| **A40** | Freshness, the care agent, and the hold | **passed** | Video off at 90 days **while conversation kept running**; the agent recommended a hold and **never applied one**; the hold was refused without a name, recorded against **S. Dalton**, and marked reversible; **0 guilt phrases** across the agent's entire outbound copy; one update returned the persona to `current` with the ladder cleared |
+| **A41** | The third-party line | **passed** | A named co-star **and** "my ex-husband" both blocked; the talent's own story cleared; clearing refused without a recorded clearance (`third_party_clearance_required`); **a blocked line never reached the persona in 12 draws** |
+| **A42** | The suggestive band | **passed** | Flirtation passed where the talent granted it and was refused at the **talent** layer where not; explicit was refused at the **platform** layer with mature themes granted, age verified and the member opted in; the band ships `conservative` and flagged `labelledUnderTuned` |
+| **A43** | Outside the window, and out of minutes | **passed** | Outside the talent's hours the control offers a callback and **will not queue twice**; an empty balance blocks the call and a top-up restores it |
+| **A44** | The lexicon retrofit and the removed meter | **passed** | **0** uses of "personality" across 9 member routes; **0** depth meters in the DOM; `depthFor()` no longer exists in the build |
 
-## Regression scenarios re-run against v0.4
+## Regressions re-run against v0.5
 
-| ID | Scenario | Result | Evidence |
-| --- | --- | --- | --- |
-| **B07 / E-03** | The real-person guard holds everywhere, now including the Persona Studio | **passed** | Unavailable, unlisted in Discover, team-voice only, and refused by both the Persona Studio and TrainingStudio |
-| **B19** | Every record type, including the eleven new ones, is written by a real path and leaks nothing | **passed** | **31 of 31** entry types exercised through real paths; zero content strings found anywhere in the serialised record; chain verifies |
-| **B23** | One file from a 390 px phone to a 3840 px display | **passed** | No horizontal overflow at any width; rail hidden and tab bar shown on phone and tablet, rail shown and tab bar hidden from laptop to 4K |
-| **A01 / A15** | Discover lists only approved personalities; all four rights statuses still exercised | **passed** | 8 of 12 shown; 1 pending / 8 approved / 2 expired / 1 revoked |
-| **A04** | Every acknowledgment unchecked by default plus the 18-plus gate, now landing on the Cohort | **passed** | **9** unchecked boxes (eight policies plus the age gate); 9 `consent_accepted` entries recorded |
-| **A06** | Simulated checkout collects no card details and handles failure and success | **passed** | No card field on any channel; failure then success |
-| **A08 / A18** | Opening notice, persistent AI label, dismissible interval reminder | **passed** | Opening notice verbatim; reminder after the interval; the composer never blocked |
-| **A21** | Revoking a persona removes it from Discover and makes its room read-only | **passed** | `Record.verify()` → null after the status change |
-| **A26** | Account deletion clears every member slice — now including the cohort, the Moments shelf and the journal | **passed** | 2 tombstones; cohort, Moments and journal all cleared; survived a reload; no personal text left in the chain |
-| **—** | No uncaught page errors or console errors across the whole run | **passed** | clean |
+| ID | Result | Evidence |
+| --- | --- | --- |
+| **A28** cohort | **passed** | Thread seeded, 4 messages from 3 companions, capped at one each; shared memory off by default |
+| **A29** memory | **passed** | Card carried its source message; rewind stashed 6; fresh start left 1 message and kept 4 facts |
+| **A30** three Moment tiers | **passed** | Instant in session; Reviewed returned "Approved by Marisol Vega"; Recorded auto-refunded |
+| **A31** pause and decline | **passed** | Gone from Discover and the cohort, room read-only, `reasonRequired: false`, chain verifies |
+| **A32** crisis in text | **passed** | Sheet at 50% of the viewport, off-white on deep teal, 0 icons, composer above it |
+| **A33** uncertain signal | **passed** | Chip only; the companion still answered; no repeat prompt |
+| **A34** time notice and the guilt scan | **passed** | Notice once, dismissible; 0 prohibited phrases anywhere the platform speaks first |
+| **A35** stale persisted state | **passed** | A v0.3 blob, a current blob with a slice deleted, and a garbage blob each booted to **51/51 self-checks** with no page error |
+| **B07 / E-03** real-person guard | **passed** | Unavailable, unlisted, team-voice only, refused by Persona Studio, TrainingStudio **and now the likeness studio** |
+| **B19** the record | **passed** | **41 of 41** entry types exercised through real paths; **0** content strings found; `Record.verify()` → null |
+| **B23** phone to 4K | **passed** | No horizontal overflow at any width; rail and tab bar switch correctly |
+| **A01/A15, A04, A06, A08/A18, A21, A26** | **passed** | Unchanged from v0.4 |
+| **—** console | **passed** | No uncaught page error, no `console.error`, across the whole run |
 
-**Summary: 18 of 18 acceptance scenarios passed. 0 failed. 0 unverified.**
-Plus 39 of 39 in-file rule self-checks and a 26-route walk with no error.
+**Summary: 27 of 27 acceptance scenarios passed. 0 failed. 0 unverified.**
+Plus 51 of 51 self-checks and a 41-route walk with no error.
 
-The full A01–A27 suite passed against v0.2 and the full B01–B23 suite against
-v0.3; both are recorded in those reports. This iteration re-verified the ones
-the new code could plausibly have broken, listed above.
+### The two real defects this iteration found
 
-### The four real defects this suite found
+1. **A crisis on a call ejected the member.** The first implementation ended the
+   call, cleared the active call and dropped the member on a "Call ended"
+   screen. X-01 is explicit that the call does not end and the member is not
+   ejected, and the approved proposal's screen 09 showed the dimmed frame with
+   the sheet over it. Fixed: a safety signal moves the call to `held` — minutes
+   stop accruing immediately, the frame dims, the persona sends nothing further,
+   and the platform's card rises over it. The member decides when to leave.
+   **A38 now asserts the call is held and the member is not ejected**, so this
+   cannot regress silently.
+2. **The call surface rendered inside the shell.** The tab bar sat over the
+   call, the demo strip collided with the persona's name, and the controls were
+   clipped. Fixed by publishing the route to the document element and having the
+   shell step out of the way, restacking the surface, and making the demo strip
+   a single scrollable row. Found by looking at the rendered screen, not by a
+   test — which is why the screenshots are part of the process.
 
-1. **A paused persona stayed in the cohort.** `pausePersona()` ended
-   availability and removed the persona from Discover, but the group room built
-   its member list from the member's selections rather than from
-   `availabilityOf()`, so a paused companion kept contributing to the daily
-   thread. Fixed: the cohort filters on availability and shows a "left the
-   cohort" notice linking to My companions. This is E-09 and the second half of
-   A31, and it was invisible from every screen except the one the driver walked.
-2. **The crisis sheet covered its own composer.** X-01 requires the composer to
-   stay available; the first implementation rendered the sheet as a fixed
-   element at `bottom: 0`, which sat on top of it. Fixed: the sheet and composer
-   are one fixed stack, composer first, sheet `position: relative` beneath it.
-   The driver now measures both boxes and asserts the composer's bottom edge is
-   above the sheet's top edge.
+### Four faults in the test harness, not the build
 
-3. **A blocked or failed script showed an empty black page.** Every pixel of
-   the interface is painted by script into three empty divs, so any environment
-   that does not run the script — a preview pane, an email client, an in-app
-   file viewer, JavaScript switched off — rendered the dark background and
-   nothing else, with no way to tell a blocked script from a broken file. This
-   was reported from outside the suite, by opening the delivered file in a
-   viewer, which is why no scenario caught it: the driver always executes the
-   script. Fixed: the body now carries an authored fallback panel that is
-   visible by default and removed only once `boot()` has actually completed,
-   plus a `<noscript>` block; `boot()` is wrapped so a throw marks the panel
-   failed and prints the real stack in place; and the listener falls back to a
-   direct call if the document has already finished parsing. Verified three
-   ways against the real file — a normal boot removes the panel and renders the
-   app with no console error, a context with `javaScriptEnabled: false` shows
-   1,030 characters of explanation instead of a black page, and a variant with
-   a deliberate `throw` inside `boot()` shows the panel in its failed state
-   carrying the actual error and stack.
-
-4. **A returning member's stored state killed boot.** `SCHEMA_VERSION` was
-   left at `3` while v0.4 added whole new state slices (`moments`, `cohort`,
-   `journal`, `scenes`). A browser holding a v0.3 blob under the shared storage
-   key therefore passed the version check untouched, `restore()` handed back a
-   state object with no `moments` slice, and `tickMoments()` threw on
-   `state.moments.list` during boot — taking the whole interface with it. This
-   is what the black page actually was: not a blocked script, but a script that
-   ran and died, on any device that had opened an earlier build at the same
-   origin. Every test run had started from a clean context, so nothing caught
-   it. Fixed three ways: `SCHEMA_VERSION` bumped to `4` so a stale blob reseeds
-   as designed; `fillMissingSlices()` added as a backstop that seeds any slice a
-   restored blob lacks and warns to the console that the version was not bumped;
-   and `migrate()` now also rejects a blob whose `state` is not an object.
-   Scenario **A35** was added to the suite so this cannot recur silently.
-
-Six further failures during the run were faults in the driver's own assertions
-— a helper dropping its extra arguments, `undefined` compared against `null`, a
-`/crisis/i` match hitting the rail's "Crisis console" rather than the sheet, an
-incomplete record-type drive, a timestamp window that caught seeded agents, and
-a corrupted string literal in the driver source. All six were fixed in the
-driver, not in the build, and none of them changed a result.
+Recorded because the first run reported them as product failures: the record
+coverage list was a **hardcoded copy of 31 types** that had drifted from the
+registry (now read live from `RECORD_TYPES`, so an unexercised new type fails
+the scenario); two scenarios read a state object **after mutating it**; a
+three-character leak probe (`555`) collided with the chain's own hex hashes once
+the record grew (now a distinctive token); and a leak probe wrongly included the
+**vendor name**, which is provenance the record is supposed to carry. One
+scenario's note also printed fixed text rather than measured values — it now
+prints the real counts, because a note that always says "zero leaks found" is
+not evidence.
 
 ---
 
-## New requirements introduced in this iteration
+## New requirements in this iteration
 
-### E — Experience
-
-| ID | Requirement | Where it lives | Verified by |
-| --- | --- | --- | --- |
-| **E-01** | The daily cohort: one group room, a seeded daily thread, a turn order with a frequency cap, mute without removal, and an explicit shared-memory toggle that fades | `COHORT`, `THREAD_CALENDAR`, `seedCohortThread`, `cohortMembers`, `toggleCohortMute`, `sendGroupMessage`, `screenCohort` | A28, self-check E-01 |
-| **E-02** | Memory the member can see and shape: editable cards, remember and forget, rewind, fresh start, a memory dashboard, and a sensitive-category exclusion list | `rememberMessage`, `forgetMessage`, `rewindConversation`, `replayRewind`, `freshStart`, `openMemory`, `sensitiveCategoryOf`, `SENSITIVE_CATEGORIES` | A29, self-check E-02 |
-| **E-03** | Persona Studio: definition, greeting, backstory, approved and excluded topics, four sliders, voice selection, approved stills, sample dialogues, an in-character test chat, an approval checklist, and versioned publication | `PERSONA_SLIDERS`, `APPROVAL_CHECKLIST`, `profileOf`, `publishProfile`, `personaStudioAllows`, `screenPersonaStudio` | B07/E-03 |
-| **E-04** | Activities and the daily thread: a daily prompt, an episode-night room, a pep-talk request, a sealed journal, and optional mood check-ins | `ACTIVITIES`, `MOODS`, `screenActivities`, the journal and mood panels | Route walk; A26 (journal cleared on deletion) |
-| **E-05** | Attachment safeguards: the guilt ban, opt-in re-engagement, no upgrade prompt in a room or during the blackout, the time notice, "Your week", and friend/mentor-only modes | `PROHIBITED_COPY`, `SAFEGUARDS`, `COMPANION_MODES`, `upgradePromptsAllowed`, `weekSummary`, `containsProhibitedCopy`, `proactiveCopyCorpus` | A34, A32, self-checks E-05a, E-05b, E-05c |
-| **E-06** | Privacy stance: conversations never train a model, said in plain words, with a "What we keep and for how long" screen | `RETENTION`, the privacy panel in Settings | Self-check E-06 |
-| **E-07** | Personalized Moments: the request form, three labelled fulfilment tiers, the shelf, and labelled placeholders for group Moments and live calls | `MOMENT_TIERS`, `MOMENT_OCCASIONS`, `MOMENT_TONES`, `requestMoment`, `acceptMoment`, `tickMoments`, `momentShareText`, `screenMoments` | A30, self-checks E-07a, E-07b, E-07c |
-| **E-08** | Creator app: a Requests inbox with accept, edit and decline, record-on-device placeholders, price and availability, an expiry countdown, and earnings on sample data | `creatorDecideMoment`, `momentEarnings`, `MOMENT_SHARE_TO_TALENT`, `screenRequests` | A30, A31 |
-| **E-09** | Creator safety tools: decline without explanation, block, report, boundary-breach alerts, a persona-level pause, Reviewed preview, takedown request, and the aggregate-only weekly report | `pausePersona`, `noteBoundaryBreach`, `creator_block_set`, `takedown_requested`, `screenRequests` | A31, self-check E-09 |
-| **E-10** | Member safety tools: report and block, the time notice, memory controls, a "What this AI can and cannot do" sheet, consent receipts, the crisis experience, and one trusted contact | `openWhatThisCanDo`, `trusted_contact_set`, the Settings safety panel | A32, A34, B19 |
-
-### X — The crisis experience
+### W — Video presence
 
 | ID | Requirement | Where it lives | Verified by |
 | --- | --- | --- | --- |
-| **X-01** | Trigger and handoff: the persona steps back, the avatar dims, nothing further is sent, a sheet rises over about forty percent with the transcript visible and the composer still available | `screenTurn`, `openCrisisSheet`, `renderCrisisSheet`, `.crisis-stack`, `.av.stepped` | A32 — measured at 50% of the viewport with the composer above it |
-| **X-02** | Tone and copy: the platform speaks, two lines, three actions, a fourth for a trusted contact, and none of the forbidden moves | `CRISIS_COPY` | A32, self-check X-02 |
-| **X-03** | Visual system: calm palette, no red, no warning icon, no illustration, large type, full-width targets, and an optional breathing pacer | `--x-bg` / `--x-ink` / `--x-accent`, `pacerPanel`, `.pacer-ring` | A32 — `rgb(245,243,238)` on `rgb(15,46,53)`, 0 icons |
-| **X-04** | Grounded support mode: warm, brief, present; no probing questions, no role-play, no claim of personhood, no dependence; availability restated; a persistent chip; no lockout | `groundedReply`, `GROUNDED_LINES`, `.help-chip` | A32, self-check X-04 |
-| **X-05** | Aftercare: excluded from persona and group memory, a `moderation_action` with no text, an optional check-in offer, and never in "Your week" | `sensitiveCategoryOf`, `WEEK_THEMES`, `weekSummary` | A32, self-check X-05 |
-| **X-06** | Uncertain signals: a soft chip instead of the card, "I'm okay" returns to normal with no penalty and no repeat | `UNCERTAIN_TRIGGERS`, `screenTurn`, `.soft-chip` | A33, self-check X-06 |
-| **X-07** | Consistency: the flow behaves identically every time and is fully testable | One seed, one clock, the whole flow driven by the suite | A32, A33 |
+| **W-01** | On-demand calls inside the talent's own availability window; outside it, a callback request, never a dead control | `availabilityWindowOf`, `videoAvailabilityOf`, `callAffordance`, `requestCallback` | A36, A43 |
+| **W-02** | The disclosure gate states, in the negative, that this is not the person and they are not on the call | `callDisclosureDue`, `openCallGate` | A36 |
+| **W-03** | The call surface: full-bleed, five controls, no shell | `screenCall`, `.callscreen`, the route published to the document | A36 |
+| **W-04** | Captions and audio-only as first-class modes, not degraded ones | `screenCall`, `VIDEO.audioOnlyRate` | A36, self-check W-08 |
+| **W-05** | A safety signal holds the call, and no new video for the session | `callTurn`, `callCrisisSheet`, `VIDEO.resumeAfterSafetySignal` | A38, self-check W-05 |
+| **W-06** | What a call leaves behind is editable, and sensitive categories never reach it | `rememberFromCall`, `callEnded` | A38 |
+| **W-07** | A callback is a queued intent, never a promise of a human | `requestCallback` | A43 |
+| **W-08** | Minutes are an allowance, charged on exit, never a meter during a call | `minutesLeft`, `chargeCall`, `topUpMinutes`, `screenMinutes` | A36, A43, self-check W-08 |
+| **W-09** | Reporting from a call costs no minutes; boundary pressure is a pattern | `reportFromCall`, `noteCallDecline`, `screenVideoSafety` | A42, self-check W-09 |
 
-### The self-checks added in this iteration
+### N — Name and likeness
 
-Fourteen, bringing the total to 39: `E-01`, `E-02`, `E-05a`, `E-05b`, `E-05c`,
-`E-06`, `E-07a`, `E-07b`, `E-07c`, `E-09`, `X-02`, `X-04`, `X-05`, `X-06`. Each
-is a pure function over seeded state, and each renders on the About screen with
-its result.
+| ID | Requirement | Where it lives | Verified by |
+| --- | --- | --- | --- |
+| **N-01** | The member styles presentation; identity is locked and said to be locked | `setLook`, `LIKENESS_LOCKED`, `openLookSheet` | A37, self-check N-01 |
+| **N-02** | The talent curates the menu; a withheld option shows locked, not hidden | `mixerOptionsFor`, `setMixerExposure`, `screenLikenessControls` | A37 |
+| **N-03** | A vendor rig cannot publish itself; the diff is the review | `rigChecks`, `rigDiff`, `approveRig`, `rejectRig`, `screenRigIngest` | A39, self-check N-03 |
+| **N-04** | No real person reaches any part of the likeness studio | `likenessStudioAllows` | B07/E-03, self-check N-04 |
+| **N-05** | The video disclosure is generated, permanent and counsel-owned | `VIDEO_DISCLOSURE`, `videoDisclosureChip` | A36, self-check N-05 |
 
-`E-05a` is the one worth naming: it takes the twenty-two-phrase
-`PROHIBITED_COPY` list and scans every string in `STRINGS.en`, every entry in
-`THREAD_CALENDAR`, every line of `CRISIS_COPY` and `GROUNDED_LINES`, and every
-persona's `style.checkIn`. It found zero. If a future edit writes "I missed you"
-anywhere the platform speaks first, the About screen goes red.
+### H — Talent health
+
+| ID | Requirement | Where it lives | Verified by |
+| --- | --- | --- | --- |
+| **H-01** | A stale persona loses video before it loses conversation | `freshnessOf`, `videoAvailabilityOf`, `screenFreshness` | A40, self-check H-01 |
+| **H-02** | The Talent Care agent nudges, escalates and de-escalates in a warm register | `careMessageFor`, `tickCare`, `CARE_LADDER`, `screenCareAgent` | A40, self-check H-06 |
+| **H-03** | The agent recommends a hold; a named human confirms it, reversibly | `confirmHold`, `releaseHold`, `deferRecommendation` | A40, self-check H-03 |
+| **H-04** | The talent's update is four artifacts and fifteen minutes, and one submission clears the ladder | `submitTalentUpdate`, `screenTalentUpdate` | A40, self-check H-04 |
+| **H-05** | Insider content is retrieved and cleared, never generated; a third party blocks a line | `detectThirdParty`, `submitScript`, `clearScript`, `scriptedLineFor` | A41, self-check H-05 |
+
+### Self-checks added
+
+Twelve, bringing the total to 51: `N-01`, `N-03`, `N-04`, `N-05`, `W-05`,
+`W-08`, `W-09`, `H-01`, `H-03`, `H-04`, `H-05`, `H-06`. The one worth naming is
+**H-06**, which scans the Talent Care agent's entire outbound copy against the
+same twenty-two-phrase prohibited list that guards member-facing copy — the
+guilt ban protects the talent too, and it is now checked rather than intended.
 
 ---
 
@@ -194,46 +163,28 @@ anywhere the platform speaks first, the About screen goes red.
 
 | ID | Status |
 | --- | --- |
-| G-01…G-14 | implemented and still passing — the v0.3 rights guards are unchanged, and `personaStudioAllows()` extends G-01 to the new creation route (B07/E-03) |
-| D-01 Operator identity | implemented — Armada confined to About and the studio |
-| D-02 Roster density and status coverage | implemented (A01/A15) |
-| D-03 Waitlist and launch state | implemented |
-| D-04 Measurement panel | implemented — now including Moments and cohort events |
-| D-05 Cost and capacity hooks | implemented — blanks stay blank |
-| D-06 Billing channel | implemented (A06) |
-| R-01 AI disclosure cadence | implemented (A08/A18) |
-| R-02 Crisis protocol | implemented — replaced by the X series (A32, A33) |
-| R-03 Age assurance adapter | implemented — self-check R-03 |
-| R-04 Reporting and blocking | implemented — now on both sides (E-09, E-10) |
-| R-05 Policy versions and change notice | implemented — eight policies (A04) |
-| R-06 No-pressure retention | implemented — now enforced by E-05 as well |
-| K-01 Record data model | implemented — **31** entry types, all exercised (B19) |
-| K-02 Member view | implemented (A26) |
-| K-03 Creator view | implemented — member entries withheld; persona versions written here (E-03) |
-| K-04 Deletion and the chain | implemented (A26) |
-| L-01 Licence scope object | implemented |
-| L-02 Precedence engine | implemented — now consulted by group contributions and member scenes as well |
-| L-03 Availability rule | implemented — now also drives cohort membership (A21, A31) |
-| L-04 Aggregate insights only | implemented |
-| V-01 Adapter registry | implemented — **24** adapters, every one `mode: "mock"` |
-| V-02 State shape | implemented — slices, pure reducers, hash router, schema version, one reset |
-| V-03 Deterministic simulation | implemented — one seed, one clock, one `FIXTURES` |
-| V-04 String table | implemented, with the same deviation recorded in v0.2 |
-| V-05 Build hygiene | implemented — no external asset, 1.03 MB, Prettier and ESLint clean |
-| S-01…S-05, M-01…M-09, C-01…C-06, T-01…T-06, P-01…P-06 | implemented as reconstructed; see the v0.2 report for the mapping |
+| E-01…E-10, X-01…X-07 | implemented and passing; X-01 was **extended to video** rather than duplicated, and the call reuses the text surface's crisis markup and copy so the two cannot drift |
+| G-01…G-14 | unchanged and passing; `likenessStudioAllows()` extends G-01 to the new surface |
+| K-01 the record | **41** entry types, all exercised (B19). A call writes its id, duration and rig version — never a frame, a word or a still |
+| L-02 precedence engine | now also consulted by the look mixer and by every call turn |
+| V-01 adapter registry | **28** adapters, every one `mode: "mock"`, now including `video`, `rigs`, `talentCare` and `scripts` |
+| V-05 build hygiene | no external asset, 1.19 MB, Prettier and ESLint clean |
+| D-05 cost and capacity | extended to video; **three of the four video cost lines are blank on purpose** and render as "not measured" or "to be quoted" |
+| S-, M-, C-, T-, P-, D-, R- | implemented as reconstructed; see the v0.2 and v0.3 reports |
 
 ---
 
 ## What is explicitly not built
 
-No live identity, payments, inference, speech, avatar, social, age-assurance, or
-record-anchoring service. No store integration, card form, or external link. No
-real hotline routing beyond the sample card — the crisis card's primary action
-opens a labelled simulation, never a call, and the resources are a United States
-sample only. No television footage, no network material, and no synthesised
-likeness of any real person. There is no audio path at all: voice is a set of
-simulated states plus a metrics panel. No Moment is actually recorded; the
-creator app's record step is a placeholder and no media file exists in the
-build. Group Moments and live calls are labelled placeholders. The crisis screen
-and the sensitive-category matcher are keyword fixtures, not classifiers, and
-both screens say so.
+No live identity, payments, inference, speech, avatar, **video, render**,
+social, age-assurance, or record-anchoring service. A call is a state machine on
+the seeded clock: no camera is opened, no frame is rendered, no audio is
+produced, and **no media file of any kind exists in the build**. No likeness of
+a real person is synthesised anywhere, by any path — the call surface draws a
+labelled placeholder. No store integration, card form, or external link. No real
+hotline routing beyond the sample card, and crisis resources remain a **United
+States sample only**. No television footage and no network material. Group video
+calls, group Moments and live calls are labelled placeholders. The crisis
+screen, the sensitive-category matcher, the suggestive band and the third-party
+detector are **keyword fixtures, not classifiers or entity resolvers**, and every
+one of those screens says so.
